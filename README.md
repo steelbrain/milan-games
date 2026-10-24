@@ -16,6 +16,8 @@ and five stars end in a party.
 
 ## Playing
 
+Play it at **[milan-games.vercel.app](https://milan-games.vercel.app)**, or run it locally:
+
 ```sh
 npm install
 npm run dev -- --host     # then open the "Network" URL on the iPad
@@ -108,3 +110,8 @@ clip, delete its file and run the command again.
 - **End-to-end tests** build the production site and play whole games in Chrome at tablet and
   phone sizes. They also check that layouts fit without scrolling and that settings survive a
   reload.
+
+## License
+
+The code is [MIT](LICENSE). The recorded speech in `public/speech/` is not covered by it: those
+clips were made with ElevenLabs voices, and all rights to them are reserved.

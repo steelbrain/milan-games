@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "description": "Little learning games for a three-year-old: counting stories, letters, numbers, colors and shapes.",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
