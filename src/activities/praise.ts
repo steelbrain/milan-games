@@ -23,5 +23,5 @@ export function praise(random: Random): Line {
   return pickOne(random, PRAISE);
 }
 
-export const CARD_GAME_HERO = '🦄';
+export const CARD_GAME_HERO = '🦉';
 export const CARD_GAME_FINALE = line('Hooray! You did it! Give me a high five!');

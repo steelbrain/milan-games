@@ -46,5 +46,7 @@ describe('createBrowserServices', () => {
     expect(value).toBeLessThan(1);
     services.store.write('probe', 1);
     expect(services.store.read('probe')).toBe(1);
+    // Only production builds can save the app for offline use.
+    expect(services.offline.status().phase).toBe('unsupported');
   });
 });

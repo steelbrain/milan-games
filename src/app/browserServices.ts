@@ -1,3 +1,5 @@
+import { createOfflineSaver, preferSavedVoices } from '../offline/offlineSaver';
+import { registerServiceWorker } from '../offline/registerServiceWorker';
 import { createAudioContextGetter } from '../services/audioContext';
 import { createClipSpeaker } from '../services/clipSpeaker';
 import type { Services } from '../services/services';
@@ -11,16 +13,34 @@ export function createBrowserServices(
   speechBaseUrl = `${import.meta.env.BASE_URL}speech/`,
 ): Services {
   const getAudioContext = createAudioContextGetter();
+  const manifest = loadSpeechManifest(`${speechBaseUrl}manifest.json`);
+  const clipUrl = (voice: string, id: string, take: number) =>
+    `${speechBaseUrl}${voice}/${clipFileName(id, take)}`;
+  // Only production builds have a service worker (see scripts/build/serviceWorker.ts).
+  const appSaved = import.meta.env.PROD
+    ? registerServiceWorker(`${import.meta.env.BASE_URL}sw.js`)
+    : undefined;
+  const offline = createOfflineSaver({
+    manifest,
+    clipUrl,
+    caches: appSaved && 'caches' in window ? window.caches : undefined,
+    appSaved: appSaved ?? (() => Promise.resolve(false)),
+    persist: async () => navigator.storage?.persist?.(),
+  });
   return {
     speaker: createClipSpeaker({
-      manifest: loadSpeechManifest(`${speechBaseUrl}manifest.json`),
-      clipUrl: (voice, id, take) => `${speechBaseUrl}${voice}/${clipFileName(id, take)}`,
+      // Without internet, a visit sticks to voices saved for offline.
+      manifest: navigator.onLine
+        ? manifest
+        : manifest.then((available) => preferSavedVoices(available, offline)),
+      clipUrl,
       getContext: getAudioContext,
       fallback: createWebSpeechSpeaker(),
     }),
     sounds: createSynthSoundPlayer(getAudioContext),
     random: Math.random,
     store: createWebStore(browserLocalStorage()),
+    offline,
   };
 }
 

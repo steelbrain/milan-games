@@ -1,5 +1,6 @@
 import { createContext, useContext } from 'react';
 import type { Random } from '../core/random';
+import type { OfflineSaver } from '../offline/offlineSaver';
 import type { Speaker } from './speech';
 import type { SoundPlayer } from './sounds';
 import type { Store } from './storage';
@@ -13,6 +14,7 @@ export interface Services {
   readonly sounds: SoundPlayer;
   readonly random: Random;
   readonly store: Store;
+  readonly offline: OfflineSaver;
 }
 
 export const ServicesContext = createContext<Services | null>(null);

@@ -23,9 +23,17 @@ npm install
 npm run dev -- --host     # then open the "Network" URL on the iPad
 ```
 
-On an iPad, use **Share → Add to Home Screen** for a full-screen app. The mute button is in the
-top corner. `npm run build` produces a static site in `dist/` that works from any web host or
-folder, because routing uses the URL hash.
+On an iPad, use **Share → Add to Home Screen** for a full-screen app (Chrome and Android offer
+**Install app**). The mute button is in the top right corner. `npm run build` produces a static
+site in `dist/` that works from any web host or folder, because routing uses the URL hash.
+
+### Offline, like on a plane
+
+The ✈️ button on the home screen opens **Play offline**, which downloads every voice clip (about
+85 MB) so the whole app works without internet. It shows its progress, retries files that fail,
+waits out a lost connection by itself, and can be paused and picked up again later, even after
+closing the app. On an iPhone or iPad, download from the Home Screen app, not from Safari: iOS
+keeps their storage separate.
 
 ## Commands
 
@@ -39,6 +47,7 @@ folder, because routing uses the URL hash.
 | `npm run lint`          | ESLint, including the React Hooks and React Compiler rules.      |
 | `npm run check`         | Everything above, the way CI should run it.                      |
 | `npm run speech`        | Record speech after changing what the games say (ElevenLabs).    |
+| `npm run icons`         | Render the PNG app icons from `public/icon.svg`.                 |
 
 ## How it's built
 
@@ -49,11 +58,13 @@ src/
   topics/      The menu: which topics exist, their levels ("Count to 10") and activities.
   activities/  The three kinds of game: find/ ("Find the B"), say/ (flash cards), counting/.
   speech/      The catalog of every spoken line, clip naming and the recordings manifest.
+  offline/     The service worker and the "Play offline" download.
   services/    The outside world: recorded speech, sound effects, storage, audio unlocking.
   ui/          Shared presentational components (buttons, tiles, stars, confetti, frames).
   screens/     Home, topic menu and play screens, wired up in app/AppRoutes.tsx.
   app/         Providers, routes and the real browser services.
 scripts/speech Speech recording: catalog → ElevenLabs voices → AAC clips in public/speech/.
+scripts/build  The Vite plugin that builds the service worker with this build's file list.
 e2e/           Playwright tests that play whole games in a real browser.
 ```
 
@@ -100,6 +111,18 @@ first. Only the words to say are sent to ElevenLabs. Voices live in `scripts/spe
 and the model and voice settings live at the top of `scripts/speech/generate.ts`. To re-record a
 clip, delete its file and run the command again.
 
+## Offline
+
+`src/offline/sw.ts` is built into `sw.js` with the list of this build's files baked in
+(`scripts/build/serviceWorker.ts`), so each deploy gets its own cache:
+
+- **The app itself** (page, scripts, styles, fonts, icons) is saved as soon as the service worker
+  installs. Page loads try the network first, so a new deploy shows up right away, and fall back
+  to the saved copy after 3 seconds or without a connection.
+- **The speech** is only saved by the Play offline download (`offlineSaver.ts`), since most
+  visits never need all four voices. It saves one voice at a time, so a stopped download still
+  leaves whole voices. Without internet, a visit only picks voices that are fully saved.
+
 ## Tests
 
 - **Unit tests** cover the pure logic, content invariants (for example, every letter's word
@@ -108,8 +131,9 @@ clip, delete its file and run the command again.
 - **Component tests** play the games through the real router and providers, the way a child
   would: tap, hear, get it wrong, get it right, finish, play again.
 - **End-to-end tests** build the production site and play whole games in Chrome at tablet and
-  phone sizes. They also check that layouts fit without scrolling and that settings survive a
-  reload.
+  phone sizes. They also check that layouts fit without scrolling, that settings survive a
+  reload, that Chrome considers the app installable, and that after the Play offline download
+  the games load and speak with the network switched off.
 
 ## License
 

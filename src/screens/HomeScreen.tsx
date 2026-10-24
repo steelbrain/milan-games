@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react';
 import { Link } from 'react-router';
 import { PLAYER_NAME } from '../app/config';
+import { OfflineButton } from '../offline/OfflineButton';
 import { useAudio } from '../services/audio';
 import { paths, TOPICS } from '../topics/topics';
 import { Screen } from '../ui/Screen';
@@ -12,7 +13,7 @@ export function HomeScreen() {
   const { play } = useAudio();
   return (
     <Screen>
-      <TopBar />
+      <TopBar leading={<OfflineButton />} />
       <h1 className={styles.title}>
         <span className={styles.wave} aria-hidden="true">
           👋

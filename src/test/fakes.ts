@@ -1,5 +1,6 @@
 import { type Line, spokenText } from '../content/line';
 import { createSeededRandom } from '../core/random';
+import type { OfflineSaver, OfflineStatus } from '../offline/offlineSaver';
 import type { Services } from '../services/services';
 import type { CueOptions, SoundCue } from '../services/soundCues';
 import type { SoundPlayer } from '../services/sounds';
@@ -81,20 +82,60 @@ export class RecordingSoundPlayer implements SoundPlayer {
   }
 }
 
+/** An OfflineSaver whose status tests move along by hand; it counts starts and stops. */
+export class FakeOfflineSaver implements OfflineSaver {
+  starts = 0;
+  stops = 0;
+
+  private current: OfflineStatus;
+  private readonly listeners = new Set<() => void>();
+
+  constructor(status: OfflineStatus = { phase: 'unsupported', saved: 0, total: 0 }) {
+    this.current = status;
+  }
+
+  readonly status = () => this.current;
+  readonly subscribe = (listener: () => void) => {
+    this.listeners.add(listener);
+    return () => this.listeners.delete(listener);
+  };
+  readonly start = () => {
+    this.starts++;
+  };
+  readonly stop = () => {
+    this.stops++;
+  };
+  readonly savedVoices = () => Promise.resolve([]);
+
+  /** Moves to a new status, the way a real download would. */
+  set(status: OfflineStatus): void {
+    this.current = status;
+    for (const listener of this.listeners) listener();
+  }
+}
+
 export interface TestServices extends Services {
   readonly speaker: RecordingSpeaker;
   readonly sounds: RecordingSoundPlayer;
+  readonly offline: FakeOfflineSaver;
 }
 
 export function createTestServices({
   seed = 7,
   store = createMemoryStore(),
   strictSpeech = true,
-}: { seed?: number; store?: Store; strictSpeech?: boolean } = {}): TestServices {
+  offline = new FakeOfflineSaver(),
+}: {
+  seed?: number;
+  store?: Store;
+  strictSpeech?: boolean;
+  offline?: FakeOfflineSaver;
+} = {}): TestServices {
   return {
     speaker: new RecordingSpeaker(strictSpeech),
     sounds: new RecordingSoundPlayer(),
     random: createSeededRandom(seed),
     store,
+    offline,
   };
 }

@@ -29,6 +29,8 @@ export default defineConfig({
     {
       name: 'phone',
       use: { ...devices['Pixel 7'], channel: 'chrome' },
+      // Offline support is the same on every screen, and its full download is big.
+      testIgnore: 'offline.spec.ts',
     },
   ],
   // Test the real production build, served the way it will be deployed.

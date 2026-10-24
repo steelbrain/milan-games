@@ -3,7 +3,7 @@ import { test as base, expect, type Page } from '@playwright/test';
 
 declare global {
   interface Window {
-    __fallbackSpeech: string[];
+    __fallbackSpeech?: string[];
   }
 }
 
@@ -65,7 +65,8 @@ export const test = base.extend<{
       });
       await use(() => [...heard]);
 
-      const fallback = await page.evaluate(() => window.__fallbackSpeech).catch(() => []);
+      // Undefined if the page never loaded the app, which means it said nothing.
+      const fallback = await page.evaluate(() => window.__fallbackSpeech ?? []).catch(() => []);
       expect(fallback, 'lines spoken by the robotic fallback voice').toEqual([]);
       for (const n of new Set(heard.map((clip) => clip.visit))) {
         const voices = new Set(heard.filter((clip) => clip.visit === n).map((clip) => clip.voice));

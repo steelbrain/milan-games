@@ -6,10 +6,18 @@ interface TopBarProps {
   readonly onBack?: () => void;
   readonly backLabel?: string;
   readonly backIcon?: string;
+  /** Shown on the left when there is no back button. */
+  readonly leading?: ReactNode;
   readonly children?: ReactNode;
 }
 
-export function TopBar({ onBack, backLabel = 'Back', backIcon = '⬅️', children }: TopBarProps) {
+export function TopBar({
+  onBack,
+  backLabel = 'Back',
+  backIcon = '⬅️',
+  leading,
+  children,
+}: TopBarProps) {
   return (
     <header className={styles.bar}>
       {onBack ? (
@@ -17,7 +25,7 @@ export function TopBar({ onBack, backLabel = 'Back', backIcon = '⬅️', childr
           <span aria-hidden="true">{backIcon}</span>
         </button>
       ) : (
-        <span className={styles.spacer} />
+        (leading ?? <span className={styles.spacer} />)
       )}
       <div className={styles.middle}>{children}</div>
       <MuteToggle />
