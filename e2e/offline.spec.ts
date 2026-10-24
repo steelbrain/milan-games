@@ -59,6 +59,8 @@ test('downloads everything, then plays without internet', async ({ page, context
   await saved.getByRole('button', { name: 'Remove download' }).click();
   await saved.getByRole('button', { name: 'Remove', exact: true }).click();
   await expect(saved.getByRole('button', { name: 'Download' })).toBeVisible();
-  const left = await page.evaluate(async () => (await (await caches.open('speech')).keys()).length);
-  expect(left).toBe(0);
+  const left = await page.evaluate(async () =>
+    (await caches.keys()).filter((name) => name.startsWith('speech')),
+  );
+  expect(left).toEqual([]);
 });

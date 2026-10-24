@@ -64,7 +64,7 @@ function TopicMenu({ topic }: { topic: Topic }) {
           <h2 id="activities-title" className={styles.question}>
             {topic.activityQuestion}
           </h2>
-          <ul className={styles.activities}>
+          <ul className={cx(styles.activities, topic.kind === 'counting' && styles.stories)}>
             {activityChoices(topic).map((activity) => (
               <li key={activity.id}>
                 <Link

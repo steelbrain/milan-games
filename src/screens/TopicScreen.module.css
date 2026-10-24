@@ -118,3 +118,28 @@
   font-size: 56px;
   line-height: 1;
 }
+
+/* Phones: the stories go two to a row, emoji over the name, so they all fit. */
+@media (max-width: 599px) {
+  .stories {
+    gap: 12px;
+  }
+
+  .stories > li {
+    flex-basis: calc(50% - 6px);
+  }
+
+  .stories .activity {
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    min-height: 116px;
+    padding: 12px 8px;
+    font-size: 1.15rem;
+    text-align: center;
+  }
+
+  .stories .activityEmoji {
+    font-size: 48px;
+  }
+}

@@ -230,4 +230,102 @@ export const STORIES: readonly Story[] = [
     ],
     ending: 'Octopus had a splashy day. Thank you for counting!',
   },
+  {
+    id: 'farm',
+    title: "Piggy's Farm",
+    hero: '🐷',
+    scenery: { top: '#dff4ff', bottom: '#cde89a' },
+    scenes: [
+      {
+        setup: 'Piggy says good morning to the chickens.',
+        item: { emoji: '🐔', one: 'chicken', many: 'chickens' },
+        cheer: 'Cluck cluck!',
+      },
+      {
+        setup: 'The hens laid eggs in the barn.',
+        item: { emoji: '🥚', one: 'egg', many: 'eggs' },
+        cheer: "Careful, don't drop them!",
+      },
+      {
+        setup: 'Cows munch on the grass.',
+        item: { emoji: '🐄', one: 'cow', many: 'cows' },
+        cheer: 'Moo moo!',
+      },
+      {
+        setup: 'Piggy digs up carrots in the garden.',
+        item: { emoji: '🥕', one: 'carrot', many: 'carrots' },
+        cheer: 'Crunch crunch!',
+      },
+      {
+        setup: 'Sheep rest in the meadow.',
+        item: { emoji: '🐑', one: 'sheep', many: 'sheep' },
+        cheer: 'Baa baa!',
+      },
+      {
+        setup: 'Birds sing on the fence.',
+        item: { emoji: '🐦', one: 'bird', many: 'birds' },
+        cheer: 'Tweet tweet!',
+      },
+      {
+        setup: 'Piggy picks apples for a snack.',
+        item: { emoji: '🍎', one: 'apple', many: 'apples' },
+        cheer: 'Yum yum!',
+      },
+      {
+        setup: 'Horses gallop across the field.',
+        item: { emoji: '🐴', one: 'horse', many: 'horses' },
+        cheer: 'Clip clop!',
+      },
+    ],
+    ending: 'The sun sets on the farm. Oink oink! Thank you for counting!',
+  },
+  {
+    id: 'dino',
+    title: "Dino's Big Day",
+    hero: '🦕',
+    scenery: { top: '#fff1c9', bottom: '#a8d672' },
+    scenes: [
+      {
+        setup: 'Dino stomps through the jungle.',
+        item: { emoji: '🌴', one: 'tree', many: 'trees' },
+        cheer: 'Stomp stomp!',
+      },
+      {
+        setup: 'Dino finds eggs in a nest.',
+        item: { emoji: '🥚', one: 'egg', many: 'eggs' },
+        cheer: 'Crack crack!',
+      },
+      {
+        setup: "Dino's friends come to play.",
+        item: { emoji: '🦖', one: 'dinosaur', many: 'dinosaurs' },
+        cheer: 'Roar!',
+      },
+      {
+        setup: 'Dino munches on leaves.',
+        item: { emoji: '🍃', one: 'leaf', many: 'leaves' },
+        cheer: 'Munch munch!',
+      },
+      {
+        setup: 'Dino digs up bones.',
+        item: { emoji: '🦴', one: 'bone', many: 'bones' },
+        cheer: 'Dig dig dig!',
+      },
+      {
+        setup: "Butterflies land on Dino's nose.",
+        item: { emoji: '🦋', one: 'butterfly', many: 'butterflies' },
+        cheer: 'That tickles!',
+      },
+      {
+        setup: 'Dino climbs over the rocks.',
+        item: { emoji: '🪨', one: 'rock', many: 'rocks' },
+        cheer: 'Up and over!',
+      },
+      {
+        setup: 'Volcanoes rumble far away.',
+        item: { emoji: '🌋', one: 'volcano', many: 'volcanoes' },
+        cheer: 'Rumble rumble!',
+      },
+    ],
+    ending: 'Dino is sleepy after a big day. Goodnight, Dino! Thank you for counting!',
+  },
 ];

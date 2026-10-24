@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createMemoryStore, type Store } from '../services/storage';
 import type { SpeechManifest } from '../speech/manifest';
-import { FakeCacheStorage } from '../test/fakeCaches';
+import { type FakeCache, FakeCacheStorage } from '../test/fakeCaches';
 import {
   createOfflineSaver,
   type OfflinePhase,
@@ -31,8 +31,40 @@ const KATIE = [fileUrl('katie', 'aaa', 0), fileUrl('katie', 'aaa', 1), fileUrl('
 const LULU = [fileUrl('lulu', 'aaa', 0), fileUrl('lulu', 'aaa', 1), fileUrl('lulu', 'bbb', 0)];
 const ALL = [...KATIE, ...LULU];
 
+/** The saved speech, which lives in one cache per voice, filled and read as one. */
+class SavedSpeech {
+  private readonly caches: FakeCacheStorage;
+
+  constructor(caches: FakeCacheStorage) {
+    this.caches = caches;
+  }
+
+  /** The voice's cache, as the saver names it. */
+  voice(voice: string): FakeCache {
+    return this.caches.cache(`speech-${voice}`);
+  }
+
+  /** Saves each URL in its voice's cache. */
+  fill(urls: readonly string[]): this {
+    for (const url of urls) this.voice(new URL(url).pathname.split('/')[2] ?? '').fill([url]);
+    return this;
+  }
+
+  /** Every saved recording, voice by voice. */
+  get entries(): Map<string, Response> {
+    const voices = [...this.caches.caches.keys()].filter((name) => name.startsWith('speech-'));
+    return new Map(
+      voices.sort().flatMap((name) => [...(this.caches.caches.get(name)?.entries ?? [])]),
+    );
+  }
+}
+
 type Network = (url: string, signal: AbortSignal) => Promise<Response>;
 const working: Network = (url) => Promise.resolve(new Response(`clip ${url}`));
+
+/** The names of the caches holding speech. */
+const speechCaches = (caches: FakeCacheStorage) =>
+  [...caches.caches.keys()].filter((name) => name.startsWith('speech')).sort();
 
 /** A store that remembers an earlier download saved everything. */
 const savedBefore = () => createMemoryStore({ 'offline-saved': true });
@@ -84,7 +116,7 @@ function setup({
     saver,
     caches,
     store,
-    speech: caches.cache('speech'),
+    speech: new SavedSpeech(caches),
     fetch,
     sleeps,
     updates,
@@ -228,7 +260,7 @@ describe('createOfflineSaver', () => {
 
   it('stops when the device runs out of space', async () => {
     const { saver, speech, fetch, reaches } = setup({ concurrency: 1 });
-    speech.putError = new DOMException('Full', 'QuotaExceededError');
+    speech.voice('katie').putError = new DOMException('Full', 'QuotaExceededError');
     saver.start();
 
     expect(await reaches('failed')).toEqual({
@@ -401,7 +433,7 @@ describe('createOfflineSaver', () => {
 
     it('downloads a small update by itself when the app opens', async () => {
       const caches = new FakeCacheStorage();
-      caches.cache('speech').fill(ALL);
+      new SavedSpeech(caches).fill(ALL);
       const { fetch, reaches } = setup({ manifest: NEW_CLIP, caches, store: savedBefore() });
       expect((await reaches('saved')).saved).toBe(8);
       expect(fetchedUrls(fetch).sort()).toEqual([...NEW_FILES].sort());
@@ -409,7 +441,7 @@ describe('createOfflineSaver', () => {
 
     it('leaves a big update, or one without internet, for later', async () => {
       const caches = new FakeCacheStorage();
-      caches.cache('speech').fill(ALL);
+      new SavedSpeech(caches).fill(ALL);
       const big = setup({ manifest: NEW_CLIP, caches, store: savedBefore(), autoUpdateFiles: 1 });
       expect((await big.reaches('outdated')).saved).toBe(6);
 
@@ -421,7 +453,7 @@ describe('createOfflineSaver', () => {
 
     it('replaces re-recorded clips, which come with a new version', async () => {
       const caches = new FakeCacheStorage();
-      caches.cache('speech').fill(ALL);
+      new SavedSpeech(caches).fill(ALL);
       const rerecorded: SpeechManifest = {
         ...MANIFEST,
         clips: { ...MANIFEST.clips, bbb: { words: 'Hooray!', takes: 1, version: 'v2' } },
@@ -441,7 +473,7 @@ describe('createOfflineSaver', () => {
 
     it('is still an update when paused', async () => {
       const caches = new FakeCacheStorage();
-      caches.cache('speech').fill(ALL);
+      new SavedSpeech(caches).fill(ALL);
       const { saver, fetch, reaches } = setup({
         manifest: NEW_CLIP,
         caches,
@@ -464,16 +496,66 @@ describe('createOfflineSaver', () => {
     expect([...speech.entries.keys()]).toEqual(ALL);
   });
 
+  it('moves a download from the one cache older versions used, without fetching it again', async () => {
+    const caches = new FakeCacheStorage();
+    const stale = `${BASE}speech/katie/zzz-0.m4a`;
+    caches.cache('speech').fill([...ALL, stale]);
+    const { speech, fetch, reaches } = setup({ caches, store: savedBefore() });
+    await reaches('saved');
+    expect([...speech.entries.keys()]).toEqual(ALL);
+    expect(await speech.entries.get(ALL[0] as string)?.text()).toBe(`saved ${ALL[0]}`);
+    expect(speechCaches(caches)).toEqual(['speech-katie', 'speech-lulu']);
+    expect(fetch).not.toHaveBeenCalled();
+  });
+
+  it("keeps what it moved and drops the rest when there's no room to move it all", async () => {
+    const caches = new FakeCacheStorage();
+    caches.cache('speech').fill(ALL);
+    caches.cache('speech-lulu').putError = new DOMException('Full', 'QuotaExceededError');
+    const { speech, reaches } = setup({ caches });
+    expect(await reaches('idle')).toEqual({ phase: 'idle', saved: 3, total: 6 });
+    expect([...speech.entries.keys()]).toEqual(KATIE);
+    expect(speechCaches(caches)).toEqual(['speech-katie', 'speech-lulu']);
+  });
+
+  it('counts the voices of an older download once it has moved', async () => {
+    const caches = new FakeCacheStorage();
+    caches.cache('speech').fill([...KATIE, ...LULU.slice(1)]);
+    const { saver } = setup({ caches });
+    expect(await saver.savedVoices()).toEqual(['katie']);
+    expect(caches.caches.has('speech')).toBe(false);
+  });
+
+  it('never makes empty caches just by looking', async () => {
+    const { saver, caches, reaches } = setup();
+    await reaches('idle');
+    expect(await saver.savedVoices()).toEqual([]);
+    expect(speechCaches(caches)).toEqual([]);
+  });
+
+  it('removes the caches it knows of even when it cannot list them', async () => {
+    const { saver, caches, speech, reaches } = setup();
+    speech.fill(ALL);
+    await reaches('saved');
+    vi.spyOn(caches, 'keys').mockRejectedValue(new Error('Storage is broken'));
+    await saver.remove();
+    expect(speechCaches(caches)).toEqual([]);
+  });
+
   it('removes everything saved, and forgets that it was', async () => {
     const { saver, caches, store, speech, updates, reaches } = setup();
     speech.fill(ALL);
     await reaches('saved');
+    // Whatever an older version saved goes too.
+    caches.cache('speech').fill(KATIE);
+    caches.cache('shell-v1');
 
     await saver.remove();
     expect(saver.status()).toEqual({ phase: 'idle', saved: 0, total: 6 });
     expect(updates.slice(-2)).toEqual(['removing', 'idle']);
-    expect(caches.caches.has('speech')).toBe(false);
+    expect(speechCaches(caches)).toEqual([]);
     expect(store.read('offline-saved')).toBe(false);
+    expect([...caches.caches.keys()]).toEqual(['shell-v1']);
   });
 
   it('stops a download before removing what it saved', async () => {
@@ -491,7 +573,7 @@ describe('createOfflineSaver', () => {
 
     await saver.remove();
     expect(await reaches('idle')).toEqual({ phase: 'idle', saved: 0, total: 6 });
-    expect(caches.caches.has('speech')).toBe(false);
+    expect(speechCaches(caches)).toEqual([]);
   });
 
   it('lists the voices whose every recording is saved', async () => {

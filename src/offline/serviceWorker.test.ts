@@ -143,9 +143,12 @@ describe('installServiceWorker', () => {
 
   it('plays speech from the offline download, or from the network when it is not saved', async () => {
     const { caches, fetch, request } = setup();
-    caches.cache('speech').fill([`${ORIGIN}/speech/katie/a.m4a`]);
+    caches.cache('speech-katie').fill([`${ORIGIN}/speech/katie/a.m4a`]);
+    caches.cache('speech').fill([`${ORIGIN}/speech/lulu/a.m4a`]);
 
     expect(await request('speech/katie/a.m4a')).toBe(`saved ${ORIGIN}/speech/katie/a.m4a`);
+    // Saved by an older version, in the one cache it kept for every voice.
+    expect(await request('speech/lulu/a.m4a')).toBe(`saved ${ORIGIN}/speech/lulu/a.m4a`);
     expect(fetch).not.toHaveBeenCalled();
     expect(await request('speech/katie/b.m4a')).toBe(`network ${ORIGIN}/speech/katie/b.m4a`);
   });

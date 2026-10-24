@@ -29,7 +29,7 @@
     "sampleRate": 24000,
     "bitrate": 32000
   },
-  "bytes": 102949947,
+  "bytes": 129322675,
   "clips": {
     "0000633bb18d04": {
       "words": "Find the number 6!",
@@ -81,6 +81,16 @@
       "takes": 5,
       "version": "a08121dccb"
     },
+    "003189657d560b": {
+      "words": "7 cows!",
+      "takes": 5,
+      "version": "bf88514bcb"
+    },
+    "0037fb6a12decb": {
+      "words": "6 sheep!",
+      "takes": 5,
+      "version": "a12dbdafa0"
+    },
     "003fd2da4a1016": {
       "words": "Let's count the apples together!",
       "takes": 5,
@@ -91,6 +101,11 @@
       "takes": 5,
       "version": "1af88037de"
     },
+    "00558a12466432": {
+      "words": "That tickles!",
+      "takes": 5,
+      "version": "4a8ab59819"
+    },
     "005617ee374a6c": {
       "words": "Let's play with numbers!",
       "takes": 5,
@@ -100,6 +115,16 @@
       "words": "Find the rectangle!",
       "takes": 5,
       "version": "87294d2102"
+    },
+    "00643a026fc717": {
+      "words": "15 dinosaurs!",
+      "takes": 5,
+      "version": "16045b77d8"
+    },
+    "006986f0303ca5": {
+      "words": "6 cows!",
+      "takes": 5,
+      "version": "785370a54e"
     },
     "0074fb1c71cea3": {
       "words": "20 strawberries!",
@@ -130,6 +155,11 @@
       "words": "5 moons!",
       "takes": 5,
       "version": "2bae41aeba"
+    },
+    "00d8ff80913493": {
+      "words": "10 eggs!",
+      "takes": 5,
+      "version": "f7a52dfc40"
     },
     "00e001ad20945f": {
       "words": "19 aliens!",
@@ -166,10 +196,25 @@
       "takes": 5,
       "version": "6b6d833443"
     },
+    "010ee3cb88394d": {
+      "words": "19 rocks!",
+      "takes": 5,
+      "version": "aed1b6a4d0"
+    },
     "01132afbdde502": {
       "words": "That's 13.",
       "takes": 5,
       "version": "0ca1fffe11"
+    },
+    "01214050e2a280": {
+      "words": "4 cows!",
+      "takes": 5,
+      "version": "5455311e0a"
+    },
+    "0124cecabc0529": {
+      "words": "5 eggs!",
+      "takes": 5,
+      "version": "a431d0828c"
     },
     "01264285bcd282": {
       "words": "That's 17.",
@@ -191,6 +236,11 @@
       "takes": 5,
       "version": "22848f1a42"
     },
+    "0161aab1737aa8": {
+      "words": "8 sheep!",
+      "takes": 5,
+      "version": "688f098052"
+    },
     "0164b216387b2f": {
       "words": "8 turtles!",
       "takes": 5,
@@ -200,6 +250,11 @@
       "words": "That's W.",
       "takes": 5,
       "version": "e72240561f"
+    },
+    "0179050e15cf85": {
+      "words": "19 dinosaurs!",
+      "takes": 5,
+      "version": "e30566ff5e"
     },
     "017c8f01b2f2af": {
       "words": "2 carrots!",
@@ -220,6 +275,11 @@
       "words": "Let's count the shells together!",
       "takes": 5,
       "version": "325b511095"
+    },
+    "01a81ef9996a6d": {
+      "words": "8 cows!",
+      "takes": 5,
+      "version": "440c14a4ca"
     },
     "01b009dfca9620": {
       "words": "20 carrots!",
@@ -251,6 +311,11 @@
       "takes": 5,
       "version": "2b625804f2"
     },
+    "01d9f39507f2f2": {
+      "words": "7 chickens!",
+      "takes": 5,
+      "version": "f7392accc4"
+    },
     "01da88b03ace96": {
       "words": "19 whales!",
       "takes": 5,
@@ -260,6 +325,11 @@
       "words": "Not 10.",
       "takes": 5,
       "version": "041ebae0e8"
+    },
+    "01ee0f948b8a2a": {
+      "words": "Baa baa!",
+      "takes": 5,
+      "version": "ff505b92b4"
     },
     "01f8a77893f576": {
       "words": "Turtles swim by slowly. How many turtles?",
@@ -280,6 +350,16 @@
       "words": "12 birds!",
       "takes": 5,
       "version": "5f1d6267cd"
+    },
+    "0229c2c39a8fed": {
+      "words": "13 leaves!",
+      "takes": 5,
+      "version": "1b989b873d"
+    },
+    "022b319970d5d2": {
+      "words": "9 cows!",
+      "takes": 5,
+      "version": "2a18afae87"
     },
     "022c5649d35201": {
       "words": "1 whale!",
@@ -320,6 +400,11 @@
       "words": "Fantastic!",
       "takes": 6,
       "version": "5bf2604861"
+    },
+    "024ae36b70ee25": {
+      "words": "The hens laid eggs in the barn. How many eggs?",
+      "takes": 5,
+      "version": "cb611462ed"
     },
     "024f6c6974d084": {
       "words": "7 shells!",
@@ -385,6 +470,11 @@
       "words": "11 flying saucers!",
       "takes": 5,
       "version": "4965300ad2"
+    },
+    "02dcf45c63a3e6": {
+      "words": "3 dinosaurs!",
+      "takes": 5,
+      "version": "d81914495c"
     },
     "02e0b3f75915b3": {
       "words": "14 strawberries!",
@@ -496,6 +586,11 @@
       "takes": 5,
       "version": "4da473a9e1"
     },
+    "0397977a4ec249": {
+      "words": "7 dinosaurs!",
+      "takes": 5,
+      "version": "387e602c00"
+    },
     "039cd832b13de3": {
       "words": "9 whales!",
       "takes": 5,
@@ -511,6 +606,11 @@
       "takes": 5,
       "version": "796a4233cf"
     },
+    "03a9aff4cf8311": {
+      "words": "3 leaves!",
+      "takes": 5,
+      "version": "750f5f1abd"
+    },
     "03afe3946db492": {
       "words": "What color is this?",
       "takes": 6,
@@ -520,6 +620,11 @@
       "words": "Can you find blue?",
       "takes": 5,
       "version": "c099ad4c2d"
+    },
+    "03baa4e78b4758": {
+      "words": "5 sheep!",
+      "takes": 5,
+      "version": "90b6862bf8"
     },
     "03c05639399ab4": {
       "words": "8 moons!",
@@ -561,6 +666,11 @@
       "takes": 5,
       "version": "a2618b77cf"
     },
+    "03d89eab3397a5": {
+      "words": "14 rocks!",
+      "takes": 5,
+      "version": "13ba1a590e"
+    },
     "03dc1cdb1fc01a": {
       "words": "That's 14.",
       "takes": 5,
@@ -590,6 +700,11 @@
       "words": "Find the number 11!",
       "takes": 5,
       "version": "e53925e623"
+    },
+    "03e3a917338db3": {
+      "words": "2 eggs!",
+      "takes": 5,
+      "version": "6e0785939f"
     },
     "03e5e001a233d3": {
       "words": "Let's play with letters!",
@@ -661,6 +776,11 @@
       "takes": 5,
       "version": "2c60317c60"
     },
+    "047e107b3f39b9": {
+      "words": "10 dinosaurs!",
+      "takes": 5,
+      "version": "6fc903a30a"
+    },
     "048a97fda38e2c": {
       "words": "5 planets!",
       "takes": 5,
@@ -676,20 +796,45 @@
       "takes": 5,
       "version": "2dabcce966"
     },
+    "04bbaa69ec5370": {
+      "words": "2 dinosaurs!",
+      "takes": 5,
+      "version": "354e5aaad5"
+    },
     "04cafe76085660": {
       "words": "7 birds!",
       "takes": 5,
       "version": "0f76bddd50"
+    },
+    "04d3bebcdb9333": {
+      "words": "12 sheep!",
+      "takes": 5,
+      "version": "9bd66a5eb3"
+    },
+    "04e5fe16b0da14": {
+      "words": "1 chicken!",
+      "takes": 5,
+      "version": "6342200efd"
     },
     "04e83f116f64b1": {
       "words": "10 turtles!",
       "takes": 5,
       "version": "d7816f96a4"
     },
+    "04e95b93d17fc2": {
+      "words": "12 leaves!",
+      "takes": 5,
+      "version": "f954efc3dd"
+    },
     "04eba267c97af5": {
       "words": "Let's count the birds together!",
       "takes": 5,
       "version": "21a7603d8c"
+    },
+    "04ee6d86d5c96c": {
+      "words": "4 rocks!",
+      "takes": 5,
+      "version": "dea9698a98"
     },
     "05002a17652cb3": {
       "words": "Let's count the whales together!",
@@ -705,6 +850,11 @@
       "words": "Bunny is packing a picnic basket. How many carrots?",
       "takes": 5,
       "version": "6937aceec4"
+    },
+    "0524a4bc00cf37": {
+      "words": "17 sheep!",
+      "takes": 5,
+      "version": "50ef11daed"
     },
     "05402b9d025499": {
       "words": "O is for Octopus!",
@@ -756,6 +906,11 @@
       "takes": 5,
       "version": "8ff50c77ad"
     },
+    "05628183f9a381": {
+      "words": "3 eggs!",
+      "takes": 5,
+      "version": "9943670c5c"
+    },
     "05668d3e8e259e": {
       "words": "X is for X-ray!",
       "takes": 5,
@@ -771,6 +926,16 @@
       "takes": 5,
       "version": "3044141d3a"
     },
+    "0589d3ef6ec5c0": {
+      "words": "7 eggs!",
+      "takes": 5,
+      "version": "dd37aa1a2c"
+    },
+    "0592ba00647b17": {
+      "words": "Piggy says good morning to the chickens. How many chickens?",
+      "takes": 5,
+      "version": "25cd0061e6"
+    },
     "059b53e6da857e": {
       "words": "18 balls!",
       "takes": 5,
@@ -781,6 +946,16 @@
       "takes": 5,
       "version": "aa874b45e1"
     },
+    "05a01309a420bf": {
+      "words": "4 volcanoes!",
+      "takes": 5,
+      "version": "0021ef3df1"
+    },
+    "05a6912bc8c513": {
+      "words": "2 leaves!",
+      "takes": 5,
+      "version": "7ef50e891e"
+    },
     "05a9e54a24861a": {
       "words": "Well done!",
       "takes": 6,
@@ -790,6 +965,16 @@
       "words": "12 crabs!",
       "takes": 5,
       "version": "eccb39ea38"
+    },
+    "05c28a70f0ea6e": {
+      "words": "Let's count the rocks together!",
+      "takes": 5,
+      "version": "1e2127a3eb"
+    },
+    "05cccb6319c9eb": {
+      "words": "20 rocks!",
+      "takes": 5,
+      "version": "867fd71706"
     },
     "05ccfac1d893ef": {
       "words": "2!",
@@ -851,6 +1036,11 @@
       "takes": 5,
       "version": "2c557fe6f0"
     },
+    "06195da8247484": {
+      "words": "Dino digs up bones. How many bones?",
+      "takes": 5,
+      "version": "9dc2b2fc7d"
+    },
     "061e0b65540401": {
       "words": "13!",
       "takes": 8,
@@ -860,6 +1050,11 @@
       "words": "4 trees!",
       "takes": 5,
       "version": "979aa9002a"
+    },
+    "0646d9fcec53a4": {
+      "words": "Let's count the dinosaurs together!",
+      "takes": 5,
+      "version": "893b2e60df"
     },
     "06678b3a93e4f4": {
       "words": "Three, two, one, blast off! The rocket zooms into the sky. How many stars?",
@@ -871,10 +1066,20 @@
       "takes": 5,
       "version": "7f1e6d896b"
     },
+    "068202b94938e5": {
+      "words": "1 dinosaur!",
+      "takes": 5,
+      "version": "df3c34ba66"
+    },
     "0683189ff63847": {
       "words": "Find the letter U!",
       "takes": 5,
       "version": "ffc3c7d38d"
+    },
+    "0684a55e10f889": {
+      "words": "9 eggs!",
+      "takes": 5,
+      "version": "b9bc6b488e"
     },
     "0695eb7389e0f0": {
       "words": "That's 2.",
@@ -885,6 +1090,16 @@
       "words": "Here are 4 dots.",
       "takes": 5,
       "version": "7b515fdaa6"
+    },
+    "069e97fcbc9c7f": {
+      "words": "6 rocks!",
+      "takes": 5,
+      "version": "37f8ed5099"
+    },
+    "069eba63bb4222": {
+      "words": "18 leaves!",
+      "takes": 5,
+      "version": "e53d20038c"
     },
     "06a35cb6fae537": {
       "words": "5 fish!",
@@ -920,6 +1135,16 @@
       "words": "1 comet!",
       "takes": 5,
       "version": "e26466f144"
+    },
+    "06e383f2cb6ea4": {
+      "words": "14 cows!",
+      "takes": 5,
+      "version": "a0c9e36453"
+    },
+    "06e8e93ba04966": {
+      "words": "3 cows!",
+      "takes": 5,
+      "version": "46b9ac4e60"
     },
     "06ede42cbc4e56": {
       "words": "Here are 19 dots.",
@@ -991,25 +1216,60 @@
       "takes": 5,
       "version": "456560242f"
     },
+    "077fdc8df1a7d7": {
+      "words": "1 rock!",
+      "takes": 5,
+      "version": "a2c02ca187"
+    },
+    "078541fdc85e08": {
+      "words": "14 horses!",
+      "takes": 5,
+      "version": "1bccb30464"
+    },
     "0788b1ac24cfb7": {
       "words": "9 stars!",
       "takes": 5,
       "version": "33e72480f2"
+    },
+    "07961efc25cc13": {
+      "words": "2 chickens!",
+      "takes": 5,
+      "version": "cdfe4c50cc"
     },
     "079a3170cb30d2": {
       "words": "6 shells!",
       "takes": 5,
       "version": "61f553ff6f"
     },
+    "07a6deb83cbc64": {
+      "words": "8 horses!",
+      "takes": 5,
+      "version": "083121a9db"
+    },
+    "07b207e64d9e7d": {
+      "words": "1 volcano!",
+      "takes": 5,
+      "version": "6e13f0f2b1"
+    },
     "07b2508d028096": {
       "words": "7 robots!",
       "takes": 5,
       "version": "e542ce1d71"
     },
+    "07b8cfe0adc3ff": {
+      "words": "Cows munch on the grass. How many cows?",
+      "takes": 5,
+      "version": "1eaf42e799"
+    },
     "07c35c01fee8e9": {
       "words": "9 apples!",
       "takes": 5,
       "version": "ef56189f4c"
+    },
+    "07cbd1dc990b68": {
+      "words": "9 dinosaurs!",
+      "takes": 5,
+      "version": "af7e363e4e"
     },
     "07d452dcd04560": {
       "words": "Let's count the carrots together!",
@@ -1020,6 +1280,11 @@
       "words": "9 shells!",
       "takes": 5,
       "version": "00cb02667f"
+    },
+    "07f24418ce6531": {
+      "words": "11 cows!",
+      "takes": 5,
+      "version": "1c1c3a4d46"
     },
     "07f613df70867d": {
       "words": "1 apple!",
@@ -1051,6 +1316,11 @@
       "takes": 5,
       "version": "38d0f69eb7"
     },
+    "081f3cbbfe0c5a": {
+      "words": "Careful, don't drop them!",
+      "takes": 5,
+      "version": "d7d6ee11a3"
+    },
     "0834982b260485": {
       "words": "18 butterflies!",
       "takes": 5,
@@ -1081,10 +1351,25 @@
       "takes": 5,
       "version": "5c876228e5"
     },
+    "08579b8b8a77aa": {
+      "words": "13 rocks!",
+      "takes": 5,
+      "version": "ba079b8cfc"
+    },
+    "085c647567e32b": {
+      "words": "12 volcanoes!",
+      "takes": 5,
+      "version": "9214c5d00a"
+    },
     "0862c69a4f7428": {
       "words": "Let's count the balls together!",
       "takes": 5,
       "version": "f41543d317"
+    },
+    "086310d47b449b": {
+      "words": "16 cows!",
+      "takes": 5,
+      "version": "239c2ffbe8"
     },
     "0863ed4094e3ab": {
       "words": "19 planets!",
@@ -1095,6 +1380,11 @@
       "words": "Find the number 14!",
       "takes": 5,
       "version": "5069e0a98e"
+    },
+    "086ea84c750526": {
+      "words": "20 dinosaurs!",
+      "takes": 5,
+      "version": "4cf0129212"
     },
     "087341581e11dd": {
       "words": "2 turtles!",
@@ -1146,6 +1436,11 @@
       "takes": 5,
       "version": "e3af741f41"
     },
+    "088ed500cc514b": {
+      "words": "Dino munches on leaves. How many leaves?",
+      "takes": 5,
+      "version": "407a6905ba"
+    },
     "088fa2f439d84c": {
       "words": "5 whales!",
       "takes": 5,
@@ -1170,6 +1465,11 @@
       "words": "12 butterflies!",
       "takes": 5,
       "version": "b0267de49b"
+    },
+    "089fe7d9ff4c67": {
+      "words": "11 dinosaurs!",
+      "takes": 5,
+      "version": "46ed77f0c4"
     },
     "08a3e2e2a2235f": {
       "words": "17 robots!",
@@ -1236,6 +1536,11 @@
       "takes": 5,
       "version": "61b4f936c5"
     },
+    "08e048cfb02632": {
+      "words": "2 volcanoes!",
+      "takes": 5,
+      "version": "0dda1fdcb4"
+    },
     "08ed0b92302bf2": {
       "words": "That's V.",
       "takes": 5,
@@ -1286,6 +1591,11 @@
       "takes": 5,
       "version": "30c18df16d"
     },
+    "09377d1329f4de": {
+      "words": "Butterflies land on Dino's nose. How many butterflies?",
+      "takes": 5,
+      "version": "b1a622cf7f"
+    },
     "093c30864354e8": {
       "words": "16 whales!",
       "takes": 5,
@@ -1296,10 +1606,20 @@
       "takes": 5,
       "version": "c3b0a129be"
     },
+    "09484056812eeb": {
+      "words": "11 sheep!",
+      "takes": 5,
+      "version": "84009f0061"
+    },
     "094c05f12e517e": {
       "words": "Bunny's friends come to the picnic. How many squirrels?",
       "takes": 5,
       "version": "079c23c250"
+    },
+    "095199f0e1a44b": {
+      "words": "10 chickens!",
+      "takes": 5,
+      "version": "07711dd07a"
     },
     "0951de6d23901f": {
       "words": "That's diamond.",
@@ -1330,6 +1650,16 @@
       "words": "5 strawberries!",
       "takes": 5,
       "version": "5238f6f6d1"
+    },
+    "097e95a66e17c1": {
+      "words": "2 rocks!",
+      "takes": 5,
+      "version": "7be7b6bfa8"
+    },
+    "098f305a004f7a": {
+      "words": "6 volcanoes!",
+      "takes": 5,
+      "version": "b9aaa0cee4"
     },
     "099d308927979b": {
       "words": "4 stars!",
@@ -1376,6 +1706,21 @@
       "takes": 5,
       "version": "7a4f06a820"
     },
+    "09e25aed8d7428": {
+      "words": "18 eggs!",
+      "takes": 5,
+      "version": "19aadf68fc"
+    },
+    "09ea18b81a7e62": {
+      "words": "19 sheep!",
+      "takes": 5,
+      "version": "5e189282bd"
+    },
+    "09eadfed3c5617": {
+      "words": "4 chickens!",
+      "takes": 5,
+      "version": "4af0e6554d"
+    },
     "09f3e432e3940a": {
       "words": "6 squirrels!",
       "takes": 5,
@@ -1401,10 +1746,20 @@
       "takes": 5,
       "version": "95568a487e"
     },
+    "0a0a8e02ab8e26": {
+      "words": "13 volcanoes!",
+      "takes": 5,
+      "version": "8a1d905918"
+    },
     "0a0f52e7a1aac8": {
       "words": "Not 19.",
       "takes": 5,
       "version": "e7bede79b1"
+    },
+    "0a1182c0feef21": {
+      "words": "16 chickens!",
+      "takes": 5,
+      "version": "a2a060ff43"
     },
     "0a13d4223bfd2f": {
       "words": "M is for Moon!",
@@ -1431,6 +1786,11 @@
       "takes": 5,
       "version": "5f048819f6"
     },
+    "0a2791ea2eab6b": {
+      "words": "9 volcanoes!",
+      "takes": 5,
+      "version": "560daa078c"
+    },
     "0a39d980665c9d": {
       "words": "Find the letter H!",
       "takes": 5,
@@ -1440,6 +1800,11 @@
       "words": "5 trees!",
       "takes": 5,
       "version": "d828efd43b"
+    },
+    "0a40b5084b3079": {
+      "words": "8 leaves!",
+      "takes": 5,
+      "version": "4081d48e0f"
     },
     "0a609d60c6a5cd": {
       "words": "That's star.",
@@ -1475,6 +1840,16 @@
       "words": "16 bones!",
       "takes": 5,
       "version": "3ee9d945d0"
+    },
+    "0a8d37d001c82e": {
+      "words": "20 horses!",
+      "takes": 5,
+      "version": "d9c021a0c8"
+    },
+    "0a99081e517b22": {
+      "words": "18 horses!",
+      "takes": 5,
+      "version": "0c837ceada"
     },
     "0a9f9c585a321b": {
       "words": "16 butterflies!",
@@ -1526,6 +1901,11 @@
       "takes": 5,
       "version": "cf8a7fc6e7"
     },
+    "0af108ea782e81": {
+      "words": "8 rocks!",
+      "takes": 5,
+      "version": "3351c7020a"
+    },
     "0af9cd2f9050c4": {
       "words": "That's A.",
       "takes": 5,
@@ -1556,6 +1936,11 @@
       "takes": 5,
       "version": "dbce852c4c"
     },
+    "0b50a67c44681d": {
+      "words": "4 dinosaurs!",
+      "takes": 5,
+      "version": "a66198d5e2"
+    },
     "0b545fbd148b09": {
       "words": "15 robots!",
       "takes": 5,
@@ -1570,6 +1955,11 @@
       "words": "2 apples!",
       "takes": 5,
       "version": "9a92d79665"
+    },
+    "0b78b21bb5969b": {
+      "words": "13 eggs!",
+      "takes": 5,
+      "version": "d0a7b1fedc"
     },
     "0b7cf3c0e145d5": {
       "words": "White! Like a cloud.",
@@ -1586,10 +1976,25 @@
       "takes": 6,
       "version": "9563260a5b"
     },
+    "0b83885bf44dbd": {
+      "words": "1 egg!",
+      "takes": 5,
+      "version": "21d8d5b6d9"
+    },
+    "0b8dfc04a0797a": {
+      "words": "Let's count the chickens together!",
+      "takes": 5,
+      "version": "016014f2ab"
+    },
     "0b94781045b9b5": {
       "words": "13 aliens!",
       "takes": 5,
       "version": "06d7ad8039"
+    },
+    "0b9b216edc186e": {
+      "words": "10 volcanoes!",
+      "takes": 5,
+      "version": "7382d77bb8"
     },
     "0b9b85ab33ca14": {
       "words": "Can you find black?",
@@ -1610,6 +2015,11 @@
       "words": "13 flying saucers!",
       "takes": 5,
       "version": "3f6e4f3440"
+    },
+    "0bb19f89c4ce2b": {
+      "words": "12 dinosaurs!",
+      "takes": 5,
+      "version": "8bd5b792b9"
     },
     "0bb201ec7b7270": {
       "words": "Here are 6 dots.",
@@ -1656,6 +2066,16 @@
       "takes": 5,
       "version": "6b4128d792"
     },
+    "0c038b4392c527": {
+      "words": "18 dinosaurs!",
+      "takes": 5,
+      "version": "7b8ef14ffe"
+    },
+    "0c0486301e1792": {
+      "words": "Piggy picks apples for a snack. How many apples?",
+      "takes": 5,
+      "version": "11105c1963"
+    },
     "0c158e8c7fa87d": {
       "words": "19 crabs!",
       "takes": 5,
@@ -1666,10 +2086,20 @@
       "takes": 5,
       "version": "425af7e1ae"
     },
+    "0c1a5f90096694": {
+      "words": "13 dinosaurs!",
+      "takes": 5,
+      "version": "e694001912"
+    },
     "0c1cfdbfce46ba": {
       "words": "14 balls!",
       "takes": 5,
       "version": "ca409d07b7"
+    },
+    "0c274a21834851": {
+      "words": "5 rocks!",
+      "takes": 5,
+      "version": "564edb9235"
     },
     "0c279d6556f413": {
       "words": "That's white.",
@@ -1706,6 +2136,16 @@
       "takes": 5,
       "version": "31d4bbf9dc"
     },
+    "0c57dee63653f5": {
+      "words": "20 eggs!",
+      "takes": 5,
+      "version": "288e18384a"
+    },
+    "0c581729a9fe71": {
+      "words": "17 chickens!",
+      "takes": 5,
+      "version": "789a07f2c2"
+    },
     "0c60b50341ba4e": {
       "words": "Find the number 19!",
       "takes": 5,
@@ -1721,6 +2161,11 @@
       "takes": 8,
       "version": "10b15d5293"
     },
+    "0c715723ef91a2": {
+      "words": "18 chickens!",
+      "takes": 5,
+      "version": "9d4bb8a134"
+    },
     "0c740ea298ec7a": {
       "words": "10 stars!",
       "takes": 5,
@@ -1730,6 +2175,11 @@
       "words": "14 robots!",
       "takes": 5,
       "version": "56bfa5dab6"
+    },
+    "0c9818b84c64cf": {
+      "words": "17 volcanoes!",
+      "takes": 5,
+      "version": "7b4badeb6e"
     },
     "0c9ac317c26750": {
       "words": "1 flying saucer!",
@@ -1745,6 +2195,11 @@
       "words": "12 trees!",
       "takes": 5,
       "version": "a08d76c81b"
+    },
+    "0cb5daf7058dc5": {
+      "words": "15 volcanoes!",
+      "takes": 5,
+      "version": "9bfee43a62"
     },
     "0cbaebda92354e": {
       "words": "Octopus juggles beach balls. How many balls?",
@@ -1766,6 +2221,11 @@
       "takes": 5,
       "version": "11de206c89"
     },
+    "0ce52092e0d24d": {
+      "words": "15 eggs!",
+      "takes": 5,
+      "version": "d40667ad74"
+    },
     "0cff52ac3f92c6": {
       "words": "D is for Dog!",
       "takes": 5,
@@ -1786,6 +2246,11 @@
       "takes": 5,
       "version": "ee65217c06"
     },
+    "0d3178a471d5c9": {
+      "words": "16 rocks!",
+      "takes": 5,
+      "version": "039c2dcd48"
+    },
     "0d31d33d6dd943": {
       "words": "3 carrots!",
       "takes": 5,
@@ -1801,6 +2266,11 @@
       "takes": 5,
       "version": "8f39211b4d"
     },
+    "0d653d96c2de6d": {
+      "words": "19 horses!",
+      "takes": 5,
+      "version": "c305ace74c"
+    },
     "0d6d44dd60201f": {
       "words": "13 turtles!",
       "takes": 5,
@@ -1810,6 +2280,16 @@
       "words": "4 shells!",
       "takes": 5,
       "version": "caa67cbfa7"
+    },
+    "0d7952a88b299b": {
+      "words": "5 leaves!",
+      "takes": 5,
+      "version": "685e5f4e1b"
+    },
+    "0d7dece36700fa": {
+      "words": "20 sheep!",
+      "takes": 5,
+      "version": "39324db015"
     },
     "0d86ef2fa292a5": {
       "words": "That's 3.",
@@ -1831,10 +2311,25 @@
       "takes": 5,
       "version": "cc53624ab7"
     },
+    "0dc678ec0299bd": {
+      "words": "3 horses!",
+      "takes": 5,
+      "version": "47f6a03f0b"
+    },
+    "0dd5cde463be5a": {
+      "words": "1 horse!",
+      "takes": 5,
+      "version": "14277ef880"
+    },
     "0defa78a38186f": {
       "words": "3 flowers!",
       "takes": 5,
       "version": "18df159632"
+    },
+    "0deff8e0845e12": {
+      "words": "11 eggs!",
+      "takes": 5,
+      "version": "35c7a82223"
     },
     "0e0110b23f512e": {
       "words": "11 planets!",
@@ -1855,6 +2350,11 @@
       "words": "10 flying saucers!",
       "takes": 5,
       "version": "6971effe04"
+    },
+    "0e232cc105f212": {
+      "words": "Let's count the volcanoes together!",
+      "takes": 5,
+      "version": "13ad1ad287"
     },
     "0e2c003e7c2c02": {
       "words": "20 astronauts!",
@@ -1890,6 +2390,11 @@
       "words": "4 planets!",
       "takes": 5,
       "version": "b82d75c45b"
+    },
+    "0e53a7fe69b73a": {
+      "words": "5 horses!",
+      "takes": 5,
+      "version": "7d2ab0c3e3"
     },
     "0e56e164c834c9": {
       "words": "Here are 16 dots.",
@@ -1931,6 +2436,11 @@
       "takes": 5,
       "version": "749286c955"
     },
+    "0ea48122436c7c": {
+      "words": "3 chickens!",
+      "takes": 5,
+      "version": "51cd0d6601"
+    },
     "0ea4b30233b671": {
       "words": "3 planets!",
       "takes": 5,
@@ -1945,6 +2455,11 @@
       "words": "15 stars!",
       "takes": 5,
       "version": "5238411e82"
+    },
+    "0eb66baaacec75": {
+      "words": "7 volcanoes!",
+      "takes": 5,
+      "version": "7e747f810f"
     },
     "0eb70698028335": {
       "words": "14 apples!",
@@ -1971,6 +2486,11 @@
       "takes": 5,
       "version": "13c094fac4"
     },
+    "0eede0e34c57cb": {
+      "words": "1 sheep!",
+      "takes": 5,
+      "version": "7cb1f0d6f2"
+    },
     "0ef1aa03891683": {
       "words": "Find the letter Y!",
       "takes": 5,
@@ -1985,6 +2505,11 @@
       "words": "20 turtles!",
       "takes": 5,
       "version": "91f0ae4b07"
+    },
+    "0efaf93ba6d21d": {
+      "words": "16 volcanoes!",
+      "takes": 5,
+      "version": "930f426133"
     },
     "0f07b2bcb7e4e7": {
       "words": "3 butterflies!",
@@ -2016,6 +2541,11 @@
       "takes": 5,
       "version": "65a8022dee"
     },
+    "0f2abe30b901c6": {
+      "words": "19 cows!",
+      "takes": 5,
+      "version": "19505d2752"
+    },
     "0f2da463646810": {
       "words": "7 cupcakes!",
       "takes": 5,
@@ -2035,6 +2565,11 @@
       "words": "11 birds!",
       "takes": 5,
       "version": "e9d1b83fca"
+    },
+    "0f539b64acbbdc": {
+      "words": "14 sheep!",
+      "takes": 5,
+      "version": "ff89075865"
     },
     "0f624a345a00ec": {
       "words": "Find the letter S!",
@@ -2056,10 +2591,20 @@
       "takes": 5,
       "version": "f6f0021b2a"
     },
+    "0f8e56cb53090a": {
+      "words": "14 eggs!",
+      "takes": 5,
+      "version": "1c4e555a6b"
+    },
     "0f8ed170ab8356": {
       "words": "6 astronauts!",
       "takes": 5,
       "version": "aaa053b409"
+    },
+    "0f9338bd8cbdeb": {
+      "words": "6 horses!",
+      "takes": 5,
+      "version": "58bdd27b2c"
     },
     "0f9bbcecbc3ed8": {
       "words": "Triangle! Like a slice of pizza.",
@@ -2070,6 +2615,16 @@
       "words": "That's Z.",
       "takes": 5,
       "version": "4b90092711"
+    },
+    "0fe0f933b60add": {
+      "words": "7 rocks!",
+      "takes": 5,
+      "version": "2bc0015c23"
+    },
+    "0febdee6ffb3d2": {
+      "words": "17 rocks!",
+      "takes": 5,
+      "version": "1f96e703eb"
     },
     "0fed40c0b50ea2": {
       "words": "Crunch crunch!",
@@ -2116,10 +2671,20 @@
       "takes": 5,
       "version": "3a2b7d6ef4"
     },
+    "1046d163078186": {
+      "words": "12 chickens!",
+      "takes": 5,
+      "version": "b82e66a997"
+    },
     "104769819b6ac7": {
       "words": "10 astronauts!",
       "takes": 5,
       "version": "b1584cabd5"
+    },
+    "104f1b1cea91f1": {
+      "words": "14 volcanoes!",
+      "takes": 5,
+      "version": "34fd2ef795"
     },
     "10678b2b0cdd87": {
       "words": "1 strawberry!",
@@ -2130,6 +2695,11 @@
       "words": "5 bones!",
       "takes": 5,
       "version": "15fd6444a4"
+    },
+    "107510d90f80c3": {
+      "words": "8 eggs!",
+      "takes": 5,
+      "version": "2b3548875e"
     },
     "107d192e241e8c": {
       "words": "15 strawberries!",
@@ -2211,20 +2781,40 @@
       "takes": 5,
       "version": "6537110067"
     },
+    "10ce9708f9a7d3": {
+      "words": "16 sheep!",
+      "takes": 5,
+      "version": "d4d5742c42"
+    },
     "10d63d582a0d7e": {
       "words": "16 cupcakes!",
       "takes": 5,
       "version": "6479df2205"
+    },
+    "10e38ad67f8104": {
+      "words": "11 volcanoes!",
+      "takes": 5,
+      "version": "1ca3f90af9"
     },
     "10e39a5da8775b": {
       "words": "That's green.",
       "takes": 5,
       "version": "6110474598"
     },
+    "10e4fff0f18ee0": {
+      "words": "15 cows!",
+      "takes": 5,
+      "version": "3747f14b56"
+    },
     "10e5962578023e": {
       "words": "14 cupcakes!",
       "takes": 5,
       "version": "b096a0094a"
+    },
+    "10e763b8e43eba": {
+      "words": "15 horses!",
+      "takes": 5,
+      "version": "af417a38f9"
     },
     "10ec5661bccb7d": {
       "words": "Find the letter D!",
@@ -2316,6 +2906,11 @@
       "takes": 5,
       "version": "856128a2b9"
     },
+    "11a471687d01e1": {
+      "words": "13 chickens!",
+      "takes": 5,
+      "version": "6c6dd63415"
+    },
     "11a9d8ca26f17f": {
       "words": "That's every one!",
       "takes": 6,
@@ -2381,6 +2976,11 @@
       "takes": 5,
       "version": "b1b1b8a503"
     },
+    "12047c916ab7ef": {
+      "words": "20 volcanoes!",
+      "takes": 5,
+      "version": "ddf27c2a99"
+    },
     "12082504314dfb": {
       "words": "7 balls!",
       "takes": 5,
@@ -2390,6 +2990,11 @@
       "words": "14 dolphins!",
       "takes": 5,
       "version": "c7c2b3cb22"
+    },
+    "121bd503f89bd8": {
+      "words": "4 leaves!",
+      "takes": 5,
+      "version": "b435f4b99e"
     },
     "1227e7d685c061": {
       "words": "8 birds!",
@@ -2426,6 +3031,11 @@
       "takes": 5,
       "version": "0d61d7ea59"
     },
+    "1254e4606c602c": {
+      "words": "5 volcanoes!",
+      "takes": 5,
+      "version": "15e104cca8"
+    },
     "12570ae6d98065": {
       "words": "That's triangle.",
       "takes": 5,
@@ -2441,10 +3051,20 @@
       "takes": 5,
       "version": "d2878a0734"
     },
+    "126c6943c0e1fd": {
+      "words": "1 cow!",
+      "takes": 5,
+      "version": "ca02851a2a"
+    },
     "1274ac6c9265e8": {
       "words": "1 planet!",
       "takes": 5,
       "version": "ed59c2abe0"
+    },
+    "12769595e77c91": {
+      "words": "3 volcanoes!",
+      "takes": 5,
+      "version": "c5f60dfa61"
     },
     "12905af60d8536": {
       "words": "Find the letter M!",
@@ -2485,6 +3105,26 @@
       "words": "15 flowers!",
       "takes": 5,
       "version": "ce7c6632b6"
+    },
+    "12c39edad14f1e": {
+      "words": "17 cows!",
+      "takes": 5,
+      "version": "be269a89e6"
+    },
+    "12d2abedfe29f0": {
+      "words": "20 leaves!",
+      "takes": 5,
+      "version": "3c01e990b7"
+    },
+    "12dbdab955b8df": {
+      "words": "10 rocks!",
+      "takes": 5,
+      "version": "d43281cea4"
+    },
+    "12e2c3acb6da68": {
+      "words": "Stomp stomp!",
+      "takes": 5,
+      "version": "05cd2d4ac0"
     },
     "12f55c980c042c": {
       "words": "11 bones!",
@@ -2536,6 +3176,16 @@
       "takes": 5,
       "version": "0e680c1220"
     },
+    "131cf09a28b57e": {
+      "words": "19 chickens!",
+      "takes": 5,
+      "version": "9c085d34c3"
+    },
+    "13217db8ca16f6": {
+      "words": "11 rocks!",
+      "takes": 5,
+      "version": "fd4c399e98"
+    },
     "1323cc519b26ec": {
       "words": "3 cupcakes!",
       "takes": 5,
@@ -2576,6 +3226,16 @@
       "takes": 5,
       "version": "e4a3a7f3ae"
     },
+    "1359c715c1408b": {
+      "words": "8 volcanoes!",
+      "takes": 5,
+      "version": "9c020e6b10"
+    },
+    "136bae149c21a9": {
+      "words": "8 dinosaurs!",
+      "takes": 5,
+      "version": "731dbe5af1"
+    },
     "136de1f189fc20": {
       "words": "So shiny!",
       "takes": 5,
@@ -2611,10 +3271,20 @@
       "takes": 5,
       "version": "da547e8c9e"
     },
+    "13895b1d091be7": {
+      "words": "Dino stomps through the jungle. How many trees?",
+      "takes": 5,
+      "version": "778b6326f8"
+    },
     "138b774a0bcdaf": {
       "words": "Let's count the turtles together!",
       "takes": 5,
       "version": "85b06d1015"
+    },
+    "139713a420fd14": {
+      "words": "8 chickens!",
+      "takes": 5,
+      "version": "2ab0877dce"
     },
     "139c4326c83863": {
       "words": "13 birds!",
@@ -2636,10 +3306,20 @@
       "takes": 5,
       "version": "fb95870f0e"
     },
+    "13e0fa694ee138": {
+      "words": "Let's count the horses together!",
+      "takes": 5,
+      "version": "38d0e712e2"
+    },
     "13eb7f94d59532": {
       "words": "Find the number 17!",
       "takes": 5,
       "version": "071ce73902"
+    },
+    "13ef0445142069": {
+      "words": "1 leaf!",
+      "takes": 5,
+      "version": "5ae36f755f"
     },
     "1402b893735677": {
       "words": "14 flowers!",
@@ -2696,10 +3376,20 @@
       "takes": 5,
       "version": "4ec07b4abc"
     },
+    "143eee96ae378c": {
+      "words": "10 leaves!",
+      "takes": 5,
+      "version": "d8b5f1ba3f"
+    },
     "1444f57fd21acc": {
       "words": "9 bones!",
       "takes": 5,
       "version": "9153b7ce98"
+    },
+    "144700a27cf431": {
+      "words": "3 sheep!",
+      "takes": 5,
+      "version": "8e56606ba0"
     },
     "1447d93622a28f": {
       "words": "7 trees!",
@@ -2710,6 +3400,11 @@
       "words": "19 fish!",
       "takes": 5,
       "version": "ca31fdd71c"
+    },
+    "1451ef42a60b2a": {
+      "words": "12 rocks!",
+      "takes": 5,
+      "version": "46c5b94857"
     },
     "1457b8bb0b5cbb": {
       "words": "Z is for Zebra!",
@@ -2756,6 +3451,11 @@
       "takes": 5,
       "version": "adec9d4179"
     },
+    "14ae06516c2a29": {
+      "words": "19 leaves!",
+      "takes": 5,
+      "version": "920633c1c9"
+    },
     "14b733e1e5244f": {
       "words": "8 fish!",
       "takes": 5,
@@ -2780,6 +3480,11 @@
       "words": "That's orange.",
       "takes": 5,
       "version": "d5639b0f64"
+    },
+    "14dae6e38cb0b6": {
+      "words": "13 sheep!",
+      "takes": 5,
+      "version": "d46ee87f31"
     },
     "14df9f374db311": {
       "words": "7 apples!",
@@ -2851,6 +3556,11 @@
       "takes": 5,
       "version": "e9175be37d"
     },
+    "1525f97a4c5fe3": {
+      "words": "Munch munch!",
+      "takes": 5,
+      "version": "fa2c141f9d"
+    },
     "1531c43a5024bd": {
       "words": "That's 15.",
       "takes": 5,
@@ -2881,10 +3591,20 @@
       "takes": 5,
       "version": "2f296c001e"
     },
+    "1558189192287a": {
+      "words": "Clip clop!",
+      "takes": 5,
+      "version": "d1013bdf2b"
+    },
     "155986b56dc8e4": {
       "words": "3 flying saucers!",
       "takes": 5,
       "version": "e6a4034c08"
+    },
+    "155cf143770ed1": {
+      "words": "Horses gallop across the field. How many horses?",
+      "takes": 5,
+      "version": "99ac1e8d56"
     },
     "156efa210dab1b": {
       "words": "That's black.",
@@ -2916,6 +3636,16 @@
       "takes": 5,
       "version": "bd2fb47d55"
     },
+    "1587a64b82e0a3": {
+      "words": "Volcanoes rumble far away. How many volcanoes?",
+      "takes": 5,
+      "version": "cb6654540c"
+    },
+    "158d76047ce950": {
+      "words": "Let's count the eggs together!",
+      "takes": 5,
+      "version": "a76ba60345"
+    },
     "158fe943941832": {
       "words": "Here is 1 dot.",
       "takes": 5,
@@ -2941,6 +3671,11 @@
       "takes": 5,
       "version": "db559dd926"
     },
+    "15a4d67aadc0c7": {
+      "words": "17 horses!",
+      "takes": 5,
+      "version": "2b037e84c6"
+    },
     "15b52749b96f04": {
       "words": "So sweet!",
       "takes": 5,
@@ -2960,6 +3695,11 @@
       "words": "6 stars!",
       "takes": 5,
       "version": "7a5a77e590"
+    },
+    "15ce097f4697d1": {
+      "words": "18 sheep!",
+      "takes": 5,
+      "version": "8831ddb3e0"
     },
     "15cf58fcaafab8": {
       "words": "2 dolphins!",
@@ -3006,6 +3746,11 @@
       "takes": 8,
       "version": "a3f90b74e8"
     },
+    "161216a5b605f4": {
+      "words": "19 volcanoes!",
+      "takes": 5,
+      "version": "d0053472f9"
+    },
     "162f54ff023197": {
       "words": "Find the number 16!",
       "takes": 5,
@@ -3041,6 +3786,11 @@
       "takes": 5,
       "version": "70ff041958"
     },
+    "166b6868754318": {
+      "words": "7 sheep!",
+      "takes": 5,
+      "version": "fdb1954828"
+    },
     "166cad65305f66": {
       "words": "18 cupcakes!",
       "takes": 5,
@@ -3050,6 +3800,21 @@
       "words": "15 whales!",
       "takes": 5,
       "version": "da2dcb2e8b"
+    },
+    "1677b3ed0dad86": {
+      "words": "Up and over!",
+      "takes": 5,
+      "version": "f461017981"
+    },
+    "167af300b0e271": {
+      "words": "2 sheep!",
+      "takes": 5,
+      "version": "9c6298071e"
+    },
+    "167ebf8bf0a94b": {
+      "words": "The sun sets on the farm. Oink oink! Thank you for counting!",
+      "takes": 5,
+      "version": "e5a44fce46"
     },
     "1683d66307dd9b": {
       "words": "Not 11.",
@@ -3071,6 +3836,11 @@
       "takes": 5,
       "version": "21e05900fe"
     },
+    "16af4763e51458": {
+      "words": "15 chickens!",
+      "takes": 5,
+      "version": "10789306d3"
+    },
     "16b3ade51585fe": {
       "words": "Purple! Like an eggplant.",
       "takes": 5,
@@ -3080,6 +3850,21 @@
       "words": "13 comets!",
       "takes": 5,
       "version": "1886e08584"
+    },
+    "16bf9ef59fb24b": {
+      "words": "18 rocks!",
+      "takes": 5,
+      "version": "c5de35b077"
+    },
+    "16bff05b4eeff4": {
+      "words": "6 dinosaurs!",
+      "takes": 5,
+      "version": "10fb7c378b"
+    },
+    "16d04d73d45d55": {
+      "words": "20 cows!",
+      "takes": 5,
+      "version": "06a7a810ce"
     },
     "16d47a5655eb18": {
       "words": "20 balls!",
@@ -3096,6 +3881,11 @@
       "takes": 5,
       "version": "7a0ec51e9c"
     },
+    "16e3a6cdd3e0ea": {
+      "words": "16 leaves!",
+      "takes": 5,
+      "version": "8923f93bd5"
+    },
     "16e63261b18dc8": {
       "words": "15 aliens!",
       "takes": 5,
@@ -3106,10 +3896,30 @@
       "takes": 5,
       "version": "e9a553858c"
     },
+    "16f98821e48d0f": {
+      "words": "2 horses!",
+      "takes": 5,
+      "version": "80c2803e6c"
+    },
+    "1707a9bb9c5b44": {
+      "words": "4 sheep!",
+      "takes": 5,
+      "version": "ecbb73e5d9"
+    },
+    "1714b7d37bebce": {
+      "words": "4 eggs!",
+      "takes": 5,
+      "version": "7ba456295f"
+    },
     "171cbd1b3dfa4b": {
       "words": "Amazing!",
       "takes": 6,
       "version": "9ff631f32d"
+    },
+    "171cd095bb5b09": {
+      "words": "15 rocks!",
+      "takes": 5,
+      "version": "9d7d0f3dc4"
     },
     "171f91ef900adc": {
       "words": "Let's count the planets together!",
@@ -3141,6 +3951,11 @@
       "takes": 5,
       "version": "66a2d175c4"
     },
+    "1736fb44782d2b": {
+      "words": "Dino is sleepy after a big day. Goodnight, Dino! Thank you for counting!",
+      "takes": 5,
+      "version": "6145c2001c"
+    },
     "173aaeb3dd284d": {
       "words": "18 strawberries!",
       "takes": 5,
@@ -3165,6 +3980,11 @@
       "words": "J is for Juice!",
       "takes": 5,
       "version": "73afe5f028"
+    },
+    "174999892399b2": {
+      "words": "6 chickens!",
+      "takes": 5,
+      "version": "a4571c34f1"
     },
     "174afe5586b0e6": {
       "words": "17 butterflies!",
@@ -3195,6 +4015,16 @@
       "words": "12 whales!",
       "takes": 5,
       "version": "046ea52883"
+    },
+    "1773588bba7fe4": {
+      "words": "9 rocks!",
+      "takes": 5,
+      "version": "c737807835"
+    },
+    "1783bd8fc408ce": {
+      "words": "10 cows!",
+      "takes": 5,
+      "version": "c606f35360"
     },
     "178628b2b66f0c": {
       "words": "Dolphins leap out of the water. How many dolphins?",
@@ -3296,6 +4126,11 @@
       "takes": 5,
       "version": "1fd1672797"
     },
+    "18473c0ccd3ca3": {
+      "words": "12 eggs!",
+      "takes": 5,
+      "version": "9756cd2fe7"
+    },
     "184da1c6ccb20b": {
       "words": "Here are 3 dots.",
       "takes": 5,
@@ -3386,6 +4221,11 @@
       "takes": 5,
       "version": "c67fd55fd1"
     },
+    "18f8cfd9be2413": {
+      "words": "12 cows!",
+      "takes": 5,
+      "version": "0c83bcea10"
+    },
     "19084122b1a889": {
       "words": "17 bones!",
       "takes": 5,
@@ -3456,10 +4296,25 @@
       "takes": 5,
       "version": "8ca57989fa"
     },
+    "1954cc70a484c4": {
+      "words": "13 horses!",
+      "takes": 5,
+      "version": "7b1ca0f427"
+    },
     "195507f0045b18": {
       "words": "6 turtles!",
       "takes": 5,
       "version": "bec049152d"
+    },
+    "19584d601df044": {
+      "words": "Dino's friends come to play. How many dinosaurs?",
+      "takes": 5,
+      "version": "227a2a6af2"
+    },
+    "1958b7df599b87": {
+      "words": "11 leaves!",
+      "takes": 5,
+      "version": "0a2366d4d5"
     },
     "19654cd0e7df9c": {
       "words": "Find the number 15!",
@@ -3496,6 +4351,11 @@
       "takes": 5,
       "version": "80064589ea"
     },
+    "19986108f802e4": {
+      "words": "14 dinosaurs!",
+      "takes": 5,
+      "version": "f16c2e50ba"
+    },
     "199d0928e44a97": {
       "words": "Great job!",
       "takes": 6,
@@ -3511,6 +4371,11 @@
       "takes": 8,
       "version": "83e50cc90d"
     },
+    "19bafad32d33a5": {
+      "words": "Moo moo!",
+      "takes": 5,
+      "version": "ffb42daf71"
+    },
     "19bc665a23a38b": {
       "words": "C is for Cat!",
       "takes": 5,
@@ -3520,6 +4385,16 @@
       "words": "11 carrots!",
       "takes": 5,
       "version": "6435ef5166"
+    },
+    "19ca6a944c24b7": {
+      "words": "10 horses!",
+      "takes": 5,
+      "version": "963eca59a5"
+    },
+    "19cda1d9a3b7dc": {
+      "words": "7 horses!",
+      "takes": 5,
+      "version": "4a3236530d"
     },
     "19d06134682b1a": {
       "words": "6 comets!",
@@ -3531,6 +4406,11 @@
       "takes": 5,
       "version": "6f8704cbfa"
     },
+    "19d41593a77038": {
+      "words": "Piggy digs up carrots in the garden. How many carrots?",
+      "takes": 5,
+      "version": "b56109ca88"
+    },
     "19e12510290987": {
       "words": "4 moons!",
       "takes": 5,
@@ -3540,6 +4420,16 @@
       "words": "Yum yum!",
       "takes": 5,
       "version": "745206864a"
+    },
+    "19ef32d346f190": {
+      "words": "15 sheep!",
+      "takes": 5,
+      "version": "5c1815af0a"
+    },
+    "19efb430eb26b8": {
+      "words": "5 dinosaurs!",
+      "takes": 5,
+      "version": "8e7733cc41"
     },
     "19f44873ce915d": {
       "words": "17 turtles!",
@@ -3551,10 +4441,20 @@
       "takes": 5,
       "version": "bcd54f04ba"
     },
+    "1a045a91d3a43d": {
+      "words": "Birds sing on the fence. How many birds?",
+      "takes": 5,
+      "version": "656919b2b2"
+    },
     "1a045f855cec5b": {
       "words": "12 turtles!",
       "takes": 5,
       "version": "a7b8245c98"
+    },
+    "1a076b2857c355": {
+      "words": "6 eggs!",
+      "takes": 5,
+      "version": "ed8ac2a1e2"
     },
     "1a0b655913b819": {
       "words": "7 comets!",
@@ -3566,6 +4466,11 @@
       "takes": 5,
       "version": "0b429d09af"
     },
+    "1a1b664a767849": {
+      "words": "Dig dig dig!",
+      "takes": 5,
+      "version": "2a2b08a487"
+    },
     "1a1ce63462524d": {
       "words": "Puppy finds apples under a tree. How many apples?",
       "takes": 5,
@@ -3576,10 +4481,30 @@
       "takes": 5,
       "version": "4f560a92e6"
     },
+    "1a2e4401a0f70a": {
+      "words": "9 chickens!",
+      "takes": 5,
+      "version": "6dbc6dd303"
+    },
+    "1a322d1aad23ee": {
+      "words": "18 volcanoes!",
+      "takes": 5,
+      "version": "1ced5ddf94"
+    },
+    "1a3598a70d88ab": {
+      "words": "Dino climbs over the rocks. How many rocks?",
+      "takes": 5,
+      "version": "69641eee59"
+    },
     "1a3e25f2e45b8c": {
       "words": "What a juggler!",
       "takes": 5,
       "version": "d1cbd4cb28"
+    },
+    "1a40abea333878": {
+      "words": "7 leaves!",
+      "takes": 5,
+      "version": "0ee47d6874"
     },
     "1a47c6ada27bb0": {
       "words": "2 planets!",
@@ -3595,6 +4520,11 @@
       "words": "V is for Violin!",
       "takes": 5,
       "version": "9402f1485f"
+    },
+    "1a54d742d0d6b5": {
+      "words": "Cluck cluck!",
+      "takes": 5,
+      "version": "6673b3ace1"
     },
     "1a5d70cd5f8429": {
       "words": "Robots dance on the moon. How many robots?",
@@ -3626,6 +4556,11 @@
       "takes": 5,
       "version": "6ba8ec5664"
     },
+    "1a770f2e051b9b": {
+      "words": "4 horses!",
+      "takes": 5,
+      "version": "1ffad783cd"
+    },
     "1a780cac621b8b": {
       "words": "7 carrots!",
       "takes": 5,
@@ -3656,6 +4591,11 @@
       "takes": 5,
       "version": "be17a56371"
     },
+    "1a808ab07ef815": {
+      "words": "5 cows!",
+      "takes": 5,
+      "version": "665a8b7b44"
+    },
     "1a82d0e0770780": {
       "words": "14 moons!",
       "takes": 5,
@@ -3676,10 +4616,25 @@
       "takes": 5,
       "version": "bcebc3ce8d"
     },
+    "1a9be23f795cb7": {
+      "words": "9 horses!",
+      "takes": 5,
+      "version": "53043d8562"
+    },
+    "1a9dbdd27374b4": {
+      "words": "Dino finds eggs in a nest. How many eggs?",
+      "takes": 5,
+      "version": "7124fedb99"
+    },
     "1aa31c625979b3": {
       "words": "Find the letter K!",
       "takes": 5,
       "version": "d7761a1b18"
+    },
+    "1aa4961e12f87e": {
+      "words": "14 leaves!",
+      "takes": 5,
+      "version": "6f117e3e8a"
     },
     "1aba3f984a8897": {
       "words": "That's circle.",
@@ -3690,6 +4645,11 @@
       "words": "6 moons!",
       "takes": 5,
       "version": "3e6f80fdb4"
+    },
+    "1aca400780601e": {
+      "words": "14 chickens!",
+      "takes": 5,
+      "version": "6cdff6d88a"
     },
     "1ad0d93599b960": {
       "words": "That's 16.",
@@ -3746,6 +4706,11 @@
       "takes": 5,
       "version": "7e084b15d1"
     },
+    "1b2d16abf1795f": {
+      "words": "15 leaves!",
+      "takes": 5,
+      "version": "5eae7a84ad"
+    },
     "1b39dc058a7c28": {
       "words": "10 trees!",
       "takes": 5,
@@ -3760,6 +4725,16 @@
       "words": "12 carrots!",
       "takes": 5,
       "version": "5e94b6c44d"
+    },
+    "1b4e2ef58f28ea": {
+      "words": "16 horses!",
+      "takes": 5,
+      "version": "cb6193e3f7"
+    },
+    "1b585d33b00a31": {
+      "words": "20 chickens!",
+      "takes": 5,
+      "version": "4500660602"
     },
     "1b5b8a4d0bc9a3": {
       "words": "10 planets!",
@@ -3781,6 +4756,11 @@
       "takes": 5,
       "version": "0c6880056b"
     },
+    "1b8578f47eeaef": {
+      "words": "16 eggs!",
+      "takes": 5,
+      "version": "c4d32067bc"
+    },
     "1b901b8fb89bb8": {
       "words": "12 squirrels!",
       "takes": 5,
@@ -3801,6 +4781,11 @@
       "takes": 5,
       "version": "32ca43a635"
     },
+    "1bbd6e9472498e": {
+      "words": "12 horses!",
+      "takes": 5,
+      "version": "00f0a89f44"
+    },
     "1bc0c9e09a7a98": {
       "words": "Find the number 8!",
       "takes": 5,
@@ -3816,10 +4801,20 @@
       "takes": 5,
       "version": "f410417eb7"
     },
+    "1bc796a52873b2": {
+      "words": "Crack crack!",
+      "takes": 5,
+      "version": "27ab828918"
+    },
     "1bdb5fc45027b2": {
       "words": "Up, up, up!",
       "takes": 5,
       "version": "47b1df4792"
+    },
+    "1be3ef1629f8cf": {
+      "words": "Let's count the sheep together!",
+      "takes": 5,
+      "version": "2082ec3517"
     },
     "1be541415fbda6": {
       "words": "11 robots!",
@@ -3840,6 +4835,11 @@
       "words": "Find the heart!",
       "takes": 5,
       "version": "f3372ec574"
+    },
+    "1c0274a73a87ce": {
+      "words": "9 leaves!",
+      "takes": 5,
+      "version": "0b66ac6ad4"
     },
     "1c18e837666ba3": {
       "words": "Astronauts float outside the space station. How many astronauts?",
@@ -3865,6 +4865,11 @@
       "words": "Look at all the moons! How many moons?",
       "takes": 5,
       "version": "d41ba095b1"
+    },
+    "1c40f3db729073": {
+      "words": "3 rocks!",
+      "takes": 5,
+      "version": "1516635fbd"
     },
     "1c46d294e12caa": {
       "words": "Find the number 7!",
@@ -3916,6 +4921,11 @@
       "takes": 5,
       "version": "73d4dd9c94"
     },
+    "1c7fa5561cfb80": {
+      "words": "11 horses!",
+      "takes": 5,
+      "version": "60bc5d8acc"
+    },
     "1c9224824b509c": {
       "words": "Not 5.",
       "takes": 5,
@@ -3925,6 +4935,11 @@
       "words": "5 cupcakes!",
       "takes": 5,
       "version": "3ac1a7fc00"
+    },
+    "1c93c4a5accdb3": {
+      "words": "19 eggs!",
+      "takes": 5,
+      "version": "48e705a8a4"
     },
     "1c9b0200e2ea64": {
       "words": "Yay! You did it! Let's do a happy dance!",
@@ -3951,6 +4966,11 @@
       "takes": 5,
       "version": "e12112a67a"
     },
+    "1cddab33596bb8": {
+      "words": "6 leaves!",
+      "takes": 5,
+      "version": "3373c72fda"
+    },
     "1ce44e0a83c7d3": {
       "words": "13 balls!",
       "takes": 5,
@@ -3975,6 +4995,11 @@
       "words": "12 moons!",
       "takes": 5,
       "version": "0abdb25cd5"
+    },
+    "1cfe91b2d2cc86": {
+      "words": "13 cows!",
+      "takes": 5,
+      "version": "3460cf5b3e"
     },
     "1d084b93226c1e": {
       "words": "2 squirrels!",
@@ -4015,6 +5040,16 @@
       "words": "20 flying saucers!",
       "takes": 5,
       "version": "76274e943e"
+    },
+    "1d69493a1a782a": {
+      "words": "9 sheep!",
+      "takes": 5,
+      "version": "3b3150deb5"
+    },
+    "1d6e9c566f7dd7": {
+      "words": "16 dinosaurs!",
+      "takes": 5,
+      "version": "f0fa7d168a"
     },
     "1d873aab5afd88": {
       "words": "6 cupcakes!",
@@ -4060,6 +5095,11 @@
       "words": "11 shells!",
       "takes": 5,
       "version": "361c4a874e"
+    },
+    "1df0cce6c288f3": {
+      "words": "10 sheep!",
+      "takes": 5,
+      "version": "2861f59b94"
     },
     "1df4d097cb4138": {
       "words": "11 fish!",
@@ -4121,6 +5161,11 @@
       "takes": 5,
       "version": "4a98aa91ed"
     },
+    "1e5bf321cd0f40": {
+      "words": "Let's count the cows together!",
+      "takes": 5,
+      "version": "da3b8571fe"
+    },
     "1e5c074bc66391": {
       "words": "15 astronauts!",
       "takes": 5,
@@ -4166,10 +5211,25 @@
       "takes": 5,
       "version": "44e321bb7b"
     },
+    "1ea6a1079eb63d": {
+      "words": "11 chickens!",
+      "takes": 5,
+      "version": "1a7d848009"
+    },
     "1eac5f8ac78191": {
       "words": "11 crabs!",
       "takes": 5,
       "version": "cd0d4948ac"
+    },
+    "1eaee06be35a0a": {
+      "words": "Sheep rest in the meadow. How many sheep?",
+      "takes": 5,
+      "version": "ac655c3958"
+    },
+    "1eb1b6decaa3e8": {
+      "words": "5 chickens!",
+      "takes": 5,
+      "version": "795adc8a00"
     },
     "1eb61e57b3ff82": {
       "words": "Not 13.",
@@ -4185,6 +5245,11 @@
       "words": "Find the letter L!",
       "takes": 5,
       "version": "50f9ed29de"
+    },
+    "1ece0e92ed6104": {
+      "words": "18 cows!",
+      "takes": 5,
+      "version": "f05ffd53dc"
     },
     "1edb5de20e784d": {
       "words": "5 balls!",
@@ -4206,6 +5271,11 @@
       "takes": 8,
       "version": "8c190fce1b"
     },
+    "1eff8398a2c80e": {
+      "words": "17 eggs!",
+      "takes": 5,
+      "version": "ffbc9e271a"
+    },
     "1f07929f841006": {
       "words": "12 bones!",
       "takes": 5,
@@ -4220,6 +5290,11 @@
       "words": "Find the letter B!",
       "takes": 5,
       "version": "b7715f83c9"
+    },
+    "1f25e6b353df67": {
+      "words": "17 dinosaurs!",
+      "takes": 5,
+      "version": "36f0078618"
     },
     "1f33b0fde7c900": {
       "words": "Strawberries for dessert! How many strawberries?",
@@ -4251,10 +5326,20 @@
       "takes": 8,
       "version": "c02a53e287"
     },
+    "1f59c79f975330": {
+      "words": "Roar!",
+      "takes": 5,
+      "version": "bd641e2556"
+    },
     "1f5edd936a1474": {
       "words": "W is for Whale!",
       "takes": 5,
       "version": "5c2ac5be05"
+    },
+    "1f655d1ccf278e": {
+      "words": "Let's count the leaves together!",
+      "takes": 5,
+      "version": "483e0404ca"
     },
     "1f6e755330b3bc": {
       "words": "18 apples!",
@@ -4306,10 +5391,20 @@
       "takes": 5,
       "version": "455a15e53d"
     },
+    "1fc9b76c73697e": {
+      "words": "Rumble rumble!",
+      "takes": 5,
+      "version": "f05274fc36"
+    },
     "1fcb40afb4c5c3": {
       "words": "8 comets!",
       "takes": 5,
       "version": "623b7c9229"
+    },
+    "1fd27640da62ea": {
+      "words": "2 cows!",
+      "takes": 5,
+      "version": "2d7cc7dc98"
     },
     "1fe0ca921541dd": {
       "words": "19 balls!",
@@ -4320,6 +5415,11 @@
       "words": "3 bones!",
       "takes": 5,
       "version": "fedde77478"
+    },
+    "1ff78850c9f075": {
+      "words": "17 leaves!",
+      "takes": 5,
+      "version": "ef12c8a075"
     }
   }
 }

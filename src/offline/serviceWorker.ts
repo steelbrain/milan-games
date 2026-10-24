@@ -1,4 +1,4 @@
-import { SHELL_CACHE_PREFIX, SPEECH_CACHE } from './cacheNames';
+import { LEGACY_SPEECH_CACHE, SHELL_CACHE_PREFIX, speechCacheName } from './cacheNames';
 
 /** One build of the app: everything it needs to start without a network. */
 export interface Shell {
@@ -64,6 +64,19 @@ export function installServiceWorker(
     return (await saved(request.url, cacheName)) ?? scope.fetch(request);
   }
 
+  /**
+   * A clip from its voice's cache (speech/<voice>/…), or from the one cache older versions kept
+   * for every voice, until its download moves; otherwise from the network.
+   */
+  async function speechFirst(request: Request): Promise<Response> {
+    const voice = request.url.slice(speech.length).split('/')[0] ?? '';
+    return (
+      (await saved(request.url, speechCacheName(voice))) ??
+      (await saved(request.url, LEGACY_SPEECH_CACHE)) ??
+      scope.fetch(request)
+    );
+  }
+
   /** Tries the network, and falls back to the saved `fallbackUrl` if it fails or is slow. */
   async function networkFirst(request: Request, fallbackUrl: string): Promise<Response> {
     const response = scope.fetch(request);
@@ -110,7 +123,7 @@ export function installServiceWorker(
           ? cacheFirst(shellCache, request)
           : networkFirst(request, request.url),
       );
-    else if (request.url.startsWith(speech)) event.respondWith(cacheFirst(SPEECH_CACHE, request));
+    else if (request.url.startsWith(speech)) event.respondWith(speechFirst(request));
   });
 }
 

@@ -31,7 +31,7 @@ site in `dist/` that works from any web host or folder, because routing uses the
 ### Offline, like on a plane
 
 The 💾 button on the home screen opens **Play offline**, which downloads every voice clip (about
-105 MB) so the whole app works without internet. It shows its progress, retries files that fail,
+130 MB) so the whole app works without internet. It shows its progress, retries files that fail,
 waits out a lost connection by itself, and can be paused and picked up again later, even after
 closing the app. On an iPhone or iPad, download from the Home Screen app, not from Safari: iOS
 keeps their storage separate.
@@ -94,7 +94,7 @@ ElevenLabs, in four voices (Katie, Lulu, Clara and Zara), and played back with W
 
 1. `src/speech/catalog.ts` lists every line the games can say, built from the same helper
    functions the games use. Long sentences are split into reusable clips, such as "Great job!"
-   followed by "B is for Ball!", so ~860 lines cover every combination.
+   followed by "B is for Ball!", so ~1,080 lines cover every combination.
 2. `npm run speech` records each line in each voice (`scripts/speech/`), trims the silence,
    evens out the loudness across clips and voices, and encodes small AAC files into
    `public/speech/<voice>/`. It only records what is missing, so it is safe to stop and re-run,
@@ -131,7 +131,9 @@ files' contents, which goes in the clip's URLs, so saved copies pick up re-recor
   to the saved copy after 3 seconds or without a connection.
 - **The speech** is only saved by the Play offline download (`offlineSaver.ts`), since most
   visits never need all four voices. It saves one voice at a time, so a stopped download still
-  leaves whole voices. Without internet, a visit only picks voices that are fully saved.
+  leaves whole voices. Without internet, a visit only picks voices that are fully saved. Each
+  voice has its own cache: Chrome can't list a cache past about 18,000 entries, and all four
+  voices together have more. A download from before that change is moved over on the next visit.
 - **Keeping it current:** clip URLs carry each clip's version (`?v=…`), so a new or re-recorded
   clip is simply a URL the saved copy doesn't have yet. On every visit the saver deletes saved
   URLs the manifest no longer lists and, if the copy was complete before, fetches small updates

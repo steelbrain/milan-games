@@ -48,6 +48,8 @@ describe('topics', () => {
       'walk',
       'space',
       'sea',
+      'farm',
+      'dino',
     ]);
   });
 });
