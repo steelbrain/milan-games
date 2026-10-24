@@ -1,5 +1,5 @@
 import { type ChoiceState, initialChoiceState } from '../../core/choice';
-import { drawSequence, type Random, randomInt, range, sample } from '../../core/random';
+import { drawSequence, pickOne, type Random, randomInt, range, sample } from '../../core/random';
 import { line, type Line, plural, type Utterance } from '../../content/line';
 import type { Story, StoryScene } from '../../content/stories';
 
@@ -59,13 +59,32 @@ export function countChoices(random: Random, answer: number, max: number, size =
   return [answer, ...others].sort((a, b) => a - b);
 }
 
+/** How many pages of its story each game tells; one star each. */
+export const PAGES_PER_GAME = 5;
+
+/**
+ * A random few of the story's scenes, told in story order so it still flows. Stories have more
+ * scenes than a game uses, so playing the same story again tells it differently.
+ */
+export function pickScenes(
+  random: Random,
+  scenes: readonly StoryScene[],
+  count = PAGES_PER_GAME,
+): StoryScene[] {
+  const picked = new Set(
+    sample(random, range(0, scenes.length - 1), Math.min(count, scenes.length)),
+  );
+  return scenes.filter((_, i) => picked.has(i));
+}
+
 export function createCountingRounds(
   random: Random,
   story: Story,
   { min, max, gridSize }: CountingRange,
 ): CountingRound[] {
-  const counts = drawSequence(random, range(min, max), story.scenes.length);
-  return story.scenes.map((scene, i) => {
+  const scenes = pickScenes(random, story.scenes);
+  const counts = drawSequence(random, range(min, max), scenes.length);
+  return scenes.map((scene, i) => {
     const count = counts[i] as number;
     return {
       scene,
@@ -109,7 +128,15 @@ export function countingQuestion(scene: StoryScene): Line {
   return line(`${scene.setup} How many ${scene.item.many}?`);
 }
 
-export const ALL_COUNTED = line("That's all of them!");
+/** Ways to say the last one has been counted, so the end of every count sounds different. */
+export const ALL_COUNTED: readonly Line[] = [
+  "That's all of them!",
+  "That's all!",
+  "That's every one!",
+  'We counted them all!',
+  'All counted!',
+  'And that was the last one!',
+].map((text) => line(text));
 export const TRY_AGAIN = line("Let's try again!");
 /** Said when the child races through the items to make the voice do the counting. */
 export const SLOW_DOWN = line("Whoa, slow down! Let's count them one at a time.");
@@ -134,8 +161,9 @@ export function countWord(count: number): Line {
   return line(`${count}!`);
 }
 
-export function countAloud(count: number, total: number): Utterance {
-  return count === total ? [countWord(count), ALL_COUNTED] : [countWord(count)];
+/** "7!", and after the last one something like "That's all of them!". */
+export function countAloud(random: Random, count: number, total: number): Utterance {
+  return count === total ? [countWord(count), pickOne(random, ALL_COUNTED)] : [countWord(count)];
 }
 
 export function countTogether(scene: StoryScene): Line {

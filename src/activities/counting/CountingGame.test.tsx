@@ -5,19 +5,34 @@ import { clickNext, promptText } from '../../test/play';
 import { PRAISE } from '../praise';
 import { renderApp } from '../../test/render';
 import { createTestServices } from '../../test/fakes';
+import { STORIES, type StoryScene } from '../../content/stories';
 import { HELP_PAUSE_MS, HELP_STEP_MS, SLOW_DOWN_MS } from './CountingGame';
-import { SLOW_DOWN, TOO_FAST } from './countingLogic';
+import { ALL_COUNTED, countingQuestion, SLOW_DOWN, TOO_FAST } from './countingLogic';
 
-function items(groupName: string): HTMLElement[] {
-  return within(screen.getByRole('group', { name: groupName })).getAllByRole('button');
+const ALL_COUNTED_TEXTS = ALL_COUNTED.map((line) => line.text);
+
+function storyScenes(storyId: string): readonly StoryScene[] {
+  return STORIES.find((story) => story.id === storyId)?.scenes ?? [];
+}
+
+/** The page of the story on screen; games tell a random few pages, so tests look it up. */
+function sceneOnScreen(storyId: string): StoryScene {
+  const scene = storyScenes(storyId).find((s) => countingQuestion(s).text === promptText());
+  if (!scene) throw new Error(`No page of "${storyId}" asks "${promptText()}"`);
+  return scene;
+}
+
+/** The things to count on the board, which must be `many` of the page's item. */
+function items(many: string): HTMLElement[] {
+  return within(screen.getByRole('group', { name: `${many} to count` })).getAllByRole('button');
 }
 
 function tally(): string {
   return screen.getByRole('status', { name: 'Counted so far' }).textContent ?? '';
 }
 
-async function countAll(user: UserEvent, groupName: string): Promise<number> {
-  const all = items(groupName);
+async function countAll(user: UserEvent, many: string): Promise<number> {
+  const all = items(many);
   for (const item of all) await user.click(item);
   return all.length;
 }
@@ -40,18 +55,20 @@ describe('CountingGame', () => {
 
   it('sets the scene and asks how many', () => {
     const { services } = renderApp('/play/counting/5/picnic');
-    expect(promptText()).toBe('Bunny is packing a picnic basket. How many carrots?');
+    const { setup, item } = sceneOnScreen('picnic');
+    expect(promptText()).toBe(`${setup} How many ${item.many}?`);
     expect(services.speaker.texts).toEqual([promptText()]);
-    const carrots = items('carrots to count');
-    expect(carrots.length).toBeGreaterThanOrEqual(1);
-    expect(carrots.length).toBeLessThanOrEqual(5);
+    const things = items(item.many);
+    expect(things.length).toBeGreaterThanOrEqual(1);
+    expect(things.length).toBeLessThanOrEqual(5);
     expect(tally()).toBe('0');
   });
 
   it('counts out loud, one note higher per item', async () => {
     const { user, services } = renderApp('/play/counting/10/picnic');
-    const [first, second] = items('carrots to count');
-    if (!first || !second) throw new Error('Expected at least two carrots');
+    const { item } = sceneOnScreen('picnic');
+    const [first, second] = items(item.many);
+    if (!first || !second) throw new Error('Expected at least two things to count');
 
     await user.click(first);
     await user.click(second);
@@ -62,15 +79,15 @@ describe('CountingGame', () => {
       { cue: 'count', options: { step: 1 } },
       { cue: 'count', options: { step: 2 } },
     ]);
-    expect(first).toHaveAccessibleName('carrot 1');
+    expect(first).toHaveAccessibleName(`${item.one} 1`);
     expect(first).toHaveAttribute('aria-pressed', 'true');
-    expect(second).toHaveAccessibleName('carrot 2');
+    expect(second).toHaveAccessibleName(`${item.one} 2`);
   });
 
   it('does not count the same item twice', async () => {
     const { user, services } = renderApp('/play/counting/10/picnic');
-    const [first] = items('carrots to count');
-    if (!first) throw new Error('Expected a carrot');
+    const [first] = items(sceneOnScreen('picnic').item.many);
+    if (!first) throw new Error('Expected something to count');
     await user.click(first);
     await user.click(first);
     expect(tally()).toBe('1');
@@ -79,14 +96,16 @@ describe('CountingGame', () => {
 
   it('says when every item has been counted', async () => {
     const { user, services } = renderApp('/play/counting/10/picnic');
-    const count = await countAll(user, 'carrots to count');
+    const count = await countAll(user, sceneOnScreen('picnic').item.many);
     expect(tally()).toBe(String(count));
-    expect(services.speaker.texts.slice(-2)).toEqual([`${count}!`, "That's all of them!"]);
+    const [number, ending] = services.speaker.texts.slice(-2);
+    expect(number).toBe(`${count}!`);
+    expect(ALL_COUNTED_TEXTS).toContain(ending);
   });
 
   it('gently corrects a wrong number', async () => {
     const { user, services } = renderApp('/play/counting/10/picnic');
-    const count = items('carrots to count').length;
+    const count = items(sceneOnScreen('picnic').item.many).length;
     const wrong = within(screen.getByRole('group', { name: 'How many?' }))
       .getAllByRole('button')
       .find((button) => button.getAttribute('aria-label') !== String(count));
@@ -105,19 +124,21 @@ describe('CountingGame', () => {
 
   it('cheers for the right number and moves on to the next page of the story', async () => {
     const { user, services } = renderApp('/play/counting/5/picnic');
-    const count = await countAll(user, 'carrots to count');
+    const scene = sceneOnScreen('picnic');
+    const count = await countAll(user, scene.item.many);
     await user.click(answerButton(count));
 
     expect(services.sounds.cues.at(-1)).toBe('correct');
     const [cheer, counted, reaction] = services.speaker.texts.slice(-3);
     expect(PRAISE.map((line) => line.text)).toContain(cheer);
-    expect(counted).toBe(`${count} ${count === 1 ? 'carrot' : 'carrots'}!`);
-    expect(reaction).toBe('Crunch crunch!');
+    expect(counted).toBe(`${count} ${count === 1 ? scene.item.one : scene.item.many}!`);
+    expect(reaction).toBe(scene.cheer);
     expect(screen.getByRole('img', { name: '1 of 5 stars' })).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: 'Count with me' })).not.toBeInTheDocument();
 
     await clickNext(user);
-    expect(promptText()).toBe('Bunny picks apples from the tree. How many apples?');
+    const scenes = storyScenes('picnic');
+    expect(scenes.indexOf(sceneOnScreen('picnic'))).toBeGreaterThan(scenes.indexOf(scene));
     expect(tally()).toBe('0');
   });
 
@@ -126,14 +147,15 @@ describe('CountingGame', () => {
     const { user, services } = renderApp('/play/counting/20/space', {
       userOptions: { advanceTimers: vi.advanceTimersByTime },
     });
-    const count = items('stars to count').length;
-    const [first] = items('stars to count');
-    if (!first) throw new Error('Expected a star');
+    const { item } = sceneOnScreen('space');
+    const count = items(item.many).length;
+    const [first] = items(item.many);
+    if (!first) throw new Error('Expected something to count');
     await user.click(first);
 
     await user.click(screen.getByRole('button', { name: 'Count with me' }));
     expect(tally()).toBe('0');
-    expect(services.speaker.lastText).toBe("Let's count the stars together!");
+    expect(services.speaker.lastText).toBe(`Let's count the ${item.many} together!`);
     expect(screen.getByRole('button', { name: 'Count with me' })).toBeDisabled();
 
     // Taps are ignored while the game is counting.
@@ -142,12 +164,14 @@ describe('CountingGame', () => {
 
     await wait(HELP_STEP_MS);
     expect(tally()).toBe('1');
-    expect(first).toHaveAccessibleName('star 1');
+    expect(first).toHaveAccessibleName(`${item.one} 1`);
 
     // One more step per remaining item, plus one to notice it is done.
     for (let step = 2; step <= count + 1; step++) await wait(HELP_STEP_MS);
     expect(tally()).toBe(String(count));
-    expect(services.speaker.texts.slice(-2)).toEqual([`${count}!`, "That's all of them!"]);
+    const [number, ending] = services.speaker.texts.slice(-2);
+    expect(number).toBe(`${count}!`);
+    expect(ALL_COUNTED_TEXTS).toContain(ending);
     expect(screen.getByRole('button', { name: 'Count with me' })).toBeEnabled();
   });
 
@@ -156,7 +180,7 @@ describe('CountingGame', () => {
     const { user } = renderApp('/play/counting/20/space', {
       userOptions: { advanceTimers: vi.advanceTimersByTime },
     });
-    const count = items('stars to count').length;
+    const count = items(sceneOnScreen('space').item.many).length;
     await user.click(screen.getByRole('button', { name: 'Count with me' }));
     await wait(HELP_STEP_MS);
     await user.click(answerButton(count));
@@ -171,7 +195,7 @@ describe('CountingGame', () => {
     });
     services.speaker.holdSpeech = true;
     await user.click(screen.getByRole('button', { name: 'Count with me' }));
-    expect(services.speaker.lastText).toBe("Let's count the stars together!");
+    expect(services.speaker.lastText).toMatch(/^Let's count the .+ together!$/);
 
     // However long "Let's count the stars together!" takes, counting waits for it…
     await wait(5000);
@@ -190,15 +214,15 @@ describe('CountingGame', () => {
 
   it('counts the moment a finger lands, even one that slides before lifting', () => {
     renderApp('/play/counting/20/space');
-    const [first] = items('stars to count');
-    if (!first) throw new Error('Expected a star');
+    const [first] = items(sceneOnScreen('space').item.many);
+    if (!first) throw new Error('Expected something to count');
     fireEvent.pointerDown(first, { button: 0 });
     expect(tally()).toBe('1');
   });
 
   it('counts with the keyboard too', async () => {
     const { user } = renderApp('/play/counting/20/space');
-    items('stars to count')[0]?.focus();
+    items(sceneOnScreen('space').item.many)[0]?.focus();
     await user.keyboard('{Enter}');
     expect(tally()).toBe('1');
   });
@@ -210,40 +234,44 @@ describe('CountingGame', () => {
       services: createTestServices({ now: () => 0 }),
       userOptions: { advanceTimers: vi.advanceTimersByTime },
     });
-    const stars = items('stars to count');
-    expect(stars.length).toBeGreaterThanOrEqual(TOO_FAST.taps);
-    for (const star of stars.slice(0, TOO_FAST.taps)) await user.click(star);
+    const { item } = sceneOnScreen('space');
+    const things = items(item.many);
+    expect(things.length).toBeGreaterThanOrEqual(TOO_FAST.taps);
+    for (const thing of things.slice(0, TOO_FAST.taps)) await user.click(thing);
 
     expect(services.speaker.lastText).toBe(SLOW_DOWN.text);
     expect(promptText()).toBe(SLOW_DOWN.text);
     expect(tally()).toBe('0');
-    expect(stars[0]).toBeDisabled();
+    expect(things[0]).toBeDisabled();
     expect(screen.getByRole('button', { name: 'Count with me' })).toBeDisabled();
 
     await wait(SLOW_DOWN_MS);
-    expect(stars[0]).toBeEnabled();
-    expect(promptText()).toMatch(/How many stars\?$/);
-    await user.click(stars[0] as HTMLElement);
+    expect(things[0]).toBeEnabled();
+    expect(promptText()).toBe(countingQuestion(sceneOnScreen('space')).text);
+    await user.click(things[0] as HTMLElement);
     expect(tally()).toBe('1');
   });
 
   it('tells the whole story and ends it', async () => {
     const { user, services } = renderApp('/play/counting/5/sea');
-    const pages = ['fish', 'shells', 'crabs', 'turtles', 'whales'];
-    for (const [page, noun] of pages.entries()) {
-      expect(promptText()).toMatch(new RegExp(`How many ${noun}\\?$`));
-      const count = await countAll(user, `${noun} to count`);
+    const told: number[] = [];
+    for (let page = 1; page <= 5; page++) {
+      const scene = sceneOnScreen('sea');
+      told.push(storyScenes('sea').indexOf(scene));
+      const count = await countAll(user, scene.item.many);
       await user.click(answerButton(count));
-      expect(screen.getByRole('img', { name: `${page + 1} of 5 stars` })).toBeInTheDocument();
+      expect(screen.getByRole('img', { name: `${page} of 5 stars` })).toBeInTheDocument();
       await clickNext(user);
     }
+    // Five different pages, in story order.
+    expect(told).toEqual([...new Set(told)].sort((a, b) => a - b));
     expect(screen.getByRole('heading', { name: 'You did it!' })).toBeInTheDocument();
     expect(services.speaker.lastText).toBe('Octopus had a splashy day. Thank you for counting!');
   });
 
   it('uses a bigger board for bigger numbers', () => {
     renderApp('/play/counting/20/walk');
-    const count = items('trees to count').length;
+    const count = items(sceneOnScreen('walk').item.many).length;
     expect(count).toBeGreaterThanOrEqual(6);
     expect(count).toBeLessThanOrEqual(20);
   });

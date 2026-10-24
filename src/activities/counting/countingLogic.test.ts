@@ -4,6 +4,7 @@ import { STORIES } from '../../content/stories';
 import { choose } from '../../core/choice';
 import { createSeededRandom, range } from '../../core/random';
 import {
+  ALL_COUNTED,
   countAloud,
   countChoices,
   countingQuestion,
@@ -15,6 +16,8 @@ import {
   initialCountingState,
   itemIds,
   layoutItems,
+  PAGES_PER_GAME,
+  pickScenes,
   resetCount,
   storyEnding,
   tappingTooFast,
@@ -83,13 +86,24 @@ describe('countChoices', () => {
 });
 
 describe('createCountingRounds', () => {
-  it('makes one round per story scene, in story order', () => {
-    const rounds = createCountingRounds(createSeededRandom(5), story, {
-      min: 1,
-      max: 5,
-      gridSize: 3,
-    });
-    expect(rounds.map((round) => round.scene)).toEqual(story.scenes);
+  it('tells a different few pages of the story each time, in story order', () => {
+    const tellings = range(0, 19).map((seed) =>
+      createCountingRounds(createSeededRandom(seed), story, { min: 1, max: 5, gridSize: 3 }).map(
+        (round) => story.scenes.indexOf(round.scene),
+      ),
+    );
+    for (const pages of tellings) {
+      expect(pages).toHaveLength(PAGES_PER_GAME);
+      expect(pages).toEqual([...new Set(pages)].sort((a, b) => a - b));
+      expect(pages).not.toContain(-1);
+    }
+    expect(new Set(tellings.map(String)).size).toBeGreaterThan(10);
+    expect(new Set(tellings.flat()).size).toBe(story.scenes.length);
+  });
+
+  it('tells every page of a short story', () => {
+    const short = { ...story, scenes: story.scenes.slice(0, 3) };
+    expect(pickScenes(createSeededRandom(1), short.scenes)).toEqual(short.scenes);
   });
 
   it('keeps counts in range, all different, and laid out on the board', () => {
@@ -163,9 +177,15 @@ describe('counting lines', () => {
     );
   });
 
-  it('counts out loud and marks the last one', () => {
-    expect(caption(countAloud(2, 5))).toBe('2!');
-    expect(caption(countAloud(5, 5))).toBe("5! That's all of them!");
+  it('counts out loud and marks the last one, in different words each time', () => {
+    const random = createSeededRandom(2);
+    expect(caption(countAloud(random, 2, 5))).toBe('2!');
+    const endings = range(1, 40).map(() => countAloud(random, 5, 5));
+    for (const [number, ending] of endings) {
+      expect(number).toEqual(line('5!'));
+      expect(ALL_COUNTED).toContain(ending);
+    }
+    expect(new Set(endings.map(([, ending]) => ending)).size).toBe(ALL_COUNTED.length);
   });
 
   it('cheers with the right noun form', () => {

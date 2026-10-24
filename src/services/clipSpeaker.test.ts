@@ -187,18 +187,55 @@ describe('createClipSpeaker', () => {
     await vi.waitFor(() => expect(noAudio.fallback.texts).toEqual(['Hello']));
   });
 
-  it('falls back when a clip fails to load, and retries it next time', async () => {
+  it('tries another take when one fails to load, rather than the fallback voice', async () => {
     const fetchClip = vi
       .fn<(url: string) => Promise<ArrayBuffer>>()
-      .mockRejectedValueOnce(new Error('offline'))
+      .mockRejectedValueOnce(new Error('dropped'))
       .mockImplementation((url) => Promise.resolve(new TextEncoder().encode(url).buffer));
+    const { speaker, fallback, audio } = setup({ fetchClip });
+    speaker.say(cheer);
+    await vi.waitFor(() => expect(audio?.started()).toHaveLength(1));
+    const [failed, played] = fetchClip.mock.calls.map(([url]) => url);
+    expect(played).not.toBe(failed);
+    expect(audio?.started()[0]?.url).toBe(played);
+    expect(fallback.lines).toEqual([]);
+  });
+
+  it('falls back when a clip keeps failing to load, and retries it next time', async () => {
+    let failures = 3;
+    const fetchClip = vi.fn((url: string) =>
+      failures-- > 0
+        ? Promise.reject(new Error('offline'))
+        : Promise.resolve(new TextEncoder().encode(url).buffer),
+    );
     const { speaker, fallback, audio } = setup({ fetchClip });
     speaker.say(hello);
     await vi.waitFor(() => expect(fallback.texts).toEqual(['Hello']));
+    expect(fetchClip).toHaveBeenCalledTimes(3);
 
     speaker.say(hello);
     await vi.waitFor(() => expect(audio?.started()).toHaveLength(1));
+    expect(fetchClip).toHaveBeenCalledTimes(4);
+  });
+
+  it('stops retrying a clip once something else is being said', async () => {
+    let reject: (error: Error) => void = () => undefined;
+    const fetchClip = vi.fn((url: string) =>
+      url.includes(clipId(hello))
+        ? new Promise<ArrayBuffer>((_, fail) => {
+            reject = fail;
+          })
+        : Promise.resolve(new TextEncoder().encode(url).buffer),
+    );
+    const { speaker, fallback, audio } = setup({ fetchClip });
+    speaker.say(hello);
+    await vi.waitFor(() => expect(fetchClip).toHaveBeenCalledTimes(1));
+    speaker.say(there);
+    reject(new Error('dropped'));
+    await vi.waitFor(() => expect(audio?.started()).toHaveLength(1));
+    await new Promise((resolve) => setTimeout(resolve, 0));
     expect(fetchClip).toHaveBeenCalledTimes(2);
+    expect(fallback.lines).toEqual([]);
   });
 
   it('drops an utterance that is interrupted while it loads', async () => {

@@ -1,7 +1,7 @@
 import type { Line } from '../content/line';
 import { createNoRepeatPicker, pickOne, type Random } from '../core/random';
 import { clipId } from '../speech/clipId';
-import type { SpeechManifest, VoiceInfo } from '../speech/manifest';
+import type { ClipInfo, SpeechManifest, VoiceInfo } from '../speech/manifest';
 import type { Speaker } from './speech';
 
 /** The parts of the Web Audio API needed to play recorded clips. */
@@ -25,6 +25,13 @@ export interface ClipSpeakerOptions {
   /** Picks the voice and which take of each clip to play. */
   readonly random?: Random;
 }
+
+/**
+ * How many takes of a clip to try before giving up on it. A take can fail to download or decode
+ * (a dropped connection, a busy decoder on a burst of taps); the robotic fallback voice is a last
+ * resort, so another take gets a chance first.
+ */
+const LOAD_ATTEMPTS = 3;
 
 /**
  * Speaks with pre-recorded clips (see scripts/speech), falling back to live speech synthesis.
@@ -72,6 +79,23 @@ export function createClipSpeaker({
     return buffer;
   }
 
+  /** A random take of the clip, trying other takes if one fails to load. */
+  async function loadTake(
+    context: ClipAudioContext,
+    voice: string,
+    id: string,
+    clip: ClipInfo,
+    mine: number,
+  ): Promise<AudioBuffer> {
+    for (let attempt = 1; ; attempt++) {
+      try {
+        return await load(context, clipUrl(voice, id, pickTake(id, clip.takes), clip.version));
+      } catch (error) {
+        if (attempt >= LOAD_ATTEMPTS || mine !== generation) throw error;
+      }
+    }
+  }
+
   function silence(): void {
     for (const source of playing) {
       try {
@@ -91,22 +115,22 @@ export function createClipSpeaker({
   async function speak(lines: Line[], mine: number, finish: () => void): Promise<void> {
     const [available, speaking] = await Promise.all([manifest, voice]);
     const context = getContext();
-    const urls: string[] = [];
+    const clips: { id: string; clip: ClipInfo }[] = [];
     for (const line of lines) {
       const id = clipId(line);
       const clip =
         available && Object.hasOwn(available.clips, id) ? available.clips[id] : undefined;
-      if (clip && speaking) {
-        urls.push(clipUrl(speaking.id, id, pickTake(id, clip.takes), clip.version));
-      }
+      if (clip) clips.push({ id, clip });
     }
     // Anything unrecorded means the whole utterance falls back, rather than mixing two voices.
-    if (!context || urls.length < lines.length) {
+    if (!context || !speaking || clips.length < lines.length) {
       if (mine === generation) fallBack(lines, finish);
       return;
     }
     try {
-      const buffers = await Promise.all(urls.map((url) => load(context, url)));
+      const buffers = await Promise.all(
+        clips.map(({ id, clip }) => loadTake(context, speaking.id, id, clip, mine)),
+      );
       if (mine !== generation) return;
       let startAt = context.currentTime + 0.01;
       playing = buffers.map((buffer) => {

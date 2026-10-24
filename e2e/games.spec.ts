@@ -21,7 +21,7 @@ test('plays a whole counting story, counting to 20', async ({ page, spoken }) =>
   await page.getByRole('link', { name: 'Space Trip' }).click();
 
   for (let page_ = 1; page_ <= 5; page_++) {
-    await expect(page.getByText(/How many \w+\?$/)).toBeVisible();
+    await expect(page.getByText(/How many [\w ]+\?$/)).toBeVisible();
     const items = page.getByRole('group', { name: /to count$/ }).getByRole('button');
     const count = await countEach(page, items);
     expect(count).toBeGreaterThanOrEqual(6);
@@ -136,7 +136,7 @@ test('the counting board and answers fit on one screen, even at 20', async ({ pa
   await page.goto('/#/play/counting/20/picnic');
   const viewport = page.viewportSize();
   if (!viewport) throw new Error('No viewport');
-  for (const name of ['carrots to count', 'How many?']) {
+  for (const name of [/to count$/, 'How many?']) {
     const box = await page.getByRole('group', { name }).boundingBox();
     expect(box).not.toBeNull();
     if (box) expect(box.y + box.height).toBeLessThanOrEqual(viewport.height);

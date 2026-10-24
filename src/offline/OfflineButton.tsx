@@ -28,7 +28,7 @@ function badgeFor(status: OfflineStatus): Badge | undefined {
   }
 }
 
-/** The ⬇️ button on the home screen. It shows download progress and opens the offline sheet. */
+/** The 💾 button on the home screen. It shows download progress and opens the offline sheet. */
 export function OfflineButton() {
   const status = useOfflineStatus();
   const [open, setOpen] = useState(false);
@@ -45,7 +45,7 @@ export function OfflineButton() {
         aria-haspopup="dialog"
         onClick={() => setOpen(true)}
       >
-        <span aria-hidden="true">⬇️</span>
+        <span aria-hidden="true">💾</span>
         {badge && (
           <span className={cx(styles.badge, styles[badge.tone])} aria-hidden="true">
             {badge.text}

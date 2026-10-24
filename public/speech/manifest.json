@@ -29,7 +29,7 @@
     "sampleRate": 24000,
     "bitrate": 32000
   },
-  "bytes": 85283152,
+  "bytes": 102949947,
   "clips": {
     "0000633bb18d04": {
       "words": "Find the number 6!",
@@ -45,6 +45,11 @@
       "words": "20 apples!",
       "takes": 5,
       "version": "eb97666b55"
+    },
+    "001a56b20355cc": {
+      "words": "6 robots!",
+      "takes": 5,
+      "version": "752851882d"
     },
     "002040e9c97dca": {
       "words": "That's S.",
@@ -65,6 +70,16 @@
       "words": "That's M.",
       "takes": 5,
       "version": "bfb9d4e501"
+    },
+    "003098b1335f9d": {
+      "words": "14 astronauts!",
+      "takes": 5,
+      "version": "9450d30252"
+    },
+    "0031498384a44f": {
+      "words": "16 flying saucers!",
+      "takes": 5,
+      "version": "a08121dccb"
     },
     "003fd2da4a1016": {
       "words": "Let's count the apples together!",
@@ -291,6 +306,11 @@
       "takes": 5,
       "version": "cbc5d49983"
     },
+    "023bc37d6e88c7": {
+      "words": "12 cupcakes!",
+      "takes": 5,
+      "version": "0dc1fae6fe"
+    },
     "0244c3b6d75596": {
       "words": "2 balls!",
       "takes": 5,
@@ -315,6 +335,16 @@
       "words": "18 trees!",
       "takes": 5,
       "version": "7319cc3785"
+    },
+    "0262cc036e392c": {
+      "words": "8 robots!",
+      "takes": 5,
+      "version": "0e303848a8"
+    },
+    "028011defa7504": {
+      "words": "17 astronauts!",
+      "takes": 5,
+      "version": "63865a62c0"
     },
     "0283fb75641c10": {
       "words": "16!",
@@ -341,10 +371,20 @@
       "takes": 6,
       "version": "0959189ff3"
     },
+    "02d48be79e518c": {
+      "words": "4 robots!",
+      "takes": 5,
+      "version": "95db824b55"
+    },
     "02d4bb57420c56": {
       "words": "Let's count the comets together!",
       "takes": 5,
       "version": "5303f80f15"
+    },
+    "02dc72b9e2f5c5": {
+      "words": "11 flying saucers!",
+      "takes": 5,
+      "version": "4965300ad2"
     },
     "02e0b3f75915b3": {
       "words": "14 strawberries!",
@@ -360,6 +400,11 @@
       "words": "17 trees!",
       "takes": 5,
       "version": "dc02242da9"
+    },
+    "02f65d2a85e4ba": {
+      "words": "Puppy chases the butterflies. How many butterflies?",
+      "takes": 5,
+      "version": "36def7d8cd"
     },
     "031ab74db0eab9": {
       "words": "10 flowers!",
@@ -401,6 +446,11 @@
       "takes": 5,
       "version": "cd308d2bbc"
     },
+    "0363150c4a0cbd": {
+      "words": "Let's count the robots together!",
+      "takes": 5,
+      "version": "378f68fa75"
+    },
     "037379d5dcfb36": {
       "words": "2 moons!",
       "takes": 5,
@@ -421,6 +471,11 @@
       "takes": 5,
       "version": "761e95ff17"
     },
+    "03834b804e3aee": {
+      "words": "9 robots!",
+      "takes": 5,
+      "version": "e8e1996ef1"
+    },
     "0385f458324004": {
       "words": "4 bones!",
       "takes": 5,
@@ -430,6 +485,11 @@
       "words": "14 shells!",
       "takes": 5,
       "version": "0efd6b24d1"
+    },
+    "03910ca213bd91": {
+      "words": "2 robots!",
+      "takes": 5,
+      "version": "904f0497f0"
     },
     "039115b6a11cde": {
       "words": "6 carrots!",
@@ -446,6 +506,11 @@
       "takes": 5,
       "version": "0014c39238"
     },
+    "03a590f444cf99": {
+      "words": "2 flying saucers!",
+      "takes": 5,
+      "version": "796a4233cf"
+    },
     "03afe3946db492": {
       "words": "What color is this?",
       "takes": 6,
@@ -461,10 +526,40 @@
       "takes": 5,
       "version": "acbc1ac57d"
     },
+    "03c1aad6c168f1": {
+      "words": "And that was the last one!",
+      "takes": 6,
+      "version": "5423a00d63"
+    },
+    "03c5818ab75e66": {
+      "words": "4 cupcakes!",
+      "takes": 5,
+      "version": "9a3ca2a785"
+    },
+    "03c9da4b6e74c0": {
+      "words": "Birds fly over the waves. How many birds?",
+      "takes": 5,
+      "version": "aaf22a0d65"
+    },
+    "03cba152ee8ad6": {
+      "words": "13 dolphins!",
+      "takes": 5,
+      "version": "dd42e001be"
+    },
     "03cfd128a4c647": {
       "words": "1 shell!",
       "takes": 5,
       "version": "3b6a5bda66"
+    },
+    "03d3f3820da95c": {
+      "words": "7 dolphins!",
+      "takes": 5,
+      "version": "71a0cd0059"
+    },
+    "03d82ed45d0a53": {
+      "words": "17 flying saucers!",
+      "takes": 5,
+      "version": "a2618b77cf"
     },
     "03dc1cdb1fc01a": {
       "words": "That's 14.",
@@ -485,6 +580,11 @@
       "words": "Not 9.",
       "takes": 5,
       "version": "be98f3ae64"
+    },
+    "03e074e2cadffb": {
+      "words": "3 robots!",
+      "takes": 5,
+      "version": "470b6d9c27"
     },
     "03e26d37b4e073": {
       "words": "Find the number 11!",
@@ -525,6 +625,11 @@
       "words": "11 squirrels!",
       "takes": 5,
       "version": "3778cc5f79"
+    },
+    "0421160b45fe41": {
+      "words": "16 robots!",
+      "takes": 5,
+      "version": "bf9f85161a"
     },
     "0423357317e788": {
       "words": "14 comets!",
@@ -671,6 +776,11 @@
       "takes": 5,
       "version": "670adf2bb4"
     },
+    "059f8f64bdf2e1": {
+      "words": "5 dolphins!",
+      "takes": 5,
+      "version": "aa874b45e1"
+    },
     "05a9e54a24861a": {
       "words": "Well done!",
       "takes": 6,
@@ -695,6 +805,11 @@
       "words": "19 trees!",
       "takes": 5,
       "version": "0cf94305f0"
+    },
+    "05e5f4e1cd3da8": {
+      "words": "9 flying saucers!",
+      "takes": 5,
+      "version": "88a429ff9c"
     },
     "05e8f93d824a8c": {
       "words": "Can you find pink?",
@@ -730,6 +845,11 @@
       "words": "13 bones!",
       "takes": 5,
       "version": "197a6680c8"
+    },
+    "0605555a1c567c": {
+      "words": "Let's count the astronauts together!",
+      "takes": 5,
+      "version": "2c557fe6f0"
     },
     "061e0b65540401": {
       "words": "13!",
@@ -821,6 +941,11 @@
       "takes": 5,
       "version": "bc9ca90e38"
     },
+    "072d5ecce5081f": {
+      "words": "1 astronaut!",
+      "takes": 5,
+      "version": "7ae6308e46"
+    },
     "07317d28c1e75b": {
       "words": "Find the letter W!",
       "takes": 5,
@@ -876,6 +1001,11 @@
       "takes": 5,
       "version": "61f553ff6f"
     },
+    "07b2508d028096": {
+      "words": "7 robots!",
+      "takes": 5,
+      "version": "e542ce1d71"
+    },
     "07c35c01fee8e9": {
       "words": "9 apples!",
       "takes": 5,
@@ -925,6 +1055,11 @@
       "words": "18 butterflies!",
       "takes": 5,
       "version": "3113eb6c86"
+    },
+    "08382848949c91": {
+      "words": "Beep boop!",
+      "takes": 5,
+      "version": "b9caf7a8ef"
     },
     "083bd002f29b5b": {
       "words": "13 flowers!",
@@ -1016,6 +1151,11 @@
       "takes": 5,
       "version": "e1666f3781"
     },
+    "0891fcac4ed322": {
+      "words": "17 dolphins!",
+      "takes": 5,
+      "version": "9be3743287"
+    },
     "089a6ab7164632": {
       "words": "15 balls!",
       "takes": 5,
@@ -1030,6 +1170,11 @@
       "words": "12 butterflies!",
       "takes": 5,
       "version": "b0267de49b"
+    },
+    "08a3e2e2a2235f": {
+      "words": "17 robots!",
+      "takes": 5,
+      "version": "fd2743fa50"
     },
     "08a60b19a36123": {
       "words": "14 butterflies!",
@@ -1051,6 +1196,11 @@
       "takes": 5,
       "version": "684d5ef68b"
     },
+    "08b71f79dd6fd4": {
+      "words": "Squirrels race up the trees. How many squirrels?",
+      "takes": 5,
+      "version": "28c8c289f0"
+    },
     "08bea606ecb1fd": {
       "words": "17 aliens!",
       "takes": 5,
@@ -1070,6 +1220,11 @@
       "words": "12 comets!",
       "takes": 5,
       "version": "3c622afb94"
+    },
+    "08d622c368e399": {
+      "words": "20 cupcakes!",
+      "takes": 5,
+      "version": "6aa4c0a6ab"
     },
     "08ddc637c63612": {
       "words": "10 carrots!",
@@ -1100,6 +1255,11 @@
       "words": "20 comets!",
       "takes": 5,
       "version": "352aed3916"
+    },
+    "090201b1f37287": {
+      "words": "13 cupcakes!",
+      "takes": 5,
+      "version": "d70abb532f"
     },
     "0903b138081219": {
       "words": "19 birds!",
@@ -1155,6 +1315,11 @@
       "words": "Let's try again!",
       "takes": 6,
       "version": "c84ec89c35"
+    },
+    "0964394fb846ec": {
+      "words": "6 flying saucers!",
+      "takes": 5,
+      "version": "6123548fdd"
     },
     "096925d3d98162": {
       "words": "8 carrots!",
@@ -1286,6 +1451,11 @@
       "takes": 5,
       "version": "2188c51b81"
     },
+    "0a6f436bf879ce": {
+      "words": "12 flying saucers!",
+      "takes": 5,
+      "version": "39fc1a11ba"
+    },
     "0a736b42b635ce": {
       "words": "6 balls!",
       "takes": 5,
@@ -1341,6 +1511,11 @@
       "takes": 5,
       "version": "14d1dc8cc4"
     },
+    "0ad3d540e39a48": {
+      "words": "10 dolphins!",
+      "takes": 5,
+      "version": "7787439684"
+    },
     "0adf4be8f5b13e": {
       "words": "Awesome!",
       "takes": 6,
@@ -1380,6 +1555,11 @@
       "words": "4 strawberries!",
       "takes": 5,
       "version": "dbce852c4c"
+    },
+    "0b545fbd148b09": {
+      "words": "15 robots!",
+      "takes": 5,
+      "version": "4c6a2e8553"
     },
     "0b66194f04928b": {
       "words": "Here are 11 dots.",
@@ -1426,6 +1606,11 @@
       "takes": 5,
       "version": "fca9f7950a"
     },
+    "0bab370beff847": {
+      "words": "13 flying saucers!",
+      "takes": 5,
+      "version": "3f6e4f3440"
+    },
     "0bb201ec7b7270": {
       "words": "Here are 6 dots.",
       "takes": 5,
@@ -1465,6 +1650,11 @@
       "words": "18 crabs!",
       "takes": 5,
       "version": "b81aefcb40"
+    },
+    "0c020b52788ae8": {
+      "words": "8 cupcakes!",
+      "takes": 5,
+      "version": "6b4128d792"
     },
     "0c158e8c7fa87d": {
       "words": "19 crabs!",
@@ -1506,6 +1696,16 @@
       "takes": 5,
       "version": "0348996244"
     },
+    "0c50f177229ba7": {
+      "words": "6 dolphins!",
+      "takes": 5,
+      "version": "5aa7c546b1"
+    },
+    "0c518ff87dd22a": {
+      "words": "Bunny picks flowers on the way. How many flowers?",
+      "takes": 5,
+      "version": "31d4bbf9dc"
+    },
     "0c60b50341ba4e": {
       "words": "Find the number 19!",
       "takes": 5,
@@ -1526,6 +1726,16 @@
       "takes": 5,
       "version": "d8836da86b"
     },
+    "0c79dbcf1fe17d": {
+      "words": "14 robots!",
+      "takes": 5,
+      "version": "56bfa5dab6"
+    },
+    "0c9ac317c26750": {
+      "words": "1 flying saucer!",
+      "takes": 5,
+      "version": "0717fa1025"
+    },
     "0ca247dc454585": {
       "words": "Here are 2 dots.",
       "takes": 5,
@@ -1535,6 +1745,11 @@
       "words": "12 trees!",
       "takes": 5,
       "version": "a08d76c81b"
+    },
+    "0cbaebda92354e": {
+      "words": "Octopus juggles beach balls. How many balls?",
+      "takes": 5,
+      "version": "9efb9007d5"
     },
     "0cbc8490efe6b6": {
       "words": "Not 4.",
@@ -1555,6 +1770,16 @@
       "words": "D is for Dog!",
       "takes": 5,
       "version": "45b66ce6cc"
+    },
+    "0d090843f61106": {
+      "words": "3 astronauts!",
+      "takes": 5,
+      "version": "63ecfb2431"
+    },
+    "0d1da792509404": {
+      "words": "19 cupcakes!",
+      "takes": 5,
+      "version": "23023725ae"
     },
     "0d1dc822e29adb": {
       "words": "15 apples!",
@@ -1626,6 +1851,16 @@
       "takes": 5,
       "version": "db9ffe70ce"
     },
+    "0e1d69f008e7c4": {
+      "words": "10 flying saucers!",
+      "takes": 5,
+      "version": "6971effe04"
+    },
+    "0e2c003e7c2c02": {
+      "words": "20 astronauts!",
+      "takes": 5,
+      "version": "24b477caea"
+    },
     "0e2ea775cef8b9": {
       "words": "That's 5.",
       "takes": 5,
@@ -1675,6 +1910,11 @@
       "words": "4 birds!",
       "takes": 5,
       "version": "a5506f1a23"
+    },
+    "0e61752f62a0b4": {
+      "words": "Let's count the flying saucers together!",
+      "takes": 5,
+      "version": "1035e1d705"
     },
     "0e72eb6170c4d0": {
       "words": "9 balls!",
@@ -1766,10 +2006,20 @@
       "takes": 5,
       "version": "eedfa643d9"
     },
+    "0f2804234978a7": {
+      "words": "All counted!",
+      "takes": 6,
+      "version": "db69d89e21"
+    },
     "0f298156a30459": {
       "words": "11 flowers!",
       "takes": 5,
       "version": "65a8022dee"
+    },
+    "0f2da463646810": {
+      "words": "7 cupcakes!",
+      "takes": 5,
+      "version": "48183df918"
     },
     "0f372ef86cedad": {
       "words": "Find the number 20!",
@@ -1805,6 +2055,11 @@
       "words": "3 birds!",
       "takes": 5,
       "version": "f6f0021b2a"
+    },
+    "0f8ed170ab8356": {
+      "words": "6 astronauts!",
+      "takes": 5,
+      "version": "aaa053b409"
     },
     "0f9bbcecbc3ed8": {
       "words": "Triangle! Like a slice of pizza.",
@@ -1851,10 +2106,20 @@
       "takes": 5,
       "version": "fd8336ae80"
     },
+    "1025bf054d61b4": {
+      "words": "Birds come to share the crumbs. How many birds?",
+      "takes": 5,
+      "version": "a9f3859185"
+    },
     "10443dcae1f5af": {
       "words": "18 moons!",
       "takes": 5,
       "version": "3a2b7d6ef4"
+    },
+    "104769819b6ac7": {
+      "words": "10 astronauts!",
+      "takes": 5,
+      "version": "b1584cabd5"
     },
     "10678b2b0cdd87": {
       "words": "1 strawberry!",
@@ -1895,6 +2160,11 @@
       "words": "Let's count the butterflies together!",
       "takes": 5,
       "version": "45845ccf3b"
+    },
+    "109db37c6a281a": {
+      "words": "That's all!",
+      "takes": 6,
+      "version": "303c927f5e"
     },
     "10a828eee9c5f8": {
       "words": "Find the square!",
@@ -1941,10 +2211,20 @@
       "takes": 5,
       "version": "6537110067"
     },
+    "10d63d582a0d7e": {
+      "words": "16 cupcakes!",
+      "takes": 5,
+      "version": "6479df2205"
+    },
     "10e39a5da8775b": {
       "words": "That's green.",
       "takes": 5,
       "version": "6110474598"
+    },
+    "10e5962578023e": {
+      "words": "14 cupcakes!",
+      "takes": 5,
+      "version": "b096a0094a"
     },
     "10ec5661bccb7d": {
       "words": "Find the letter D!",
@@ -1955,6 +2235,11 @@
       "words": "8 stars!",
       "takes": 5,
       "version": "9b5c047a18"
+    },
+    "1128a3ea63c531": {
+      "words": "18 robots!",
+      "takes": 5,
+      "version": "cdf439726c"
     },
     "112afd78f7dded": {
       "words": "16 trees!",
@@ -1971,10 +2256,20 @@
       "takes": 5,
       "version": "02ea3dd2f5"
     },
+    "1148a8874993b1": {
+      "words": "Let's count the dolphins together!",
+      "takes": 5,
+      "version": "e67d5a4b5c"
+    },
     "11534f6aaf3f0a": {
       "words": "Not 16.",
       "takes": 5,
       "version": "c80492de43"
+    },
+    "1163967cb9a985": {
+      "words": "We counted them all!",
+      "takes": 6,
+      "version": "3e03d3f55f"
     },
     "1168751109b686": {
       "words": "1 fish!",
@@ -1990,6 +2285,16 @@
       "words": "18 turtles!",
       "takes": 5,
       "version": "703be48778"
+    },
+    "117a2c2c8bd891": {
+      "words": "1 robot!",
+      "takes": 5,
+      "version": "aa6920397c"
+    },
+    "1180710e9ce415": {
+      "words": "11 astronauts!",
+      "takes": 5,
+      "version": "e09cb8475a"
     },
     "1187ee49a8ad8a": {
       "words": "11 comets!",
@@ -2011,6 +2316,11 @@
       "takes": 5,
       "version": "856128a2b9"
     },
+    "11a9d8ca26f17f": {
+      "words": "That's every one!",
+      "takes": 6,
+      "version": "77c9514f65"
+    },
     "11ac04d97fc36b": {
       "words": "Splash!",
       "takes": 5,
@@ -2025,6 +2335,11 @@
       "words": "Circle! Like a cookie.",
       "takes": 5,
       "version": "7f3186a41c"
+    },
+    "11c1bdcc840a27": {
+      "words": "Splish splash!",
+      "takes": 5,
+      "version": "02e24da56a"
     },
     "11c530313fd58f": {
       "words": "12 planets!",
@@ -2070,6 +2385,11 @@
       "words": "7 balls!",
       "takes": 5,
       "version": "24234bde57"
+    },
+    "1213f87515649d": {
+      "words": "14 dolphins!",
+      "takes": 5,
+      "version": "c7c2b3cb22"
     },
     "1227e7d685c061": {
       "words": "8 birds!",
@@ -2131,6 +2451,11 @@
       "takes": 5,
       "version": "8adae4c16d"
     },
+    "12973b81e648fa": {
+      "words": "16 astronauts!",
+      "takes": 5,
+      "version": "22e2dc39d4"
+    },
     "12a4baee4351d7": {
       "words": "R is for Rainbow!",
       "takes": 5,
@@ -2140,6 +2465,11 @@
       "words": "16 balls!",
       "takes": 5,
       "version": "99edf809c2"
+    },
+    "12ab18ee7285ab": {
+      "words": "9 astronauts!",
+      "takes": 5,
+      "version": "c9004e44c9"
     },
     "12afa7ea8fd506": {
       "words": "17 planets!",
@@ -2171,6 +2501,11 @@
       "takes": 5,
       "version": "6c92bff741"
     },
+    "1306adbb448772": {
+      "words": "2 cupcakes!",
+      "takes": 5,
+      "version": "740e055e3d"
+    },
     "1307b4e68e86a0": {
       "words": "1 star!",
       "takes": 5,
@@ -2201,10 +2536,20 @@
       "takes": 5,
       "version": "0e680c1220"
     },
+    "1323cc519b26ec": {
+      "words": "3 cupcakes!",
+      "takes": 5,
+      "version": "c09f61a1b2"
+    },
     "1323f833510eee": {
       "words": "That's 19.",
       "takes": 5,
       "version": "e2981fc679"
+    },
+    "1326cc8ca1dfe5": {
+      "words": "Hello, astronauts!",
+      "takes": 5,
+      "version": "a2d6d98b27"
     },
     "132e3bdf2e5b23": {
       "words": "Amazing! You finished the whole game!",
@@ -2236,6 +2581,11 @@
       "takes": 5,
       "version": "47adef6188"
     },
+    "13735f2f332565": {
+      "words": "7 flying saucers!",
+      "takes": 5,
+      "version": "7f14b154b5"
+    },
     "13739f6a36438b": {
       "words": "15 crabs!",
       "takes": 5,
@@ -2245,6 +2595,16 @@
       "words": "Find the oval!",
       "takes": 5,
       "version": "c72e933595"
+    },
+    "13847c1d64379b": {
+      "words": "Let's count the cupcakes together!",
+      "takes": 5,
+      "version": "d5659219e8"
+    },
+    "138830c98cdf91": {
+      "words": "12 robots!",
+      "takes": 5,
+      "version": "340e4f221f"
     },
     "138839d7909ae6": {
       "words": "Octopus swims with the fish. How many fish?",
@@ -2261,10 +2621,20 @@
       "takes": 5,
       "version": "27f202683a"
     },
+    "13a0b35ec8f330": {
+      "words": "12 dolphins!",
+      "takes": 5,
+      "version": "ab0b35b260"
+    },
     "13a11d0348c0f5": {
       "words": "19 flowers!",
       "takes": 5,
       "version": "0d268c61c7"
+    },
+    "13a96ea73e765c": {
+      "words": "4 astronauts!",
+      "takes": 5,
+      "version": "fb95870f0e"
     },
     "13eb7f94d59532": {
       "words": "Find the number 17!",
@@ -2291,6 +2661,11 @@
       "takes": 5,
       "version": "d279dc3d12"
     },
+    "1413ed31d8bc97": {
+      "words": "9 cupcakes!",
+      "takes": 5,
+      "version": "14deea0ddd"
+    },
     "14173e5c46be31": {
       "words": "5 carrots!",
       "takes": 5,
@@ -2305,6 +2680,11 @@
       "words": "20 trees!",
       "takes": 5,
       "version": "c5ec403b79"
+    },
+    "1430da0441a93a": {
+      "words": "Party time!",
+      "takes": 5,
+      "version": "41c049d381"
     },
     "1437870072dc01": {
       "words": "6 trees!",
@@ -2346,6 +2726,11 @@
       "takes": 5,
       "version": "b978b3b91d"
     },
+    "1467c91b5c58ac": {
+      "words": "4 dolphins!",
+      "takes": 5,
+      "version": "6c7c461994"
+    },
     "14701bdbde12c4": {
       "words": "Crabs dance on the sand. How many crabs?",
       "takes": 5,
@@ -2385,6 +2770,11 @@
       "words": "What a yummy picnic! Bunny says thank you for counting!",
       "takes": 5,
       "version": "a385304d3f"
+    },
+    "14cbb9d1a7e4b1": {
+      "words": "15 flying saucers!",
+      "takes": 5,
+      "version": "43b98c384e"
     },
     "14da3c6683ba85": {
       "words": "That's orange.",
@@ -2486,6 +2876,16 @@
       "takes": 5,
       "version": "3875957fee"
     },
+    "1550475d8c496f": {
+      "words": "1 dolphin!",
+      "takes": 5,
+      "version": "2f296c001e"
+    },
+    "155986b56dc8e4": {
+      "words": "3 flying saucers!",
+      "takes": 5,
+      "version": "e6a4034c08"
+    },
     "156efa210dab1b": {
       "words": "That's black.",
       "takes": 5,
@@ -2500,6 +2900,11 @@
       "words": "18 shells!",
       "takes": 5,
       "version": "7e54420ba6"
+    },
+    "15842a9f73ad59": {
+      "words": "Zip zap!",
+      "takes": 5,
+      "version": "a3e83e3991"
     },
     "158449ddff0ee7": {
       "words": "10 squirrels!",
@@ -2556,10 +2961,20 @@
       "takes": 5,
       "version": "7a5a77e590"
     },
+    "15cf58fcaafab8": {
+      "words": "2 dolphins!",
+      "takes": 5,
+      "version": "84410b6e8e"
+    },
     "15d1c22f7d25b5": {
       "words": "Let's count the stars together!",
       "takes": 5,
       "version": "3dbfc51f19"
+    },
+    "15dcf89106b3fb": {
+      "words": "20 dolphins!",
+      "takes": 5,
+      "version": "af8c2a2e76"
     },
     "15f80da8542b72": {
       "words": "7 stars!",
@@ -2626,6 +3041,11 @@
       "takes": 5,
       "version": "70ff041958"
     },
+    "166cad65305f66": {
+      "words": "18 cupcakes!",
+      "takes": 5,
+      "version": "ae522feea2"
+    },
     "167728e1d847cd": {
       "words": "15 whales!",
       "takes": 5,
@@ -2635,6 +3055,16 @@
       "words": "Not 11.",
       "takes": 5,
       "version": "e753dcfc5b"
+    },
+    "16a73c5b59e6a8": {
+      "words": "4 flying saucers!",
+      "takes": 5,
+      "version": "6a9b9cdce1"
+    },
+    "16a80261468740": {
+      "words": "5 flying saucers!",
+      "takes": 5,
+      "version": "bc97133034"
     },
     "16aa890d6f5111": {
       "words": "Not 3.",
@@ -2660,6 +3090,11 @@
       "words": "That's brown.",
       "takes": 5,
       "version": "577532911f"
+    },
+    "16d9e794b952f7": {
+      "words": "Bunny bakes cupcakes for the picnic. How many cupcakes?",
+      "takes": 5,
+      "version": "7a0ec51e9c"
     },
     "16e63261b18dc8": {
       "words": "15 aliens!",
@@ -2711,6 +3146,11 @@
       "takes": 5,
       "version": "de7e8c69cd"
     },
+    "173db6446ca35e": {
+      "words": "11 dolphins!",
+      "takes": 5,
+      "version": "af87e1e343"
+    },
     "173f83b7c6518f": {
       "words": "4 aliens!",
       "takes": 5,
@@ -2756,6 +3196,16 @@
       "takes": 5,
       "version": "046ea52883"
     },
+    "178628b2b66f0c": {
+      "words": "Dolphins leap out of the water. How many dolphins?",
+      "takes": 5,
+      "version": "a80c9845fc"
+    },
+    "17874fe65cc8cf": {
+      "words": "12 astronauts!",
+      "takes": 5,
+      "version": "72d5db72eb"
+    },
     "1791e6623ad091": {
       "words": "That's 6.",
       "takes": 5,
@@ -2780,6 +3230,11 @@
       "words": "Find the letter R!",
       "takes": 5,
       "version": "eacf0bd486"
+    },
+    "17bfb0ccb6815f": {
+      "words": "19 robots!",
+      "takes": 5,
+      "version": "a49cbb1873"
     },
     "17cc2bf63790ef": {
       "words": "19 bones!",
@@ -2861,6 +3316,11 @@
       "takes": 5,
       "version": "a255801e60"
     },
+    "1873e746cb32f1": {
+      "words": "1 cupcake!",
+      "takes": 5,
+      "version": "07d3689049"
+    },
     "1884b4ba974a51": {
       "words": "20 squirrels!",
       "takes": 5,
@@ -2881,6 +3341,21 @@
       "takes": 5,
       "version": "d70cbe701b"
     },
+    "18af8a21818de9": {
+      "words": "18 astronauts!",
+      "takes": 5,
+      "version": "5d507ffc6f"
+    },
+    "18af8a4e18433f": {
+      "words": "18 flying saucers!",
+      "takes": 5,
+      "version": "6e89572fc1"
+    },
+    "18b0cb15f8ab9e": {
+      "words": "19 flying saucers!",
+      "takes": 5,
+      "version": "03d497bca4"
+    },
     "18bfb7933adea9": {
       "words": "4 squirrels!",
       "takes": 5,
@@ -2895,6 +3370,11 @@
       "words": "18 stars!",
       "takes": 5,
       "version": "da2d2502fa"
+    },
+    "18cac68285d5e6": {
+      "words": "13 robots!",
+      "takes": 5,
+      "version": "c18248c1cb"
     },
     "18e3638a071cf7": {
       "words": "9 planets!",
@@ -2916,15 +3396,35 @@
       "takes": 5,
       "version": "46fa05a763"
     },
+    "190d01763f287a": {
+      "words": "8 astronauts!",
+      "takes": 5,
+      "version": "a0d7391b75"
+    },
+    "191bcf3374ea25": {
+      "words": "5 robots!",
+      "takes": 5,
+      "version": "dffe5aac79"
+    },
     "191d603e05e54d": {
       "words": "18 birds!",
       "takes": 5,
       "version": "4f12520eb5"
     },
+    "1927b34307037d": {
+      "words": "20 robots!",
+      "takes": 5,
+      "version": "92103ef58f"
+    },
     "1928bb92fe75ff": {
       "words": "15 squirrels!",
       "takes": 5,
       "version": "c63f266b8c"
+    },
+    "19293300795969": {
+      "words": "5 astronauts!",
+      "takes": 5,
+      "version": "42722bf249"
     },
     "192c8102b5a8a4": {
       "words": "3 moons!",
@@ -2985,6 +3485,11 @@
       "words": "That's right!",
       "takes": 6,
       "version": "cd00aa6bc2"
+    },
+    "19804ce31cad4b": {
+      "words": "19 astronauts!",
+      "takes": 5,
+      "version": "ca58f7d757"
     },
     "198eabf6d655a2": {
       "words": "8 balls!",
@@ -3061,10 +3566,20 @@
       "takes": 5,
       "version": "0b429d09af"
     },
+    "1a1ce63462524d": {
+      "words": "Puppy finds apples under a tree. How many apples?",
+      "takes": 5,
+      "version": "2c190948a3"
+    },
     "1a2ae7681ba45a": {
       "words": "Can you find red?",
       "takes": 5,
       "version": "4f560a92e6"
+    },
+    "1a3e25f2e45b8c": {
+      "words": "What a juggler!",
+      "takes": 5,
+      "version": "d1cbd4cb28"
     },
     "1a47c6ada27bb0": {
       "words": "2 planets!",
@@ -3080,6 +3595,11 @@
       "words": "V is for Violin!",
       "takes": 5,
       "version": "9402f1485f"
+    },
+    "1a5d70cd5f8429": {
+      "words": "Robots dance on the moon. How many robots?",
+      "takes": 5,
+      "version": "4ec4fbc318"
     },
     "1a5fac53b2430d": {
       "words": "1 crab!",
@@ -3100,6 +3620,11 @@
       "words": "U is for Umbrella!",
       "takes": 5,
       "version": "3b2c938b2e"
+    },
+    "1a735d430236aa": {
+      "words": "11 cupcakes!",
+      "takes": 5,
+      "version": "6ba8ec5664"
     },
     "1a780cac621b8b": {
       "words": "7 carrots!",
@@ -3141,6 +3666,16 @@
       "takes": 5,
       "version": "96f6ebf2f1"
     },
+    "1a92db55725112": {
+      "words": "14 flying saucers!",
+      "takes": 5,
+      "version": "8d133df740"
+    },
+    "1a95d25e5b9715": {
+      "words": "9 dolphins!",
+      "takes": 5,
+      "version": "bcebc3ce8d"
+    },
     "1aa31c625979b3": {
       "words": "Find the letter K!",
       "takes": 5,
@@ -3165,6 +3700,11 @@
       "words": "That's O.",
       "takes": 5,
       "version": "eb3c09e423"
+    },
+    "1ad73345e2ccc2": {
+      "words": "10 robots!",
+      "takes": 5,
+      "version": "d6c1a79925"
     },
     "1ae94aed0d5c35": {
       "words": "That's all of them!",
@@ -3200,6 +3740,11 @@
       "words": "Heart! Like a valentine.",
       "takes": 5,
       "version": "10fdbdd250"
+    },
+    "1b284f7e61a9b6": {
+      "words": "18 dolphins!",
+      "takes": 5,
+      "version": "7e084b15d1"
     },
     "1b39dc058a7c28": {
       "words": "10 trees!",
@@ -3271,6 +3816,16 @@
       "takes": 5,
       "version": "f410417eb7"
     },
+    "1bdb5fc45027b2": {
+      "words": "Up, up, up!",
+      "takes": 5,
+      "version": "47b1df4792"
+    },
+    "1be541415fbda6": {
+      "words": "11 robots!",
+      "takes": 5,
+      "version": "a700289ac1"
+    },
     "1be65696c4091a": {
       "words": "Great playing! I'm so proud of you!",
       "takes": 5,
@@ -3285,6 +3840,16 @@
       "words": "Find the heart!",
       "takes": 5,
       "version": "f3372ec574"
+    },
+    "1c18e837666ba3": {
+      "words": "Astronauts float outside the space station. How many astronauts?",
+      "takes": 5,
+      "version": "2543d78b97"
+    },
+    "1c1b7274337ed7": {
+      "words": "8 dolphins!",
+      "takes": 5,
+      "version": "4a207638cb"
     },
     "1c1c8c06f867f0": {
       "words": "9 flowers!",
@@ -3305,6 +3870,11 @@
       "words": "Find the number 7!",
       "takes": 5,
       "version": "bedb077dce"
+    },
+    "1c4ebf2060d330": {
+      "words": "16 dolphins!",
+      "takes": 5,
+      "version": "b3cfc2232e"
     },
     "1c53ce963f29b6": {
       "words": "12 shells!",
@@ -3331,6 +3901,16 @@
       "takes": 5,
       "version": "3da0e7954a"
     },
+    "1c6b2b5e86095f": {
+      "words": "17 cupcakes!",
+      "takes": 5,
+      "version": "985d378975"
+    },
+    "1c7dd918a0f742": {
+      "words": "2 astronauts!",
+      "takes": 5,
+      "version": "e99172ef8a"
+    },
     "1c7de6259e18de": {
       "words": "Not 17.",
       "takes": 5,
@@ -3340,6 +3920,11 @@
       "words": "Not 5.",
       "takes": 5,
       "version": "9dc2474e5b"
+    },
+    "1c93117363d73e": {
+      "words": "5 cupcakes!",
+      "takes": 5,
+      "version": "3ac1a7fc00"
     },
     "1c9b0200e2ea64": {
       "words": "Yay! You did it! Let's do a happy dance!",
@@ -3356,6 +3941,11 @@
       "takes": 5,
       "version": "ad97a0c1ba"
     },
+    "1ccdf438a27b6c": {
+      "words": "15 cupcakes!",
+      "takes": 5,
+      "version": "9ba81a6bd1"
+    },
     "1cdd50a4ee093b": {
       "words": "20 bones!",
       "takes": 5,
@@ -3370,6 +3960,11 @@
       "words": "1 moon!",
       "takes": 5,
       "version": "d9233c1e4b"
+    },
+    "1cea97f5ce5835": {
+      "words": "10 cupcakes!",
+      "takes": 5,
+      "version": "bbf9ec21e3"
     },
     "1cee43df96eb57": {
       "words": "18 squirrels!",
@@ -3406,10 +4001,25 @@
       "takes": 5,
       "version": "153df7f3db"
     },
+    "1d5411119c8b82": {
+      "words": "19 dolphins!",
+      "takes": 5,
+      "version": "d7b8ce6f1d"
+    },
     "1d60f0bf81e229": {
       "words": "Hello, aliens!",
       "takes": 5,
       "version": "f13e44987a"
+    },
+    "1d629953a2711a": {
+      "words": "20 flying saucers!",
+      "takes": 5,
+      "version": "76274e943e"
+    },
+    "1d873aab5afd88": {
+      "words": "6 cupcakes!",
+      "takes": 5,
+      "version": "20793486c5"
     },
     "1d92b9d50bbd7d": {
       "words": "15 planets!",
@@ -3420,6 +4030,11 @@
       "words": "That's 8.",
       "takes": 5,
       "version": "64470c797b"
+    },
+    "1d9e26729a467f": {
+      "words": "15 dolphins!",
+      "takes": 5,
+      "version": "ccd0446dc6"
     },
     "1dbec38cdb4474": {
       "words": "6!",
@@ -3436,6 +4051,11 @@
       "takes": 5,
       "version": "a0a998e1dc"
     },
+    "1de247aa0ce74e": {
+      "words": "Flying saucers spin around the rocket. How many flying saucers?",
+      "takes": 5,
+      "version": "e4aa37c3e9"
+    },
     "1ded45326a9196": {
       "words": "11 shells!",
       "takes": 5,
@@ -3451,10 +4071,20 @@
       "takes": 5,
       "version": "c3091def48"
     },
+    "1e0a3cd600b8ac": {
+      "words": "13 astronauts!",
+      "takes": 5,
+      "version": "d1052f80d3"
+    },
     "1e0cd5e4c01afc": {
       "words": "10 fish!",
       "takes": 5,
       "version": "f5885dc909"
+    },
+    "1e15fa700da827": {
+      "words": "8 flying saucers!",
+      "takes": 5,
+      "version": "6ec105d370"
     },
     "1e1ac2b6a9143f": {
       "words": "2 butterflies!",
@@ -3485,6 +4115,16 @@
       "words": "That's red.",
       "takes": 5,
       "version": "1ebdacf8c1"
+    },
+    "1e535b631686a8": {
+      "words": "7 astronauts!",
+      "takes": 5,
+      "version": "4a98aa91ed"
+    },
+    "1e5c074bc66391": {
+      "words": "15 astronauts!",
+      "takes": 5,
+      "version": "f3084bbe72"
     },
     "1e6cf81a59eff0": {
       "words": "Let's count the crabs together!",
@@ -3620,6 +4260,11 @@
       "words": "18 apples!",
       "takes": 5,
       "version": "8d0d67c195"
+    },
+    "1f6f864388294d": {
+      "words": "3 dolphins!",
+      "takes": 5,
+      "version": "5921c93d71"
     },
     "1f7997ad662479": {
       "words": "Hello, friends!",

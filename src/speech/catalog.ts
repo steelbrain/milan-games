@@ -69,7 +69,7 @@ export function speechCatalog(topics: readonly Topic[] = TOPICS): CatalogEntry[]
       }
     } else {
       const highest = Math.max(...topic.levels.map((level) => level.max));
-      add(TAKES.often, ALL_COUNTED, TRY_AGAIN);
+      add(TAKES.often, ...ALL_COUNTED, TRY_AGAIN);
       add(TAKES.sometimes, SLOW_DOWN);
       for (const n of range(1, highest)) {
         add(TAKES.constantly, countWord(n));

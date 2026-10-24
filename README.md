@@ -12,7 +12,8 @@ Little learning games for a three-year-old, made to play together on a tablet or
 
 Everything is spoken with pre-recorded, natural-sounding speech, so the child doesn't need to
 read. Wrong answers only get a gentle "try again"; nobody ever fails. Every round earns a star,
-and five stars end in a party.
+and five stars end in a party. Each counting story has 8 pages and a game tells a random 5 of
+them, so playing the same story again tells it differently.
 
 ## Playing
 
@@ -29,8 +30,8 @@ site in `dist/` that works from any web host or folder, because routing uses the
 
 ### Offline, like on a plane
 
-The ⬇️ button on the home screen opens **Play offline**, which downloads every voice clip (about
-85 MB) so the whole app works without internet. It shows its progress, retries files that fail,
+The 💾 button on the home screen opens **Play offline**, which downloads every voice clip (about
+105 MB) so the whole app works without internet. It shows its progress, retries files that fail,
 waits out a lost connection by itself, and can be paused and picked up again later, even after
 closing the app. On an iPhone or iPad, download from the Home Screen app, not from Safari: iOS
 keeps their storage separate.
@@ -93,7 +94,7 @@ ElevenLabs, in four voices (Katie, Lulu, Clara and Zara), and played back with W
 
 1. `src/speech/catalog.ts` lists every line the games can say, built from the same helper
    functions the games use. Long sentences are split into reusable clips, such as "Great job!"
-   followed by "B is for Ball!", so ~720 lines cover every combination.
+   followed by "B is for Ball!", so ~860 lines cover every combination.
 2. `npm run speech` records each line in each voice (`scripts/speech/`), trims the silence,
    evens out the loudness across clips and voices, and encodes small AAC files into
    `public/speech/<voice>/`. It only records what is missing, so it is safe to stop and re-run,
@@ -103,11 +104,14 @@ ElevenLabs, in four voices (Katie, Lulu, Clara and Zara), and played back with W
 4. **Repeated lines don't sound canned.** Each line has at least 5 _takes_ in every voice, each a
    genuinely different delivery (a different seed). Lines heard constantly get more: counting
    numbers have 8, and cheers and "try again" have 6. The player picks a random take and never
-   repeats the previous one. Sound effects work the same way: each jingle has several variants.
+   repeats the previous one. Lines said at the same moment every game, like "That's all of
+   them!", also come in several wordings. Sound effects work the same way: each jingle has
+   several variants.
 5. Anything without a recording falls back to the browser voice, but the tests make sure that
-   never happens. Every unit test fails if a game says a line missing from the catalog. A test
-   checks that the committed recordings cover every line, take and voice. The end-to-end tests
-   fail if the fallback voice is ever used in a real browser, or if one visit mixes voices.
+   never happens. A take that fails to download or decode is retried with other takes first.
+   Every unit test fails if a game says a line missing from the catalog. A test checks that the
+   committed recordings cover every line, take and voice. The end-to-end tests fail if the
+   fallback voice is ever used in a real browser, or if one visit mixes voices.
 
 **After changing anything the games say, run `npm run speech` and commit `public/speech/`.**
 It needs `ELEVENLABS_API_KEY` in `.local.env` (git-ignored) and costs roughly 0.44 credits per

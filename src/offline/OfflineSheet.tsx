@@ -41,12 +41,12 @@ function copyFor(status: OfflineStatus): Copy {
               `Save all the games and voices on this device (${DOWNLOAD_SIZE}), so they work ` +
               'without internet, like on a plane.',
             progress: false,
-            action: { label: 'Download', icon: '⬇️', does: 'start' },
+            action: { label: 'Download', icon: '💾', does: 'start' },
           }
         : {
             message: 'Part of it is saved. Download the rest to play offline.',
             progress: true,
-            action: { label: 'Keep downloading', icon: '⬇️', does: 'start' },
+            action: { label: 'Keep downloading', icon: '💾', does: 'start' },
           };
     case 'outdated': {
       const missing = status.total - status.saved;
@@ -145,7 +145,7 @@ export function OfflineSheet({ onClose }: { onClose: () => void }) {
           <span aria-hidden="true">✕</span>
         </button>
         <h2 id={titleId} className={styles.title}>
-          <span aria-hidden="true">⬇️</span> Play offline
+          <span aria-hidden="true">💾</span> Play offline
         </h2>
         {confirming ? (
           <>

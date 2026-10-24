@@ -25,6 +25,10 @@ export interface Story {
   readonly title: string;
   readonly hero: string;
   readonly scenery: Scenery;
+  /**
+   * Every page the story can have, in story order. A game tells a random few of them (see
+   * PAGES_PER_GAME), so each scene must make sense without the ones before it.
+   */
   readonly scenes: readonly StoryScene[];
   readonly ending: string;
 }
@@ -42,9 +46,19 @@ export const STORIES: readonly Story[] = [
         cheer: 'Crunch crunch!',
       },
       {
+        setup: 'Bunny bakes cupcakes for the picnic.',
+        item: { emoji: '🧁', one: 'cupcake', many: 'cupcakes' },
+        cheer: 'Party time!',
+      },
+      {
         setup: 'Bunny picks apples from the tree.',
         item: { emoji: '🍎', one: 'apple', many: 'apples' },
         cheer: 'Yum yum!',
+      },
+      {
+        setup: 'Bunny picks flowers on the way.',
+        item: { emoji: '🌷', one: 'flower', many: 'flowers' },
+        cheer: 'So pretty!',
       },
       {
         setup: 'Strawberries for dessert!',
@@ -55,6 +69,11 @@ export const STORIES: readonly Story[] = [
         setup: 'Butterflies come to say hello.',
         item: { emoji: '🦋', one: 'butterfly', many: 'butterflies' },
         cheer: 'Flutter flutter!',
+      },
+      {
+        setup: 'Birds come to share the crumbs.',
+        item: { emoji: '🐦', one: 'bird', many: 'birds' },
+        cheer: 'Tweet tweet!',
       },
       {
         setup: "Bunny's friends come to the picnic.",
@@ -76,14 +95,29 @@ export const STORIES: readonly Story[] = [
         cheer: 'So tall!',
       },
       {
+        setup: 'Squirrels race up the trees.',
+        item: { emoji: '🐿️', one: 'squirrel', many: 'squirrels' },
+        cheer: 'Up, up, up!',
+      },
+      {
         setup: 'Puppy hears birds singing.',
         item: { emoji: '🐦', one: 'bird', many: 'birds' },
         cheer: 'Tweet tweet!',
       },
       {
+        setup: 'Puppy chases the butterflies.',
+        item: { emoji: '🦋', one: 'butterfly', many: 'butterflies' },
+        cheer: 'Flutter flutter!',
+      },
+      {
         setup: 'Puppy finds bones in the grass.',
         item: { emoji: '🦴', one: 'bone', many: 'bones' },
         cheer: 'Woof woof!',
+      },
+      {
+        setup: 'Puppy finds apples under a tree.',
+        item: { emoji: '🍎', one: 'apple', many: 'apples' },
+        cheer: 'Crunch crunch!',
       },
       {
         setup: 'Puppy wants to play fetch.',
@@ -120,9 +154,24 @@ export const STORIES: readonly Story[] = [
         cheer: 'So shiny!',
       },
       {
+        setup: 'Astronauts float outside the space station.',
+        item: { emoji: '🧑‍🚀', one: 'astronaut', many: 'astronauts' },
+        cheer: 'Hello, astronauts!',
+      },
+      {
         setup: 'Friendly aliens wave hello.',
         item: { emoji: '👽', one: 'alien', many: 'aliens' },
         cheer: 'Hello, aliens!',
+      },
+      {
+        setup: 'Flying saucers spin around the rocket.',
+        item: { emoji: '🛸', one: 'flying saucer', many: 'flying saucers' },
+        cheer: 'Zip zap!',
+      },
+      {
+        setup: 'Robots dance on the moon.',
+        item: { emoji: '🤖', one: 'robot', many: 'robots' },
+        cheer: 'Beep boop!',
       },
       {
         setup: 'Comets zoom by.',
@@ -144,14 +193,29 @@ export const STORIES: readonly Story[] = [
         cheer: 'Blub blub!',
       },
       {
+        setup: 'Dolphins leap out of the water.',
+        item: { emoji: '🐬', one: 'dolphin', many: 'dolphins' },
+        cheer: 'Splish splash!',
+      },
+      {
         setup: 'Octopus finds pretty shells.',
         item: { emoji: '🐚', one: 'shell', many: 'shells' },
         cheer: 'So pretty!',
       },
       {
+        setup: 'Octopus juggles beach balls.',
+        item: { emoji: '🏐', one: 'ball', many: 'balls' },
+        cheer: 'What a juggler!',
+      },
+      {
         setup: 'Crabs dance on the sand.',
         item: { emoji: '🦀', one: 'crab', many: 'crabs' },
         cheer: 'Snip snap!',
+      },
+      {
+        setup: 'Birds fly over the waves.',
+        item: { emoji: '🐦', one: 'bird', many: 'birds' },
+        cheer: 'Tweet tweet!',
       },
       {
         setup: 'Turtles swim by slowly.',

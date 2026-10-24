@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { PAGES_PER_GAME } from '../activities/counting/countingLogic';
 import { STORIES } from './stories';
 
 describe('counting stories', () => {
@@ -8,7 +9,8 @@ describe('counting stories', () => {
   });
 
   it.each(STORIES)('$title is complete', (story) => {
-    expect(story.scenes.length).toBeGreaterThanOrEqual(3);
+    // More pages than one game tells, so playing it again tells a different story.
+    expect(story.scenes.length).toBeGreaterThan(PAGES_PER_GAME);
     expect(story.hero).not.toBe('');
     expect(story.ending).toMatch(/[.!]$/);
     expect(story.scenery.top).toMatch(/^#[0-9a-f]{6}$/i);

@@ -104,7 +104,7 @@ function CountingRoundView({
     setState(next);
     const tally = next.counted.length;
     play('count', { step: tally });
-    speaking.current = say(...countAloud(tally, round.count)).finished;
+    speaking.current = say(...countAloud(random, tally, round.count)).finished;
   };
 
   const tapItem = (itemId: number) => {

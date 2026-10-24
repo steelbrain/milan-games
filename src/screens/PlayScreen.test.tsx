@@ -1,6 +1,10 @@
 import { screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
+import { STORIES } from '../content/stories';
 import { renderApp } from '../test/render';
+
+/** The things the sea story counts; a game can open on any of its pages. */
+const seaNouns = STORIES.find((story) => story.id === 'sea')?.scenes.map((s) => s.item.many) ?? [];
 
 describe('PlayScreen', () => {
   it.each([
@@ -8,7 +12,7 @@ describe('PlayScreen', () => {
     ['/play/numbers/10/say', /^What number is this\?/],
     ['/play/colors/rainbow/find', /^Can you find/],
     ['/play/shapes/all/say', /^What shape is this\?/],
-    ['/play/counting/10/sea', /How many fish\?$/],
+    ['/play/counting/10/sea', new RegExp(`How many (${seaNouns.join('|')})\\?$`)],
   ])('%s starts the right game', (route, prompt) => {
     renderApp(route);
     expect(screen.getByText(prompt)).toBeInTheDocument();
