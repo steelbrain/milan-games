@@ -1,0 +1,12 @@
+.screen {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  padding: env(safe-area-inset-top) max(12px, env(safe-area-inset-right))
+    env(safe-area-inset-bottom) max(12px, env(safe-area-inset-left));
+  overflow-y: auto;
+  background:
+    radial-gradient(circle at 15% 10%, rgb(255 255 255 / 0.7) 0 60px, transparent 61px),
+    radial-gradient(circle at 85% 30%, rgb(255 255 255 / 0.5) 0 40px, transparent 41px),
+    color-mix(in srgb, var(--tint) 16%, var(--paper));
+}

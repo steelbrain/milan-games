@@ -1,0 +1,11 @@
+node_modules
+dist
+coverage
+test-results
+playwright-report
+*.tsbuildinfo
+.DS_Store
+
+# Secrets, such as the ElevenLabs key in .local.env
+*.env
+.env.*

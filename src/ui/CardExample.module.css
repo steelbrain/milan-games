@@ -1,0 +1,26 @@
+.example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 0;
+  animation: pop-in 500ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.emoji {
+  font-family: var(--emoji-font);
+  font-size: clamp(56px, 10vw, 96px);
+  line-height: 1;
+}
+
+.word {
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  font-weight: 700;
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    scale: 0.4;
+  }
+}

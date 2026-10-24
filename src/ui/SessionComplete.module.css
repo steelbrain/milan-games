@@ -1,0 +1,51 @@
+.complete {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px;
+  text-align: center;
+}
+
+.hero {
+  position: relative;
+  font-family: var(--emoji-font);
+  font-size: clamp(96px, 22vmin, 180px);
+  line-height: 1;
+  animation: dance 1.2s ease-in-out infinite;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(2.4rem, 8vw, 4rem);
+  color: var(--tint);
+  text-shadow: 0 3px 0 color-mix(in srgb, var(--tint) 50%, black);
+}
+
+.finale {
+  margin: 0;
+  max-width: 32ch;
+  font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px 24px;
+  margin-top: 8px;
+}
+
+@keyframes dance {
+  25% {
+    rotate: -10deg;
+    translate: 0 -10px;
+  }
+  75% {
+    rotate: 10deg;
+    translate: 0 -10px;
+  }
+}

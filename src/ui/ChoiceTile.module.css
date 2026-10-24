@@ -1,0 +1,70 @@
+.tile {
+  position: relative;
+  container-type: size;
+  display: grid;
+  place-items: center;
+  /* Big, but always three across, even on a phone. */
+  width: var(--tile-size, min(clamp(96px, 30vmin, 220px), calc((100vw - 64px) / 3)));
+  aspect-ratio: 1;
+  padding: 0;
+  border: 6px solid color-mix(in srgb, var(--tint) 30%, #fff);
+  border-radius: 32px;
+  background: #fff;
+  box-shadow: 0 8px 0 color-mix(in srgb, var(--tint) 40%, #bbb);
+  transition:
+    translate 80ms ease-out,
+    box-shadow 80ms ease-out,
+    opacity 300ms;
+}
+
+.idle:active {
+  translate: 0 8px;
+  box-shadow: none;
+}
+
+.correct {
+  border-color: #2fb344;
+  box-shadow:
+    0 8px 0 #1f7a2e,
+    0 0 0 10px rgb(47 179 68 / 0.25);
+  animation: celebrate 700ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 1;
+}
+
+.wrong {
+  opacity: 0.35;
+  animation: wiggle 500ms ease-in-out;
+}
+
+.faded {
+  opacity: 0.35;
+}
+
+.wrong,
+.faded {
+  cursor: default;
+}
+
+@keyframes celebrate {
+  30% {
+    scale: 1.18;
+    rotate: -6deg;
+  }
+  60% {
+    rotate: 6deg;
+  }
+}
+
+@keyframes wiggle {
+  0% {
+    opacity: 1;
+  }
+  20%,
+  60% {
+    rotate: -8deg;
+  }
+  40%,
+  80% {
+    rotate: 8deg;
+  }
+}

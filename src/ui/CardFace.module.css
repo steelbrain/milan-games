@@ -1,0 +1,24 @@
+/* The parent sets `container-type: size`, so faces scale with whatever box they sit in. */
+.glyph {
+  font-size: 72cqmin;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--tint);
+  text-shadow: 0 0.04em 0 color-mix(in srgb, var(--tint) 60%, black);
+}
+
+.wide {
+  font-size: 58cqmin;
+  letter-spacing: -0.04em;
+}
+
+.picture {
+  display: block;
+  width: 78%;
+  height: 78%;
+}
+
+/* A soft shadow keeps light colors (white, yellow) visible on the white card. */
+.paint {
+  filter: drop-shadow(0 3px 4px rgb(0 0 0 / 0.25));
+}

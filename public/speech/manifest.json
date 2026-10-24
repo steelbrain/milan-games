@@ -1,0 +1,2922 @@
+{
+  "voices": [
+    {
+      "id": "katie",
+      "name": "Katie"
+    },
+    {
+      "id": "lulu",
+      "name": "Lulu"
+    },
+    {
+      "id": "clara",
+      "name": "Clara"
+    },
+    {
+      "id": "zara",
+      "name": "Zara"
+    }
+  ],
+  "recipe": {
+    "model": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.4,
+      "similarity_boost": 0.8,
+      "style": 0.2,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "sampleRate": 24000,
+    "bitrate": 32000
+  },
+  "clips": {
+    "0000633bb18d04": {
+      "words": "Find the number 6!",
+      "takes": 5
+    },
+    "001092a6376e8e": {
+      "words": "You found it!",
+      "takes": 6
+    },
+    "0014e605dc01c0": {
+      "words": "20 apples!",
+      "takes": 5
+    },
+    "002040e9c97dca": {
+      "words": "That's S.",
+      "takes": 5
+    },
+    "002843179a50aa": {
+      "words": "9 fish!",
+      "takes": 5
+    },
+    "002c7b0a7daa04": {
+      "words": "That's M.",
+      "takes": 5
+    },
+    "003fd2da4a1016": {
+      "words": "Let's count the apples together!",
+      "takes": 5
+    },
+    "0041e29ee184cc": {
+      "words": "Find the number 12!",
+      "takes": 5
+    },
+    "005617ee374a6c": {
+      "words": "Let's play with numbers!",
+      "takes": 5
+    },
+    "006214cc7e67ce": {
+      "words": "Find the rectangle!",
+      "takes": 5
+    },
+    "0074fb1c71cea3": {
+      "words": "20 strawberries!",
+      "takes": 5
+    },
+    "00878e52f16ba8": {
+      "words": "9 moons!",
+      "takes": 5
+    },
+    "0095cf462be09f": {
+      "words": "3 comets!",
+      "takes": 5
+    },
+    "009a061d41a376": {
+      "words": "17 whales!",
+      "takes": 5
+    },
+    "00bad2975b9c15": {
+      "words": "Find the number 3!",
+      "takes": 5
+    },
+    "00cec5ded574b5": {
+      "words": "5 moons!",
+      "takes": 5
+    },
+    "00e001ad20945f": {
+      "words": "19 aliens!",
+      "takes": 5
+    },
+    "00e2da6a56d8cf": {
+      "words": "Tweet tweet!",
+      "takes": 5
+    },
+    "00ed652a8e908b": {
+      "words": "6 apples!",
+      "takes": 5
+    },
+    "00fb29c9ffffbd": {
+      "words": "U! U is for Umbrella.",
+      "takes": 5
+    },
+    "00fdf211e010fa": {
+      "words": "Let's play with shapes!",
+      "takes": 5
+    },
+    "00fe7ee79173df": {
+      "words": "Find the letter A!",
+      "takes": 5
+    },
+    "00ffce743d0783": {
+      "words": "19!",
+      "takes": 8
+    },
+    "0102faf3c1e0a4": {
+      "words": "Flutter flutter!",
+      "takes": 5
+    },
+    "01132afbdde502": {
+      "words": "That's 13.",
+      "takes": 5
+    },
+    "01264285bcd282": {
+      "words": "That's 17.",
+      "takes": 5
+    },
+    "0151b1294bd2fa": {
+      "words": "4 carrots!",
+      "takes": 5
+    },
+    "0153a1fd514704": {
+      "words": "19 comets!",
+      "takes": 5
+    },
+    "01579af364b146": {
+      "words": "Find the letter E!",
+      "takes": 5
+    },
+    "0164b216387b2f": {
+      "words": "8 turtles!",
+      "takes": 5
+    },
+    "0166a4f84e36f3": {
+      "words": "That's W.",
+      "takes": 5
+    },
+    "017c8f01b2f2af": {
+      "words": "2 carrots!",
+      "takes": 5
+    },
+    "0188d4b8fc37eb": {
+      "words": "That's U.",
+      "takes": 5
+    },
+    "018f70d630bec7": {
+      "words": "11 strawberries!",
+      "takes": 5
+    },
+    "019d1ad4dd0b4e": {
+      "words": "Let's count the shells together!",
+      "takes": 5
+    },
+    "01b009dfca9620": {
+      "words": "20 carrots!",
+      "takes": 5
+    },
+    "01b15d701cea11": {
+      "words": "16 turtles!",
+      "takes": 5
+    },
+    "01b494c2b6f794": {
+      "words": "Here are 12 dots.",
+      "takes": 5
+    },
+    "01b7d9a65e0a96": {
+      "words": "13 moons!",
+      "takes": 5
+    },
+    "01d484fccf52e3": {
+      "words": "17 flowers!",
+      "takes": 5
+    },
+    "01da88b03ace96": {
+      "words": "19 whales!",
+      "takes": 5
+    },
+    "01e3bf700a8af7": {
+      "words": "Not 10.",
+      "takes": 5
+    },
+    "01f8a77893f576": {
+      "words": "Turtles swim by slowly. How many turtles?",
+      "takes": 5
+    },
+    "01fbb2b82a62d8": {
+      "words": "5 crabs!",
+      "takes": 5
+    },
+    "020b55f784f915": {
+      "words": "12 balls!",
+      "takes": 5
+    },
+    "021647856db94f": {
+      "words": "12 birds!",
+      "takes": 5
+    },
+    "022c5649d35201": {
+      "words": "1 whale!",
+      "takes": 5
+    },
+    "022f5fc56d2e7a": {
+      "words": "3 aliens!",
+      "takes": 5
+    },
+    "02332c1692e0bd": {
+      "words": "3 trees!",
+      "takes": 5
+    },
+    "0236977c227509": {
+      "words": "13 squirrels!",
+      "takes": 5
+    },
+    "02391ca7194b40": {
+      "words": "Not 14.",
+      "takes": 5
+    },
+    "0244c3b6d75596": {
+      "words": "2 balls!",
+      "takes": 5
+    },
+    "024a73b9555b19": {
+      "words": "Fantastic!",
+      "takes": 6
+    },
+    "024f6c6974d084": {
+      "words": "7 shells!",
+      "takes": 5
+    },
+    "02531a0aa06f5a": {
+      "words": "That's 11.",
+      "takes": 5
+    },
+    "025b6b09cceba1": {
+      "words": "18 trees!",
+      "takes": 5
+    },
+    "0283fb75641c10": {
+      "words": "16!",
+      "takes": 8
+    },
+    "0286dfb4e551c5": {
+      "words": "That's P.",
+      "takes": 5
+    },
+    "0294f911e46d34": {
+      "words": "8 aliens!",
+      "takes": 5
+    },
+    "029b7aa6ad1767": {
+      "words": "20 stars!",
+      "takes": 5
+    },
+    "02befe50a9ed47": {
+      "words": "M! M is for Moon.",
+      "takes": 5
+    },
+    "02c19d5c4ae011": {
+      "words": "What number is this?",
+      "takes": 6
+    },
+    "02d4bb57420c56": {
+      "words": "Let's count the comets together!",
+      "takes": 5
+    },
+    "02e0b3f75915b3": {
+      "words": "14 strawberries!",
+      "takes": 5
+    },
+    "02e1ba32b69a22": {
+      "words": "17 apples!",
+      "takes": 5
+    },
+    "02e88f15a1dbe8": {
+      "words": "17 trees!",
+      "takes": 5
+    },
+    "031ab74db0eab9": {
+      "words": "10 flowers!",
+      "takes": 5
+    },
+    "0323272f5135fe": {
+      "words": "Y! Y is for Yo-yo.",
+      "takes": 5
+    },
+    "03271675c89571": {
+      "words": "G! G is for Grapes.",
+      "takes": 5
+    },
+    "032772dfab8efc": {
+      "words": "Here are 5 dots.",
+      "takes": 5
+    },
+    "033dbc90e90a7c": {
+      "words": "That's 20.",
+      "takes": 5
+    },
+    "0343bf10378f94": {
+      "words": "18!",
+      "takes": 8
+    },
+    "03470155621235": {
+      "words": "19 strawberries!",
+      "takes": 5
+    },
+    "03500c4103f821": {
+      "words": "19 shells!",
+      "takes": 5
+    },
+    "035d14d5ebe5db": {
+      "words": "2 flowers!",
+      "takes": 5
+    },
+    "037379d5dcfb36": {
+      "words": "2 moons!",
+      "takes": 5
+    },
+    "03772b6eec1599": {
+      "words": "8 bones!",
+      "takes": 5
+    },
+    "037b57a8800e3e": {
+      "words": "Diamond! Like a kite.",
+      "takes": 5
+    },
+    "0382712f27345b": {
+      "words": "19 apples!",
+      "takes": 5
+    },
+    "0385f458324004": {
+      "words": "4 bones!",
+      "takes": 5
+    },
+    "0388c203ccc0b4": {
+      "words": "14 shells!",
+      "takes": 5
+    },
+    "039115b6a11cde": {
+      "words": "6 carrots!",
+      "takes": 5
+    },
+    "039cd832b13de3": {
+      "words": "9 whales!",
+      "takes": 5
+    },
+    "03a081293fda74": {
+      "words": "14 bones!",
+      "takes": 5
+    },
+    "03afe3946db492": {
+      "words": "What color is this?",
+      "takes": 6
+    },
+    "03b9b926ad0f8a": {
+      "words": "Can you find blue?",
+      "takes": 5
+    },
+    "03c05639399ab4": {
+      "words": "8 moons!",
+      "takes": 5
+    },
+    "03cfd128a4c647": {
+      "words": "1 shell!",
+      "takes": 5
+    },
+    "03d0c12a4bc412": {
+      "words": "A! A is for Apple.",
+      "takes": 5
+    },
+    "03dc1cdb1fc01a": {
+      "words": "That's 14.",
+      "takes": 5
+    },
+    "03de3ddf04d698": {
+      "words": "13 fish!",
+      "takes": 5
+    },
+    "03de6c2cc5cd34": {
+      "words": "Let's count the fish together!",
+      "takes": 5
+    },
+    "03df3eb399b385": {
+      "words": "Not 9.",
+      "takes": 5
+    },
+    "03e26d37b4e073": {
+      "words": "Find the number 11!",
+      "takes": 5
+    },
+    "03e5e001a233d3": {
+      "words": "Let's play with letters!",
+      "takes": 5
+    },
+    "03ec551eb9b86d": {
+      "words": "6 crabs!",
+      "takes": 5
+    },
+    "03f099be8592bd": {
+      "words": "3 stars!",
+      "takes": 5
+    },
+    "03f5931d28d716": {
+      "words": "12 apples!",
+      "takes": 5
+    },
+    "03f8dbbd3d0dda": {
+      "words": "Let's count the bones together!",
+      "takes": 5
+    },
+    "040b8e81f29d38": {
+      "words": "1 turtle!",
+      "takes": 5
+    },
+    "041d8bb7f1dda5": {
+      "words": "11 squirrels!",
+      "takes": 5
+    },
+    "0423357317e788": {
+      "words": "14 comets!",
+      "takes": 5
+    },
+    "0429e17ec01ca1": {
+      "words": "8 whales!",
+      "takes": 5
+    },
+    "0437ca7231bd74": {
+      "words": "Let's count the flowers together!",
+      "takes": 5
+    },
+    "0439f16d7549de": {
+      "words": "Black! Like a bat.",
+      "takes": 5
+    },
+    "043abfd071c710": {
+      "words": "Rectangle! Like a door.",
+      "takes": 5
+    },
+    "0479ed9c9e9d62": {
+      "words": "18 flowers!",
+      "takes": 5
+    },
+    "048a97fda38e2c": {
+      "words": "5 planets!",
+      "takes": 5
+    },
+    "04974d31267c2c": {
+      "words": "13 carrots!",
+      "takes": 5
+    },
+    "04ace6943d9940": {
+      "words": "10 butterflies!",
+      "takes": 5
+    },
+    "04cafe76085660": {
+      "words": "7 birds!",
+      "takes": 5
+    },
+    "04e83f116f64b1": {
+      "words": "10 turtles!",
+      "takes": 5
+    },
+    "04eba267c97af5": {
+      "words": "Let's count the birds together!",
+      "takes": 5
+    },
+    "05002a17652cb3": {
+      "words": "Let's count the whales together!",
+      "takes": 5
+    },
+    "05099c11ab2ddb": {
+      "words": "17 carrots!",
+      "takes": 5
+    },
+    "051deb15ff9ef0": {
+      "words": "Bunny is packing a picnic basket. How many carrots?",
+      "takes": 5
+    },
+    "0542d0bb037f0a": {
+      "words": "Find the letter V!",
+      "takes": 5
+    },
+    "0550f61095de10": {
+      "words": "16 squirrels!",
+      "takes": 5
+    },
+    "0551bccbaa0970": {
+      "words": "Find the circle!",
+      "takes": 5
+    },
+    "05540fb30e62fa": {
+      "words": "That's heart.",
+      "takes": 5
+    },
+    "0554eb07c977f9": {
+      "words": "Can you find green?",
+      "takes": 5
+    },
+    "055ae750cd390a": {
+      "words": "17 strawberries!",
+      "takes": 5
+    },
+    "05602558cd46b3": {
+      "words": "18 fish!",
+      "takes": 5
+    },
+    "05616a772b2842": {
+      "words": "Twinkle twinkle!",
+      "takes": 5
+    },
+    "056ffd8618a84c": {
+      "words": "You got it!",
+      "takes": 6
+    },
+    "05706d98243013": {
+      "words": "16 flowers!",
+      "takes": 5
+    },
+    "059b53e6da857e": {
+      "words": "18 balls!",
+      "takes": 5
+    },
+    "05a9e54a24861a": {
+      "words": "Well done!",
+      "takes": 6
+    },
+    "05c1989fa63f96": {
+      "words": "12 crabs!",
+      "takes": 5
+    },
+    "05ccfac1d893ef": {
+      "words": "2!",
+      "takes": 8
+    },
+    "05d69f741ce6e9": {
+      "words": "15!",
+      "takes": 8
+    },
+    "05def0aafcaa7a": {
+      "words": "19 trees!",
+      "takes": 5
+    },
+    "05e0f494e58183": {
+      "words": "J! J is for Juice.",
+      "takes": 5
+    },
+    "05e8f93d824a8c": {
+      "words": "Can you find pink?",
+      "takes": 5
+    },
+    "05f65a8fb86399": {
+      "words": "6 bones!",
+      "takes": 5
+    },
+    "05f99a15745e3b": {
+      "words": "10 crabs!",
+      "takes": 5
+    },
+    "05fbbdcefbad55": {
+      "words": "Way to go!",
+      "takes": 6
+    },
+    "05fe5c7f3d6561": {
+      "words": "13 bones!",
+      "takes": 5
+    },
+    "061e0b65540401": {
+      "words": "13!",
+      "takes": 8
+    },
+    "0629aa469bc253": {
+      "words": "4 trees!",
+      "takes": 5
+    },
+    "06678b3a93e4f4": {
+      "words": "Three, two, one, blast off! The rocket zooms into the sky. How many stars?",
+      "takes": 5
+    },
+    "066edec22cc819": {
+      "words": "1 carrot!",
+      "takes": 5
+    },
+    "0683189ff63847": {
+      "words": "Find the letter U!",
+      "takes": 5
+    },
+    "0695eb7389e0f0": {
+      "words": "That's 2.",
+      "takes": 5
+    },
+    "069b861996d4f2": {
+      "words": "Here are 4 dots.",
+      "takes": 5
+    },
+    "06a35cb6fae537": {
+      "words": "5 fish!",
+      "takes": 5
+    },
+    "06acbc8f812d48": {
+      "words": "4 apples!",
+      "takes": 5
+    },
+    "06c0e582f113d8": {
+      "words": "7 squirrels!",
+      "takes": 5
+    },
+    "06c7fde6b575a5": {
+      "words": "Puppy finds bones in the grass. How many bones?",
+      "takes": 5
+    },
+    "06d47a6caf6828": {
+      "words": "9 comets!",
+      "takes": 5
+    },
+    "06de56c14ab626": {
+      "words": "Orange! Like an orange.",
+      "takes": 5
+    },
+    "06e04f6bc0ee79": {
+      "words": "1 comet!",
+      "takes": 5
+    },
+    "06ede42cbc4e56": {
+      "words": "Here are 19 dots.",
+      "takes": 5
+    },
+    "06f83d862e8f1c": {
+      "words": "B! B is for Ball.",
+      "takes": 5
+    },
+    "070d342493715b": {
+      "words": "That's B.",
+      "takes": 5
+    },
+    "0712660f8504cf": {
+      "words": "9 butterflies!",
+      "takes": 5
+    },
+    "071e5c743dd4aa": {
+      "words": "Let's count the moons together!",
+      "takes": 5
+    },
+    "07317d28c1e75b": {
+      "words": "Find the letter W!",
+      "takes": 5
+    },
+    "0740b7e7be9395": {
+      "words": "4 comets!",
+      "takes": 5
+    },
+    "074be3c45ca6f2": {
+      "words": "2 shells!",
+      "takes": 5
+    },
+    "075168afe5357a": {
+      "words": "11 stars!",
+      "takes": 5
+    },
+    "0755c629c89878": {
+      "words": "3 fish!",
+      "takes": 5
+    },
+    "0755f59a2aed9d": {
+      "words": "Red! Like an apple.",
+      "takes": 5
+    },
+    "0764d4182d8188": {
+      "words": "Find the number 5!",
+      "takes": 5
+    },
+    "076ded84beb6be": {
+      "words": "14 stars!",
+      "takes": 5
+    },
+    "077fd372ecd6c7": {
+      "words": "Not 18.",
+      "takes": 5
+    },
+    "0788b1ac24cfb7": {
+      "words": "9 stars!",
+      "takes": 5
+    },
+    "079a3170cb30d2": {
+      "words": "6 shells!",
+      "takes": 5
+    },
+    "07c35c01fee8e9": {
+      "words": "9 apples!",
+      "takes": 5
+    },
+    "07d452dcd04560": {
+      "words": "Let's count the carrots together!",
+      "takes": 5
+    },
+    "07ed3f7b251a18": {
+      "words": "9 shells!",
+      "takes": 5
+    },
+    "07edeab338dc7c": {
+      "words": "S! S is for Sun.",
+      "takes": 5
+    },
+    "07f613df70867d": {
+      "words": "1 apple!",
+      "takes": 5
+    },
+    "080755e4b17cf5": {
+      "words": "14 squirrels!",
+      "takes": 5
+    },
+    "08082fc19a83e3": {
+      "words": "15 carrots!",
+      "takes": 5
+    },
+    "080dcf6922b4e8": {
+      "words": "Here are 8 dots.",
+      "takes": 5
+    },
+    "081e6a909c737e": {
+      "words": "That's 10.",
+      "takes": 5
+    },
+    "0834982b260485": {
+      "words": "18 butterflies!",
+      "takes": 5
+    },
+    "083bd002f29b5b": {
+      "words": "13 flowers!",
+      "takes": 5
+    },
+    "083e8e7754a998": {
+      "words": "Find the letter O!",
+      "takes": 5
+    },
+    "0842af0e633c9e": {
+      "words": "7 moons!",
+      "takes": 5
+    },
+    "084a668df23d55": {
+      "words": "Find the star!",
+      "takes": 5
+    },
+    "0862c69a4f7428": {
+      "words": "Let's count the balls together!",
+      "takes": 5
+    },
+    "0863ed4094e3ab": {
+      "words": "19 planets!",
+      "takes": 5
+    },
+    "086d8b8d724e8c": {
+      "words": "Find the number 14!",
+      "takes": 5
+    },
+    "087341581e11dd": {
+      "words": "2 turtles!",
+      "takes": 5
+    },
+    "0873a4cf68f121": {
+      "words": "9 turtles!",
+      "takes": 5
+    },
+    "0875a5b3849b8f": {
+      "words": "18 bones!",
+      "takes": 5
+    },
+    "087cbe767e3c53": {
+      "words": "1 flower!",
+      "takes": 5
+    },
+    "08853c406ab5a2": {
+      "words": "14 fish!",
+      "takes": 5
+    },
+    "0887f39914acfb": {
+      "words": "Green! Like a frog.",
+      "takes": 5
+    },
+    "0888b9e4a65ba1": {
+      "words": "That's pink.",
+      "takes": 5
+    },
+    "088af06066b8a8": {
+      "words": "19 squirrels!",
+      "takes": 5
+    },
+    "088dbebe8de95e": {
+      "words": "14 whales!",
+      "takes": 5
+    },
+    "088e8692f12676": {
+      "words": "15 fish!",
+      "takes": 5
+    },
+    "088fa2f439d84c": {
+      "words": "5 whales!",
+      "takes": 5
+    },
+    "089a6ab7164632": {
+      "words": "15 balls!",
+      "takes": 5
+    },
+    "089e6e470e634a": {
+      "words": "Can you find purple?",
+      "takes": 5
+    },
+    "089f02c38f8d44": {
+      "words": "12 butterflies!",
+      "takes": 5
+    },
+    "08a60b19a36123": {
+      "words": "14 butterflies!",
+      "takes": 5
+    },
+    "08a68f22df7d56": {
+      "words": "Not 12.",
+      "takes": 5
+    },
+    "08a73e583c19c1": {
+      "words": "4 turtles!",
+      "takes": 5
+    },
+    "08b70c0315ec04": {
+      "words": "Find the letter J!",
+      "takes": 5
+    },
+    "08bea606ecb1fd": {
+      "words": "17 aliens!",
+      "takes": 5
+    },
+    "08bf1a490f9f67": {
+      "words": "That's I.",
+      "takes": 5
+    },
+    "08bfa6389b3aee": {
+      "words": "20 shells!",
+      "takes": 5
+    },
+    "08c146e91d25ab": {
+      "words": "12 comets!",
+      "takes": 5
+    },
+    "08ddc637c63612": {
+      "words": "10 carrots!",
+      "takes": 5
+    },
+    "08df4c78d85f01": {
+      "words": "17 stars!",
+      "takes": 5
+    },
+    "08ed0b92302bf2": {
+      "words": "That's V.",
+      "takes": 5
+    },
+    "08ffb0ae61e448": {
+      "words": "7 strawberries!",
+      "takes": 5
+    },
+    "08ffc909ba86f4": {
+      "words": "14 turtles!",
+      "takes": 5
+    },
+    "08ffd3db53380b": {
+      "words": "20 comets!",
+      "takes": 5
+    },
+    "0903b138081219": {
+      "words": "19 birds!",
+      "takes": 5
+    },
+    "0904fc98bd8b12": {
+      "words": "16 aliens!",
+      "takes": 5
+    },
+    "090a5294db928f": {
+      "words": "9 crabs!",
+      "takes": 5
+    },
+    "090faa91473fb1": {
+      "words": "16 strawberries!",
+      "takes": 5
+    },
+    "0934f84a8db237": {
+      "words": "10 shells!",
+      "takes": 5
+    },
+    "093c30864354e8": {
+      "words": "16 whales!",
+      "takes": 5
+    },
+    "093ece55f5ab18": {
+      "words": "Let's count the strawberries together!",
+      "takes": 5
+    },
+    "094c05f12e517e": {
+      "words": "Bunny's friends come to the picnic. How many squirrels?",
+      "takes": 5
+    },
+    "0951de6d23901f": {
+      "words": "That's diamond.",
+      "takes": 5
+    },
+    "095853a0643d81": {
+      "words": "That's square.",
+      "takes": 5
+    },
+    "09638684fe1ff1": {
+      "words": "Let's try again!",
+      "takes": 6
+    },
+    "096925d3d98162": {
+      "words": "8 carrots!",
+      "takes": 5
+    },
+    "097777ac4829d4": {
+      "words": "5 strawberries!",
+      "takes": 5
+    },
+    "099d308927979b": {
+      "words": "4 stars!",
+      "takes": 5
+    },
+    "09a06fdc810a15": {
+      "words": "Can you find yellow?",
+      "takes": 5
+    },
+    "09b85ed5f1bf99": {
+      "words": "2 crabs!",
+      "takes": 5
+    },
+    "09b9341f81a727": {
+      "words": "What letter is this?",
+      "takes": 6
+    },
+    "09bb5c4efcb2d2": {
+      "words": "So tall!",
+      "takes": 5
+    },
+    "09bca3f37c594a": {
+      "words": "13 butterflies!",
+      "takes": 5
+    },
+    "09bd0ff4286e35": {
+      "words": "Whoosh!",
+      "takes": 5
+    },
+    "09dca0e75a1c4d": {
+      "words": "That's R.",
+      "takes": 5
+    },
+    "09e0bb4a096c3a": {
+      "words": "10 apples!",
+      "takes": 5
+    },
+    "09f3e432e3940a": {
+      "words": "6 squirrels!",
+      "takes": 5
+    },
+    "09f9a3ca912ecb": {
+      "words": "10 comets!",
+      "takes": 5
+    },
+    "09fbb95762b58b": {
+      "words": "That's G.",
+      "takes": 5
+    },
+    "0a027e8019af6f": {
+      "words": "6 whales!",
+      "takes": 5
+    },
+    "0a0f52e7a1aac8": {
+      "words": "Not 19.",
+      "takes": 5
+    },
+    "0a147af4770bfb": {
+      "words": "18 carrots!",
+      "takes": 5
+    },
+    "0a15a1cfbfa547": {
+      "words": "Hooray!",
+      "takes": 6
+    },
+    "0a1b281b04d8e9": {
+      "words": "Puppy had a wonderful walk. Woof! Thank you for counting!",
+      "takes": 5
+    },
+    "0a214586c8c6cd": {
+      "words": "9 squirrels!",
+      "takes": 5
+    },
+    "0a39d980665c9d": {
+      "words": "Find the letter H!",
+      "takes": 5
+    },
+    "0a39eae4df0cff": {
+      "words": "5 trees!",
+      "takes": 5
+    },
+    "0a609d60c6a5cd": {
+      "words": "That's star.",
+      "takes": 5
+    },
+    "0a659703e8c660": {
+      "words": "4 fish!",
+      "takes": 5
+    },
+    "0a736b42b635ce": {
+      "words": "6 balls!",
+      "takes": 5
+    },
+    "0a771b0a0fa659": {
+      "words": "Octopus had a splashy day. Thank you for counting!",
+      "takes": 5
+    },
+    "0a7ef776e97941": {
+      "words": "Find the number 9!",
+      "takes": 5
+    },
+    "0a85ab4b28897b": {
+      "words": "16 bones!",
+      "takes": 5
+    },
+    "0a9f9c585a321b": {
+      "words": "16 butterflies!",
+      "takes": 5
+    },
+    "0aae17b70c23b5": {
+      "words": "10 whales!",
+      "takes": 5
+    },
+    "0ab9ce2f3ea015": {
+      "words": "11 aliens!",
+      "takes": 5
+    },
+    "0abf180a74634a": {
+      "words": "Find the letter G!",
+      "takes": 5
+    },
+    "0abf356ad9baf5": {
+      "words": "That's E.",
+      "takes": 5
+    },
+    "0adf4be8f5b13e": {
+      "words": "Awesome!",
+      "takes": 6
+    },
+    "0aef5455e934bf": {
+      "words": "Sniff sniff!",
+      "takes": 5
+    },
+    "0af9cd2f9050c4": {
+      "words": "That's A.",
+      "takes": 5
+    },
+    "0b00d073029c00": {
+      "words": "So pretty!",
+      "takes": 5
+    },
+    "0b0df5428269fe": {
+      "words": "17 shells!",
+      "takes": 5
+    },
+    "0b1cba00cce0f9": {
+      "words": "18 aliens!",
+      "takes": 5
+    },
+    "0b2459eed3d9b9": {
+      "words": "11 balls!",
+      "takes": 5
+    },
+    "0b3189b0570533": {
+      "words": "4 strawberries!",
+      "takes": 5
+    },
+    "0b66194f04928b": {
+      "words": "Here are 11 dots.",
+      "takes": 5
+    },
+    "0b68717dc58c2b": {
+      "words": "2 apples!",
+      "takes": 5
+    },
+    "0b7cf3c0e145d5": {
+      "words": "White! Like a cloud.",
+      "takes": 5
+    },
+    "0b80480dc919d0": {
+      "words": "14 carrots!",
+      "takes": 5
+    },
+    "0b82724f764470": {
+      "words": "Yes!",
+      "takes": 6
+    },
+    "0b94781045b9b5": {
+      "words": "13 aliens!",
+      "takes": 5
+    },
+    "0b9b85ab33ca14": {
+      "words": "Can you find black?",
+      "takes": 5
+    },
+    "0ba0d7aa40cafb": {
+      "words": "10 moons!",
+      "takes": 5
+    },
+    "0ba44c445be54d": {
+      "words": "15 birds!",
+      "takes": 5
+    },
+    "0bb201ec7b7270": {
+      "words": "Here are 6 dots.",
+      "takes": 5
+    },
+    "0bbbc667643f88": {
+      "words": "11 turtles!",
+      "takes": 5
+    },
+    "0bbf2575b7144b": {
+      "words": "Not 20.",
+      "takes": 5
+    },
+    "0bc68dea0fdad1": {
+      "words": "1 bird!",
+      "takes": 5
+    },
+    "0bcdd4bae6dc43": {
+      "words": "Let's count the trees together!",
+      "takes": 5
+    },
+    "0bd7ee5fb85843": {
+      "words": "11 trees!",
+      "takes": 5
+    },
+    "0be831f02bd226": {
+      "words": "That's oval.",
+      "takes": 5
+    },
+    "0bffdd4db7a925": {
+      "words": "18 crabs!",
+      "takes": 5
+    },
+    "0c158e8c7fa87d": {
+      "words": "19 crabs!",
+      "takes": 5
+    },
+    "0c17d8c3a49ab0": {
+      "words": "6 aliens!",
+      "takes": 5
+    },
+    "0c1cfdbfce46ba": {
+      "words": "14 balls!",
+      "takes": 5
+    },
+    "0c279d6556f413": {
+      "words": "That's white.",
+      "takes": 5
+    },
+    "0c2fbb4f5999d3": {
+      "words": "2 birds!",
+      "takes": 5
+    },
+    "0c41e77402040f": {
+      "words": "16 shells!",
+      "takes": 5
+    },
+    "0c48dc10767eb9": {
+      "words": "Yay!",
+      "takes": 6
+    },
+    "0c494cb3a8f466": {
+      "words": "11 butterflies!",
+      "takes": 5
+    },
+    "0c60b50341ba4e": {
+      "words": "Find the number 19!",
+      "takes": 5
+    },
+    "0c62a55061ebf8": {
+      "words": "Here are 13 dots.",
+      "takes": 5
+    },
+    "0c6d0f4803f32c": {
+      "words": "8!",
+      "takes": 8
+    },
+    "0c740ea298ec7a": {
+      "words": "10 stars!",
+      "takes": 5
+    },
+    "0ca247dc454585": {
+      "words": "Here are 2 dots.",
+      "takes": 5
+    },
+    "0caca3952309aa": {
+      "words": "P! P is for Pig.",
+      "takes": 5
+    },
+    "0cb4c3df43b088": {
+      "words": "12 trees!",
+      "takes": 5
+    },
+    "0cbc8490efe6b6": {
+      "words": "Not 4.",
+      "takes": 5
+    },
+    "0cd7552f134540": {
+      "words": "Let's count the squirrels together!",
+      "takes": 5
+    },
+    "0cdcd3c00ed5db": {
+      "words": "C! C is for Cat.",
+      "takes": 5
+    },
+    "0cdf06d14d9983": {
+      "words": "6 fish!",
+      "takes": 5
+    },
+    "0d1dc822e29adb": {
+      "words": "15 apples!",
+      "takes": 5
+    },
+    "0d31d33d6dd943": {
+      "words": "3 carrots!",
+      "takes": 5
+    },
+    "0d34049d672aee": {
+      "words": "16 stars!",
+      "takes": 5
+    },
+    "0d48b49522d133": {
+      "words": "5 flowers!",
+      "takes": 5
+    },
+    "0d6d44dd60201f": {
+      "words": "13 turtles!",
+      "takes": 5
+    },
+    "0d7698b232c8b1": {
+      "words": "4 shells!",
+      "takes": 5
+    },
+    "0d86ef2fa292a5": {
+      "words": "That's 3.",
+      "takes": 5
+    },
+    "0d892227a6826b": {
+      "words": "11 moons!",
+      "takes": 5
+    },
+    "0da788133568d8": {
+      "words": "13 whales!",
+      "takes": 5
+    },
+    "0dc51525126dc4": {
+      "words": "That's C.",
+      "takes": 5
+    },
+    "0defa78a38186f": {
+      "words": "3 flowers!",
+      "takes": 5
+    },
+    "0e0110b23f512e": {
+      "words": "11 planets!",
+      "takes": 5
+    },
+    "0e0f6de77e8f28": {
+      "words": "15 comets!",
+      "takes": 5
+    },
+    "0e2ea775cef8b9": {
+      "words": "That's 5.",
+      "takes": 5
+    },
+    "0e329072961dc2": {
+      "words": "I! I is for Ice cream.",
+      "takes": 5
+    },
+    "0e381049053cdf": {
+      "words": "Find the letter Z!",
+      "takes": 5
+    },
+    "0e417ab0aa1d51": {
+      "words": "That's Y.",
+      "takes": 5
+    },
+    "0e431ed216cd04": {
+      "words": "1 butterfly!",
+      "takes": 5
+    },
+    "0e49c0ca0fbde9": {
+      "words": "19 carrots!",
+      "takes": 5
+    },
+    "0e4c9312d586a7": {
+      "words": "4 planets!",
+      "takes": 5
+    },
+    "0e56e164c834c9": {
+      "words": "Here are 16 dots.",
+      "takes": 5
+    },
+    "0e58a63561308b": {
+      "words": "20 planets!",
+      "takes": 5
+    },
+    "0e5e594cdbaec9": {
+      "words": "20 whales!",
+      "takes": 5
+    },
+    "0e5fc186109cda": {
+      "words": "4 birds!",
+      "takes": 5
+    },
+    "0e72eb6170c4d0": {
+      "words": "9 balls!",
+      "takes": 5
+    },
+    "0e92c10d01dd48": {
+      "words": "Square! Like a present.",
+      "takes": 5
+    },
+    "0e9440a9437f9a": {
+      "words": "5 turtles!",
+      "takes": 5
+    },
+    "0ea4b30233b671": {
+      "words": "3 planets!",
+      "takes": 5
+    },
+    "0ea8668e9d43f8": {
+      "words": "5 stars!",
+      "takes": 5
+    },
+    "0eafe7271d3f30": {
+      "words": "15 stars!",
+      "takes": 5
+    },
+    "0eb70698028335": {
+      "words": "14 apples!",
+      "takes": 5
+    },
+    "0eb98b43ad4725": {
+      "words": "Let's count the aliens together!",
+      "takes": 5
+    },
+    "0ecf7e50467ef6": {
+      "words": "That's yellow.",
+      "takes": 5
+    },
+    "0ed3485c5c9ddc": {
+      "words": "9 trees!",
+      "takes": 5
+    },
+    "0edbca76e87b8c": {
+      "words": "20 moons!",
+      "takes": 5
+    },
+    "0ef1aa03891683": {
+      "words": "Find the letter Y!",
+      "takes": 5
+    },
+    "0ef3722907a003": {
+      "words": "16 comets!",
+      "takes": 5
+    },
+    "0ef7f4a0715c35": {
+      "words": "R! R is for Rainbow.",
+      "takes": 5
+    },
+    "0ef9b4e5810cb0": {
+      "words": "20 turtles!",
+      "takes": 5
+    },
+    "0f07b2bcb7e4e7": {
+      "words": "3 butterflies!",
+      "takes": 5
+    },
+    "0f0be90013c4f2": {
+      "words": "14!",
+      "takes": 8
+    },
+    "0f23cd71dd6628": {
+      "words": "14 planets!",
+      "takes": 5
+    },
+    "0f2685f12e22b8": {
+      "words": "20 crabs!",
+      "takes": 5
+    },
+    "0f298156a30459": {
+      "words": "11 flowers!",
+      "takes": 5
+    },
+    "0f372ef86cedad": {
+      "words": "Find the number 20!",
+      "takes": 5
+    },
+    "0f3b566b455503": {
+      "words": "Puppy goes for a walk in the park. How many trees?",
+      "takes": 5
+    },
+    "0f4b1a0752e50e": {
+      "words": "11 birds!",
+      "takes": 5
+    },
+    "0f52be1ea02856": {
+      "words": "V! V is for Violin.",
+      "takes": 5
+    },
+    "0f624a345a00ec": {
+      "words": "Find the letter S!",
+      "takes": 5
+    },
+    "0f832c1dc9ff54": {
+      "words": "Woof woof!",
+      "takes": 5
+    },
+    "0f8a751d85787e": {
+      "words": "3 birds!",
+      "takes": 5
+    },
+    "0f9bbcecbc3ed8": {
+      "words": "Triangle! Like a slice of pizza.",
+      "takes": 5
+    },
+    "0fa1a72d9f4ba8": {
+      "words": "N! N is for Nose.",
+      "takes": 5
+    },
+    "0fd928f950c32e": {
+      "words": "That's Z.",
+      "takes": 5
+    },
+    "0fed40c0b50ea2": {
+      "words": "Crunch crunch!",
+      "takes": 5
+    },
+    "0ff38767e05d5f": {
+      "words": "Q! Q is for Queen.",
+      "takes": 5
+    },
+    "0fffe1d9bc3d9b": {
+      "words": "11 apples!",
+      "takes": 5
+    },
+    "100d333af92ed1": {
+      "words": "Here are 18 dots.",
+      "takes": 5
+    },
+    "100d33c99e717b": {
+      "words": "16 crabs!",
+      "takes": 5
+    },
+    "101a0fe0fde1dc": {
+      "words": "9 carrots!",
+      "takes": 5
+    },
+    "101d2148b97881": {
+      "words": "16 fish!",
+      "takes": 5
+    },
+    "10211e6ecdb84a": {
+      "words": "That's 4.",
+      "takes": 5
+    },
+    "10443dcae1f5af": {
+      "words": "18 moons!",
+      "takes": 5
+    },
+    "10678b2b0cdd87": {
+      "words": "1 strawberry!",
+      "takes": 5
+    },
+    "106b65e8c6c851": {
+      "words": "5 bones!",
+      "takes": 5
+    },
+    "107d192e241e8c": {
+      "words": "15 strawberries!",
+      "takes": 5
+    },
+    "107fae7817334c": {
+      "words": "Not 1.",
+      "takes": 5
+    },
+    "10967b7520607c": {
+      "words": "Find the number 1!",
+      "takes": 5
+    },
+    "1097ef607e8f54": {
+      "words": "Puppy wants to play fetch. How many balls?",
+      "takes": 5
+    },
+    "109a8034fcfd71": {
+      "words": "Find the letter F!",
+      "takes": 5
+    },
+    "109b3beb4805e1": {
+      "words": "Let's count the butterflies together!",
+      "takes": 5
+    },
+    "10a828eee9c5f8": {
+      "words": "Find the square!",
+      "takes": 5
+    },
+    "10ac07d8ac5d58": {
+      "words": "The rocket flies past the planets. How many planets?",
+      "takes": 5
+    },
+    "10ac4050ddbac4": {
+      "words": "10 strawberries!",
+      "takes": 5
+    },
+    "10ae350728c79c": {
+      "words": "3 crabs!",
+      "takes": 5
+    },
+    "10bd412c5d9589": {
+      "words": "10 bones!",
+      "takes": 5
+    },
+    "10c72bdb1177e0": {
+      "words": "Can you find brown?",
+      "takes": 5
+    },
+    "10ca00c293d172": {
+      "words": "Not 8.",
+      "takes": 5
+    },
+    "10ca028b8a5906": {
+      "words": "Comets zoom by. How many comets?",
+      "takes": 5
+    },
+    "10caaab3733d99": {
+      "words": "10 balls!",
+      "takes": 5
+    },
+    "10e39a5da8775b": {
+      "words": "That's green.",
+      "takes": 5
+    },
+    "10ec5661bccb7d": {
+      "words": "Find the letter D!",
+      "takes": 5
+    },
+    "111e31779f854f": {
+      "words": "8 stars!",
+      "takes": 5
+    },
+    "112afd78f7dded": {
+      "words": "16 trees!",
+      "takes": 5
+    },
+    "1138c73da2e4e7": {
+      "words": "Zoom zoom!",
+      "takes": 5
+    },
+    "1147cf260df5f3": {
+      "words": "4 crabs!",
+      "takes": 5
+    },
+    "11534f6aaf3f0a": {
+      "words": "Not 16.",
+      "takes": 5
+    },
+    "1168751109b686": {
+      "words": "1 fish!",
+      "takes": 5
+    },
+    "1171470436e35d": {
+      "words": "That's J.",
+      "takes": 5
+    },
+    "1179b3de1d49a4": {
+      "words": "18 turtles!",
+      "takes": 5
+    },
+    "1187ee49a8ad8a": {
+      "words": "11 comets!",
+      "takes": 5
+    },
+    "118c5121e965f0": {
+      "words": "2 stars!",
+      "takes": 5
+    },
+    "11969e30637e8c": {
+      "words": "Blue! Like a whale.",
+      "takes": 5
+    },
+    "11a0c1879cf50e": {
+      "words": "6 planets!",
+      "takes": 5
+    },
+    "11ac04d97fc36b": {
+      "words": "Splash!",
+      "takes": 5
+    },
+    "11aee3bf58aa62": {
+      "words": "That's L.",
+      "takes": 5
+    },
+    "11bb8beda5be0e": {
+      "words": "Circle! Like a cookie.",
+      "takes": 5
+    },
+    "11c530313fd58f": {
+      "words": "12 planets!",
+      "takes": 5
+    },
+    "11ccce74d1b2cf": {
+      "words": "That's 12.",
+      "takes": 5
+    },
+    "11d26736dc8771": {
+      "words": "14 birds!",
+      "takes": 5
+    },
+    "11d3d6b259e395": {
+      "words": "1 ball!",
+      "takes": 5
+    },
+    "11ead55bd063c9": {
+      "words": "3 turtles!",
+      "takes": 5
+    },
+    "11f5c94f55296e": {
+      "words": "18 whales!",
+      "takes": 5
+    },
+    "11f9f0db0fec26": {
+      "words": "Puppy sniffs the flowers. How many flowers?",
+      "takes": 5
+    },
+    "120260ef6b48fc": {
+      "words": "That's 1.",
+      "takes": 5
+    },
+    "12082504314dfb": {
+      "words": "7 balls!",
+      "takes": 5
+    },
+    "1227e7d685c061": {
+      "words": "8 birds!",
+      "takes": 5
+    },
+    "12380485bf0bcb": {
+      "words": "4 whales!",
+      "takes": 5
+    },
+    "1240938403b73a": {
+      "words": "That's blue.",
+      "takes": 5
+    },
+    "12467a516a5905": {
+      "words": "Friendly aliens wave hello. How many aliens?",
+      "takes": 5
+    },
+    "124dcee809e944": {
+      "words": "8 crabs!",
+      "takes": 5
+    },
+    "12520c9a2363a2": {
+      "words": "8 trees!",
+      "takes": 5
+    },
+    "12521876140f43": {
+      "words": "Here are 14 dots.",
+      "takes": 5
+    },
+    "12570ae6d98065": {
+      "words": "That's triangle.",
+      "takes": 5
+    },
+    "125e9ba610b4e9": {
+      "words": "1 bone!",
+      "takes": 5
+    },
+    "1266d1b44f0552": {
+      "words": "3 strawberries!",
+      "takes": 5
+    },
+    "1274ac6c9265e8": {
+      "words": "1 planet!",
+      "takes": 5
+    },
+    "12905af60d8536": {
+      "words": "Find the letter M!",
+      "takes": 5
+    },
+    "12a8348eca01d6": {
+      "words": "16 balls!",
+      "takes": 5
+    },
+    "12afa7ea8fd506": {
+      "words": "17 planets!",
+      "takes": 5
+    },
+    "12b48a8f1901ee": {
+      "words": "Here are 15 dots.",
+      "takes": 5
+    },
+    "12bd4616013d2c": {
+      "words": "15 flowers!",
+      "takes": 5
+    },
+    "12df82522bec73": {
+      "words": "T! T is for Tree.",
+      "takes": 5
+    },
+    "12f55c980c042c": {
+      "words": "11 bones!",
+      "takes": 5
+    },
+    "12ffbfc03bc75a": {
+      "words": "Here are 20 dots.",
+      "takes": 5
+    },
+    "130640f435aeac": {
+      "words": "6 strawberries!",
+      "takes": 5
+    },
+    "1307b4e68e86a0": {
+      "words": "1 star!",
+      "takes": 5
+    },
+    "1307bbe4f1e04e": {
+      "words": "Snip snap!",
+      "takes": 5
+    },
+    "130cd8de98ddc0": {
+      "words": "Woohoo!",
+      "takes": 6
+    },
+    "130df420ce4a1c": {
+      "words": "H! H is for House.",
+      "takes": 5
+    },
+    "13150a31f30fa1": {
+      "words": "7 fish!",
+      "takes": 5
+    },
+    "1315510259be57": {
+      "words": "18 planets!",
+      "takes": 5
+    },
+    "1323f833510eee": {
+      "words": "That's 19.",
+      "takes": 5
+    },
+    "133be565795325": {
+      "words": "8 butterflies!",
+      "takes": 5
+    },
+    "1345986e612dc0": {
+      "words": "L! L is for Lion.",
+      "takes": 5
+    },
+    "13459dd202dd04": {
+      "words": "8 planets!",
+      "takes": 5
+    },
+    "1357c7e0b871f2": {
+      "words": "6 butterflies!",
+      "takes": 5
+    },
+    "136de1f189fc20": {
+      "words": "So shiny!",
+      "takes": 5
+    },
+    "13739f6a36438b": {
+      "words": "15 crabs!",
+      "takes": 5
+    },
+    "137f12b2aed670": {
+      "words": "X! X is for X-ray.",
+      "takes": 5
+    },
+    "13800b7eb2e149": {
+      "words": "Find the oval!",
+      "takes": 5
+    },
+    "138839d7909ae6": {
+      "words": "Octopus swims with the fish. How many fish?",
+      "takes": 5
+    },
+    "138b774a0bcdaf": {
+      "words": "Let's count the turtles together!",
+      "takes": 5
+    },
+    "139c4326c83863": {
+      "words": "13 birds!",
+      "takes": 5
+    },
+    "13a11d0348c0f5": {
+      "words": "19 flowers!",
+      "takes": 5
+    },
+    "13eb7f94d59532": {
+      "words": "Find the number 17!",
+      "takes": 5
+    },
+    "1402b893735677": {
+      "words": "14 flowers!",
+      "takes": 5
+    },
+    "1403dc8bb6a9f9": {
+      "words": "Can you find white?",
+      "takes": 5
+    },
+    "1410b3c65d89da": {
+      "words": "Here are 10 dots.",
+      "takes": 5
+    },
+    "14173e5c46be31": {
+      "words": "5 carrots!",
+      "takes": 5
+    },
+    "141981c32ac8e2": {
+      "words": "2 aliens!",
+      "takes": 5
+    },
+    "1426c194d7fc62": {
+      "words": "20 trees!",
+      "takes": 5
+    },
+    "1437870072dc01": {
+      "words": "6 trees!",
+      "takes": 5
+    },
+    "143af35b7a2abb": {
+      "words": "17 fish!",
+      "takes": 5
+    },
+    "1444f57fd21acc": {
+      "words": "9 bones!",
+      "takes": 5
+    },
+    "1447d93622a28f": {
+      "words": "7 trees!",
+      "takes": 5
+    },
+    "144ee53bc5287a": {
+      "words": "19 fish!",
+      "takes": 5
+    },
+    "14581f00cf5bdb": {
+      "words": "17 birds!",
+      "takes": 5
+    },
+    "146468953bfb85": {
+      "words": "19 moons!",
+      "takes": 5
+    },
+    "14701bdbde12c4": {
+      "words": "Crabs dance on the sand. How many crabs?",
+      "takes": 5
+    },
+    "148456cea9e458": {
+      "words": "7 aliens!",
+      "takes": 5
+    },
+    "148e3a53aabc50": {
+      "words": "5 squirrels!",
+      "takes": 5
+    },
+    "148e575229263b": {
+      "words": "Can you find orange?",
+      "takes": 5
+    },
+    "14ac83efcb7747": {
+      "words": "14 aliens!",
+      "takes": 5
+    },
+    "14b733e1e5244f": {
+      "words": "8 fish!",
+      "takes": 5
+    },
+    "14c15cfaf8b5e3": {
+      "words": "2 whales!",
+      "takes": 5
+    },
+    "14ca6589e3c982": {
+      "words": "What a yummy picnic! Bunny says thank you for counting!",
+      "takes": 5
+    },
+    "14da3c6683ba85": {
+      "words": "That's orange.",
+      "takes": 5
+    },
+    "14df9f374db311": {
+      "words": "7 apples!",
+      "takes": 5
+    },
+    "14e08d2bccc0ba": {
+      "words": "3!",
+      "takes": 8
+    },
+    "14ef701377730c": {
+      "words": "7 bones!",
+      "takes": 5
+    },
+    "14f2cf42a5c979": {
+      "words": "17!",
+      "takes": 8
+    },
+    "14f7912c39eb05": {
+      "words": "Oval! Like an egg.",
+      "takes": 5
+    },
+    "14f96bd2763722": {
+      "words": "Here are 7 dots.",
+      "takes": 5
+    },
+    "150318f5371543": {
+      "words": "That's rectangle.",
+      "takes": 5
+    },
+    "1511560c955092": {
+      "words": "That's 7.",
+      "takes": 5
+    },
+    "15185b24b202bd": {
+      "words": "Fetch!",
+      "takes": 5
+    },
+    "151a1677483ab1": {
+      "words": "Find the triangle!",
+      "takes": 5
+    },
+    "151afb76ee58b4": {
+      "words": "12 strawberries!",
+      "takes": 5
+    },
+    "151b5d83217315": {
+      "words": "9 birds!",
+      "takes": 5
+    },
+    "1520b6735f3d9b": {
+      "words": "Let's count! Pick a story.",
+      "takes": 5
+    },
+    "1531c43a5024bd": {
+      "words": "That's 15.",
+      "takes": 5
+    },
+    "1534e3ffeda26d": {
+      "words": "20 aliens!",
+      "takes": 5
+    },
+    "1536b798fe4f3b": {
+      "words": "13 shells!",
+      "takes": 5
+    },
+    "15472224f3a465": {
+      "words": "20 fish!",
+      "takes": 5
+    },
+    "154c20859a43ae": {
+      "words": "8 squirrels!",
+      "takes": 5
+    },
+    "156efa210dab1b": {
+      "words": "That's black.",
+      "takes": 5
+    },
+    "1572308894ce8e": {
+      "words": "That's F.",
+      "takes": 5
+    },
+    "157f04fe5bf9e4": {
+      "words": "18 shells!",
+      "takes": 5
+    },
+    "158449ddff0ee7": {
+      "words": "10 squirrels!",
+      "takes": 5
+    },
+    "1584f78090b5f0": {
+      "words": "3 apples!",
+      "takes": 5
+    },
+    "158fe943941832": {
+      "words": "Here is 1 dot.",
+      "takes": 5
+    },
+    "1594934ce086ab": {
+      "words": "Brown! Like a bear.",
+      "takes": 5
+    },
+    "159968ddd99185": {
+      "words": "3 squirrels!",
+      "takes": 5
+    },
+    "15a1b6f616b5d9": {
+      "words": "19 turtles!",
+      "takes": 5
+    },
+    "15a20ef7b3305d": {
+      "words": "5 butterflies!",
+      "takes": 5
+    },
+    "15b52749b96f04": {
+      "words": "So sweet!",
+      "takes": 5
+    },
+    "15bc56fa6b3d8a": {
+      "words": "1 squirrel!",
+      "takes": 5
+    },
+    "15c469a1192298": {
+      "words": "6 stars!",
+      "takes": 5
+    },
+    "15d1c22f7d25b5": {
+      "words": "Let's count the stars together!",
+      "takes": 5
+    },
+    "15f80da8542b72": {
+      "words": "7 stars!",
+      "takes": 5
+    },
+    "15fc43de0e4b93": {
+      "words": "15 moons!",
+      "takes": 5
+    },
+    "160a182cada159": {
+      "words": "K! K is for Kite.",
+      "takes": 5
+    },
+    "160c919367a977": {
+      "words": "9 strawberries!",
+      "takes": 5
+    },
+    "160dda0c862438": {
+      "words": "5 apples!",
+      "takes": 5
+    },
+    "160ee6c6134fd3": {
+      "words": "Not 7.",
+      "takes": 5
+    },
+    "1611c9e2b875b7": {
+      "words": "4!",
+      "takes": 8
+    },
+    "162f54ff023197": {
+      "words": "Find the number 16!",
+      "takes": 5
+    },
+    "163173d00b49b2": {
+      "words": "Find the letter N!",
+      "takes": 5
+    },
+    "1638b4a5fc5078": {
+      "words": "16 moons!",
+      "takes": 5
+    },
+    "163d50ba0ae703": {
+      "words": "Find the number 13!",
+      "takes": 5
+    },
+    "164f9be3b9b97c": {
+      "words": "2 fish!",
+      "takes": 5
+    },
+    "16567b30664dda": {
+      "words": "19 stars!",
+      "takes": 5
+    },
+    "16667bf57a5005": {
+      "words": "Find the number 2!",
+      "takes": 5
+    },
+    "167728e1d847cd": {
+      "words": "15 whales!",
+      "takes": 5
+    },
+    "1683d66307dd9b": {
+      "words": "Not 11.",
+      "takes": 5
+    },
+    "16aa890d6f5111": {
+      "words": "Not 3.",
+      "takes": 5
+    },
+    "16b3ade51585fe": {
+      "words": "Purple! Like an eggplant.",
+      "takes": 5
+    },
+    "16b67d1b51507d": {
+      "words": "13 comets!",
+      "takes": 5
+    },
+    "16d47a5655eb18": {
+      "words": "20 balls!",
+      "takes": 5
+    },
+    "16d86832ecace2": {
+      "words": "That's brown.",
+      "takes": 5
+    },
+    "16e63261b18dc8": {
+      "words": "15 aliens!",
+      "takes": 5
+    },
+    "16ed4e532b8dab": {
+      "words": "18 comets!",
+      "takes": 5
+    },
+    "171cbd1b3dfa4b": {
+      "words": "Amazing!",
+      "takes": 6
+    },
+    "171f91ef900adc": {
+      "words": "Let's count the planets together!",
+      "takes": 5
+    },
+    "17200675ad62ce": {
+      "words": "20 butterflies!",
+      "takes": 5
+    },
+    "17242d0d92ef4b": {
+      "words": "Find the letter I!",
+      "takes": 5
+    },
+    "172f86e991c4c3": {
+      "words": "1 tree!",
+      "takes": 5
+    },
+    "17335677ae18d7": {
+      "words": "4 flowers!",
+      "takes": 5
+    },
+    "1733b28e0d84d9": {
+      "words": "15 trees!",
+      "takes": 5
+    },
+    "173aaeb3dd284d": {
+      "words": "18 strawberries!",
+      "takes": 5
+    },
+    "173f83b7c6518f": {
+      "words": "4 aliens!",
+      "takes": 5
+    },
+    "173fc51910325f": {
+      "words": "A family of whales sings a song. How many whales?",
+      "takes": 5
+    },
+    "174afe5586b0e6": {
+      "words": "17 butterflies!",
+      "takes": 5
+    },
+    "1750c52625a11b": {
+      "words": "13 stars!",
+      "takes": 5
+    },
+    "175262a5dddd42": {
+      "words": "2 bones!",
+      "takes": 5
+    },
+    "1753d266246508": {
+      "words": "7 turtles!",
+      "takes": 5
+    },
+    "175d3015f95b09": {
+      "words": "17 balls!",
+      "takes": 5
+    },
+    "1764e0adfa5258": {
+      "words": "12 whales!",
+      "takes": 5
+    },
+    "1791e6623ad091": {
+      "words": "That's 6.",
+      "takes": 5
+    },
+    "17a5c37b7fb84c": {
+      "words": "Hooray! You did it! Give me a high five!",
+      "takes": 5
+    },
+    "17a67cb033e209": {
+      "words": "12!",
+      "takes": 8
+    },
+    "17ae857392846d": {
+      "words": "Find the letter P!",
+      "takes": 5
+    },
+    "17af08ce51b42c": {
+      "words": "Find the letter R!",
+      "takes": 5
+    },
+    "17cc2bf63790ef": {
+      "words": "19 bones!",
+      "takes": 5
+    },
+    "17d479e88ec2c0": {
+      "words": "8 apples!",
+      "takes": 5
+    },
+    "17d899f31bc396": {
+      "words": "Yellow! Like a banana.",
+      "takes": 5
+    },
+    "17e23efae64917": {
+      "words": "16 carrots!",
+      "takes": 5
+    },
+    "17e96834c8a37c": {
+      "words": "Here are 9 dots.",
+      "takes": 5
+    },
+    "180045df091f1e": {
+      "words": "12 fish!",
+      "takes": 5
+    },
+    "18061db913eb2b": {
+      "words": "That's N.",
+      "takes": 5
+    },
+    "180ce3842f0b24": {
+      "words": "4 butterflies!",
+      "takes": 5
+    },
+    "181b174aca3631": {
+      "words": "14 crabs!",
+      "takes": 5
+    },
+    "1820d243efe478": {
+      "words": "12 aliens!",
+      "takes": 5
+    },
+    "182e08533127ce": {
+      "words": "11 whales!",
+      "takes": 5
+    },
+    "184da1c6ccb20b": {
+      "words": "Here are 3 dots.",
+      "takes": 5
+    },
+    "18519fa41a05e5": {
+      "words": "8 flowers!",
+      "takes": 5
+    },
+    "185b7b8a528bc1": {
+      "words": "5 comets!",
+      "takes": 5
+    },
+    "186b80fff8dafc": {
+      "words": "7 whales!",
+      "takes": 5
+    },
+    "1884b4ba974a51": {
+      "words": "20 squirrels!",
+      "takes": 5
+    },
+    "1889bc940056fa": {
+      "words": "13 crabs!",
+      "takes": 5
+    },
+    "1899d59447acc3": {
+      "words": "Not 15.",
+      "takes": 5
+    },
+    "18a409a4a30d03": {
+      "words": "15 shells!",
+      "takes": 5
+    },
+    "18bfb7933adea9": {
+      "words": "4 squirrels!",
+      "takes": 5
+    },
+    "18c51a35f39052": {
+      "words": "Find the number 18!",
+      "takes": 5
+    },
+    "18c77b02742a31": {
+      "words": "18 stars!",
+      "takes": 5
+    },
+    "18e3638a071cf7": {
+      "words": "9 planets!",
+      "takes": 5
+    },
+    "18eea502d7a7b2": {
+      "words": "That's Q.",
+      "takes": 5
+    },
+    "19084122b1a889": {
+      "words": "17 bones!",
+      "takes": 5
+    },
+    "190bf3ebf0b505": {
+      "words": "Pink! Like a pig.",
+      "takes": 5
+    },
+    "191c6238fa26fb": {
+      "words": "D! D is for Dog.",
+      "takes": 5
+    },
+    "191d603e05e54d": {
+      "words": "18 birds!",
+      "takes": 5
+    },
+    "1928bb92fe75ff": {
+      "words": "15 squirrels!",
+      "takes": 5
+    },
+    "192c8102b5a8a4": {
+      "words": "3 moons!",
+      "takes": 5
+    },
+    "193bba6d4cb20d": {
+      "words": "Super!",
+      "takes": 6
+    },
+    "1947265cd2c5d6": {
+      "words": "10 aliens!",
+      "takes": 5
+    },
+    "194b9b336f07fd": {
+      "words": "12 stars!",
+      "takes": 5
+    },
+    "19517033ed4ef7": {
+      "words": "6 birds!",
+      "takes": 5
+    },
+    "195299ff74294f": {
+      "words": "Find the number 10!",
+      "takes": 5
+    },
+    "195507f0045b18": {
+      "words": "6 turtles!",
+      "takes": 5
+    },
+    "19654cd0e7df9c": {
+      "words": "Find the number 15!",
+      "takes": 5
+    },
+    "19694b194b265c": {
+      "words": "Find the letter T!",
+      "takes": 5
+    },
+    "196b5eaf2e7944": {
+      "words": "Here are 17 dots.",
+      "takes": 5
+    },
+    "197d8a0c3e64b7": {
+      "words": "What shape is this?",
+      "takes": 6
+    },
+    "197f42bba72ffe": {
+      "words": "That's right!",
+      "takes": 6
+    },
+    "198eabf6d655a2": {
+      "words": "8 balls!",
+      "takes": 5
+    },
+    "199d0928e44a97": {
+      "words": "Great job!",
+      "takes": 6
+    },
+    "19b3ab2a522809": {
+      "words": "17 crabs!",
+      "takes": 5
+    },
+    "19b596acd22371": {
+      "words": "5!",
+      "takes": 8
+    },
+    "19c972adae7257": {
+      "words": "11 carrots!",
+      "takes": 5
+    },
+    "19d06134682b1a": {
+      "words": "6 comets!",
+      "takes": 5
+    },
+    "19d0af3926b93e": {
+      "words": "7 flowers!",
+      "takes": 5
+    },
+    "19e12510290987": {
+      "words": "4 moons!",
+      "takes": 5
+    },
+    "19e22f239be5de": {
+      "words": "Yum yum!",
+      "takes": 5
+    },
+    "19f44873ce915d": {
+      "words": "17 turtles!",
+      "takes": 5
+    },
+    "19fde7bac4303e": {
+      "words": "Butterflies come to say hello. How many butterflies?",
+      "takes": 5
+    },
+    "1a045f855cec5b": {
+      "words": "12 turtles!",
+      "takes": 5
+    },
+    "1a0b655913b819": {
+      "words": "7 comets!",
+      "takes": 5
+    },
+    "1a133e5ab82aac": {
+      "words": "15 bones!",
+      "takes": 5
+    },
+    "1a2ae7681ba45a": {
+      "words": "Can you find red?",
+      "takes": 5
+    },
+    "1a47c6ada27bb0": {
+      "words": "2 planets!",
+      "takes": 5
+    },
+    "1a4be087392bdf": {
+      "words": "7!",
+      "takes": 8
+    },
+    "1a5fac53b2430d": {
+      "words": "1 crab!",
+      "takes": 5
+    },
+    "1a63c680971547": {
+      "words": "16 planets!",
+      "takes": 5
+    },
+    "1a6767515ad55d": {
+      "words": "13 trees!",
+      "takes": 5
+    },
+    "1a780cac621b8b": {
+      "words": "7 carrots!",
+      "takes": 5
+    },
+    "1a79560b3e9ddc": {
+      "words": "2 strawberries!",
+      "takes": 5
+    },
+    "1a797a56729233": {
+      "words": "That's 9.",
+      "takes": 5
+    },
+    "1a7a6e4b06a4c8": {
+      "words": "Star! Like a twinkly star.",
+      "takes": 5
+    },
+    "1a7e0121cf24a9": {
+      "words": "10 birds!",
+      "takes": 5
+    },
+    "1a7e1c11b27452": {
+      "words": "3 balls!",
+      "takes": 5
+    },
+    "1a82d0e0770780": {
+      "words": "14 moons!",
+      "takes": 5
+    },
+    "1a8f6ba3477c2b": {
+      "words": "20 flowers!",
+      "takes": 5
+    },
+    "1aa31c625979b3": {
+      "words": "Find the letter K!",
+      "takes": 5
+    },
+    "1aba3f984a8897": {
+      "words": "That's circle.",
+      "takes": 5
+    },
+    "1ac7c6111ad7cb": {
+      "words": "6 moons!",
+      "takes": 5
+    },
+    "1ad0d93599b960": {
+      "words": "That's 16.",
+      "takes": 5
+    },
+    "1ad622001bd7b5": {
+      "words": "That's O.",
+      "takes": 5
+    },
+    "1ae94aed0d5c35": {
+      "words": "That's all of them!",
+      "takes": 6
+    },
+    "1aec19ad6252dd": {
+      "words": "13 planets!",
+      "takes": 5
+    },
+    "1affbb8146b234": {
+      "words": "The rocket lands safely back home. What a trip! Great counting!",
+      "takes": 5
+    },
+    "1b0e943a00dd70": {
+      "words": "14 trees!",
+      "takes": 5
+    },
+    "1b111861469ecd": {
+      "words": "5 shells!",
+      "takes": 5
+    },
+    "1b1311f6d9979b": {
+      "words": "20 birds!",
+      "takes": 5
+    },
+    "1b265e4d386ad3": {
+      "words": "Heart! Like a valentine.",
+      "takes": 5
+    },
+    "1b39dc058a7c28": {
+      "words": "10 trees!",
+      "takes": 5
+    },
+    "1b3bd9c1fd0bd3": {
+      "words": "E! E is for Elephant.",
+      "takes": 5
+    },
+    "1b4151a13ff03c": {
+      "words": "13 apples!",
+      "takes": 5
+    },
+    "1b4d8dfcc83f64": {
+      "words": "12 carrots!",
+      "takes": 5
+    },
+    "1b5b8a4d0bc9a3": {
+      "words": "10 planets!",
+      "takes": 5
+    },
+    "1b6f11bd0942c6": {
+      "words": "Not 6.",
+      "takes": 5
+    },
+    "1b75cd11727855": {
+      "words": "17 moons!",
+      "takes": 5
+    },
+    "1b81677cb8c51e": {
+      "words": "That's K.",
+      "takes": 5
+    },
+    "1b901b8fb89bb8": {
+      "words": "12 squirrels!",
+      "takes": 5
+    },
+    "1b905858cb06fa": {
+      "words": "5 birds!",
+      "takes": 5
+    },
+    "1b96f86c57dece": {
+      "words": "16 birds!",
+      "takes": 5
+    },
+    "1ba15ec640cc7a": {
+      "words": "15 butterflies!",
+      "takes": 5
+    },
+    "1bc0c9e09a7a98": {
+      "words": "Find the number 8!",
+      "takes": 5
+    },
+    "1bc441334bd406": {
+      "words": "1!",
+      "takes": 8
+    },
+    "1bc540b7b7b003": {
+      "words": "3 whales!",
+      "takes": 5
+    },
+    "1bd3492b58c2bd": {
+      "words": "Z! Z is for Zebra.",
+      "takes": 5
+    },
+    "1be73b292bc486": {
+      "words": "Octopus finds pretty shells. How many shells?",
+      "takes": 5
+    },
+    "1bf9513439fa45": {
+      "words": "Find the heart!",
+      "takes": 5
+    },
+    "1c1c8c06f867f0": {
+      "words": "9 flowers!",
+      "takes": 5
+    },
+    "1c29133573df14": {
+      "words": "That's D.",
+      "takes": 5
+    },
+    "1c3f1a45afab73": {
+      "words": "Look at all the moons! How many moons?",
+      "takes": 5
+    },
+    "1c46d294e12caa": {
+      "words": "Find the number 7!",
+      "takes": 5
+    },
+    "1c53ce963f29b6": {
+      "words": "12 shells!",
+      "takes": 5
+    },
+    "1c5ce3f32c1ad5": {
+      "words": "7 butterflies!",
+      "takes": 5
+    },
+    "1c5d1a8d4af480": {
+      "words": "5 aliens!",
+      "takes": 5
+    },
+    "1c5f10bc2880ad": {
+      "words": "17 squirrels!",
+      "takes": 5
+    },
+    "1c619137339984": {
+      "words": "That's H.",
+      "takes": 5
+    },
+    "1c7de6259e18de": {
+      "words": "Not 17.",
+      "takes": 5
+    },
+    "1c9224824b509c": {
+      "words": "Not 5.",
+      "takes": 5
+    },
+    "1cbc57b7340755": {
+      "words": "2 trees!",
+      "takes": 5
+    },
+    "1cbe8d0bae8cff": {
+      "words": "9 aliens!",
+      "takes": 5
+    },
+    "1cdd50a4ee093b": {
+      "words": "20 bones!",
+      "takes": 5
+    },
+    "1ce44e0a83c7d3": {
+      "words": "13 balls!",
+      "takes": 5
+    },
+    "1ce972089ff596": {
+      "words": "1 moon!",
+      "takes": 5
+    },
+    "1cee43df96eb57": {
+      "words": "18 squirrels!",
+      "takes": 5
+    },
+    "1cfbac7bf92049": {
+      "words": "12 moons!",
+      "takes": 5
+    },
+    "1d084b93226c1e": {
+      "words": "2 squirrels!",
+      "takes": 5
+    },
+    "1d1cfc865553aa": {
+      "words": "4 balls!",
+      "takes": 5
+    },
+    "1d225f8e2cb38d": {
+      "words": "15 turtles!",
+      "takes": 5
+    },
+    "1d4171c7d1e651": {
+      "words": "Find the letter C!",
+      "takes": 5
+    },
+    "1d45bff76b44f0": {
+      "words": "That's T.",
+      "takes": 5
+    },
+    "1d60f0bf81e229": {
+      "words": "Hello, aliens!",
+      "takes": 5
+    },
+    "1d84f597c4bef6": {
+      "words": "F! F is for Fish.",
+      "takes": 5
+    },
+    "1d92b9d50bbd7d": {
+      "words": "15 planets!",
+      "takes": 5
+    },
+    "1d9ca9a70f7a8f": {
+      "words": "That's 8.",
+      "takes": 5
+    },
+    "1dbec38cdb4474": {
+      "words": "6!",
+      "takes": 8
+    },
+    "1dc71595f707de": {
+      "words": "Find the letter X!",
+      "takes": 5
+    },
+    "1dd2f436460d5a": {
+      "words": "8 shells!",
+      "takes": 5
+    },
+    "1ded45326a9196": {
+      "words": "11 shells!",
+      "takes": 5
+    },
+    "1df4d097cb4138": {
+      "words": "11 fish!",
+      "takes": 5
+    },
+    "1e08e708c28702": {
+      "words": "17 comets!",
+      "takes": 5
+    },
+    "1e0cd5e4c01afc": {
+      "words": "10 fish!",
+      "takes": 5
+    },
+    "1e1ac2b6a9143f": {
+      "words": "2 butterflies!",
+      "takes": 5
+    },
+    "1e1e037f746732": {
+      "words": "11!",
+      "takes": 8
+    },
+    "1e2e3cefb6eaa4": {
+      "words": "12 flowers!",
+      "takes": 5
+    },
+    "1e372825d88d72": {
+      "words": "That's purple.",
+      "takes": 5
+    },
+    "1e3a95927ee23e": {
+      "words": "Not 2.",
+      "takes": 5
+    },
+    "1e3c419b47d5ea": {
+      "words": "That's red.",
+      "takes": 5
+    },
+    "1e418f81c7a87f": {
+      "words": "W! W is for Whale.",
+      "takes": 5
+    },
+    "1e6cf81a59eff0": {
+      "words": "Let's count the crabs together!",
+      "takes": 5
+    },
+    "1e7a0a58bd53d4": {
+      "words": "That's 18.",
+      "takes": 5
+    },
+    "1e81ecd4062cd2": {
+      "words": "Let's play with colors!",
+      "takes": 5
+    },
+    "1e853e7232facf": {
+      "words": "Find the letter Q!",
+      "takes": 5
+    },
+    "1e870b69a0683a": {
+      "words": "20!",
+      "takes": 8
+    },
+    "1e8b770c07bb5b": {
+      "words": "7 crabs!",
+      "takes": 5
+    },
+    "1e94ed9a9d703a": {
+      "words": "8 strawberries!",
+      "takes": 5
+    },
+    "1e97b7685bec68": {
+      "words": "16 apples!",
+      "takes": 5
+    },
+    "1eac5f8ac78191": {
+      "words": "11 crabs!",
+      "takes": 5
+    },
+    "1eb61e57b3ff82": {
+      "words": "Not 13.",
+      "takes": 5
+    },
+    "1ebd4fa2575008": {
+      "words": "3 shells!",
+      "takes": 5
+    },
+    "1ecbaf80ba2f8e": {
+      "words": "Find the letter L!",
+      "takes": 5
+    },
+    "1edb5de20e784d": {
+      "words": "5 balls!",
+      "takes": 5
+    },
+    "1ede5ec6df66e9": {
+      "words": "Hello, turtles!",
+      "takes": 5
+    },
+    "1ef9c1a0c92803": {
+      "words": "2 comets!",
+      "takes": 5
+    },
+    "1efe66507aa5da": {
+      "words": "10!",
+      "takes": 8
+    },
+    "1f07929f841006": {
+      "words": "12 bones!",
+      "takes": 5
+    },
+    "1f0828e31398d3": {
+      "words": "1 alien!",
+      "takes": 5
+    },
+    "1f1b9242f95afd": {
+      "words": "Find the letter B!",
+      "takes": 5
+    },
+    "1f25891bf06f06": {
+      "words": "O! O is for Octopus.",
+      "takes": 5
+    },
+    "1f33b0fde7c900": {
+      "words": "Strawberries for dessert! How many strawberries?",
+      "takes": 5
+    },
+    "1f3edb973f7055": {
+      "words": "Puppy hears birds singing. How many birds?",
+      "takes": 5
+    },
+    "1f407015974422": {
+      "words": "19 butterflies!",
+      "takes": 5
+    },
+    "1f4a68bc20d438": {
+      "words": "Find the number 4!",
+      "takes": 5
+    },
+    "1f50495ab7ed55": {
+      "words": "7 planets!",
+      "takes": 5
+    },
+    "1f5575d68c4538": {
+      "words": "9!",
+      "takes": 8
+    },
+    "1f6e755330b3bc": {
+      "words": "18 apples!",
+      "takes": 5
+    },
+    "1f7997ad662479": {
+      "words": "Hello, friends!",
+      "takes": 5
+    },
+    "1f7b0c142877b7": {
+      "words": "13 strawberries!",
+      "takes": 5
+    },
+    "1f81dbda0b20e4": {
+      "words": "Blub blub!",
+      "takes": 5
+    },
+    "1f829cb8ea69dd": {
+      "words": "Find the diamond!",
+      "takes": 5
+    },
+    "1f86baabb09a5f": {
+      "words": "That's X.",
+      "takes": 5
+    },
+    "1fa31c91f7cf68": {
+      "words": "Bunny picks apples from the tree. How many apples?",
+      "takes": 5
+    },
+    "1fb301e81ad044": {
+      "words": "6 flowers!",
+      "takes": 5
+    },
+    "1fcb40afb4c5c3": {
+      "words": "8 comets!",
+      "takes": 5
+    },
+    "1fe0ca921541dd": {
+      "words": "19 balls!",
+      "takes": 5
+    },
+    "1ff329e5c7d4ee": {
+      "words": "3 bones!",
+      "takes": 5
+    }
+  }
+}

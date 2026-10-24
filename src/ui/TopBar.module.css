@@ -1,0 +1,36 @@
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 4px;
+}
+
+.middle {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.iconButton,
+.spacer {
+  flex: none;
+  width: 60px;
+  height: 60px;
+}
+
+.iconButton {
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 4px 0 color-mix(in srgb, var(--tint) 30%, #ccc);
+  font-family: var(--emoji-font);
+  font-size: 28px;
+}
+
+.iconButton:active {
+  translate: 0 4px;
+  box-shadow: none;
+}

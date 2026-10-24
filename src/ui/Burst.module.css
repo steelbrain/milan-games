@@ -1,0 +1,37 @@
+.burst {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.piece {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 20px;
+  margin: -10px 0 0 -7px;
+  border-radius: 4px;
+  background: var(--color);
+  opacity: 0;
+  rotate: var(--angle);
+  animation: fly 900ms cubic-bezier(0.2, 0.7, 0.3, 1) var(--delay) both;
+}
+
+@keyframes fly {
+  0% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 0.4;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    /* Each piece is pre-rotated, so moving "up" in its own frame spreads them in a ring. */
+    transform: translateY(calc(var(--distance) * -1));
+    scale: 1;
+  }
+}

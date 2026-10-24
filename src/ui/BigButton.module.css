@@ -1,0 +1,56 @@
+.button {
+  --depth: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  min-height: 72px;
+  padding: 0.45em 1.3em;
+  border: none;
+  border-radius: 999px;
+  font-size: clamp(1.4rem, 3.6vw, 2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  translate: 0 0;
+  transition:
+    translate 80ms ease-out,
+    box-shadow 80ms ease-out;
+}
+
+.button:active:not(:disabled) {
+  translate: 0 var(--depth);
+  box-shadow: 0 0 0 transparent;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.primary {
+  background: var(--tint);
+  color: #fff;
+  box-shadow: 0 var(--depth) 0 color-mix(in srgb, var(--tint) 65%, black);
+  text-shadow: 0 2px 0 rgb(0 0 0 / 0.15);
+}
+
+.plain {
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 var(--depth) 0 color-mix(in srgb, var(--tint) 35%, #ccc);
+}
+
+.icon {
+  font-family: var(--emoji-font);
+  font-size: 1.2em;
+}
+
+.pulse {
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    scale: 1.07;
+  }
+}

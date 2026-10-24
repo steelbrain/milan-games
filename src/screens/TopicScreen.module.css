@@ -1,0 +1,120 @@
+.title {
+  margin: 0;
+  font-size: clamp(1.8rem, 6vw, 2.8rem);
+  color: var(--tint);
+  text-shadow: 0 3px 0 color-mix(in srgb, var(--tint) 50%, black);
+  white-space: nowrap;
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(20px, 4vh, 40px);
+  padding: 8px 0 24px;
+}
+
+.question {
+  margin: 0 0 12px;
+  padding: 0;
+  font-size: clamp(1.3rem, 4vw, 1.8rem);
+  font-weight: 700;
+  text-align: center;
+}
+
+.levels {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.levelOptions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.level {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-width: 120px;
+  min-height: 64px;
+  padding: 0.3em 1em;
+  border: 5px solid #fff;
+  border-radius: 999px;
+  background: #fff;
+  font-size: clamp(1.3rem, 4vw, 1.8rem);
+  font-weight: 700;
+  box-shadow: 0 5px 0 color-mix(in srgb, var(--tint) 30%, #ccc);
+  cursor: pointer;
+}
+
+.selected {
+  border-color: color-mix(in srgb, var(--tint) 60%, black);
+  background: var(--tint);
+  color: #fff;
+}
+
+.level:has(.radio:focus-visible) {
+  outline: 4px solid #3a86ff;
+  outline-offset: 3px;
+}
+
+/* Visually hidden but still focusable and announced. */
+.radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.activitiesSection {
+  width: min(100%, 900px);
+}
+
+.activities {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.activities > li {
+  flex: 0 1 min(100%, 380px);
+}
+
+.activity {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 96px;
+  padding: 12px 20px;
+  border-radius: 28px;
+  background: #fff;
+  color: var(--ink);
+  font-size: clamp(1.3rem, 3.6vw, 1.7rem);
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 8px 0 color-mix(in srgb, var(--tint) 45%, #bbb);
+  transition:
+    translate 80ms ease-out,
+    box-shadow 80ms ease-out;
+}
+
+.activity:active {
+  translate: 0 8px;
+  box-shadow: none;
+}
+
+.activityEmoji {
+  flex: none;
+  font-family: var(--emoji-font);
+  font-size: 56px;
+  line-height: 1;
+}
