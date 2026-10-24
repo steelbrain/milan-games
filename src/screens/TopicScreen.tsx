@@ -1,10 +1,11 @@
-import { Link, Navigate, useNavigate, useParams } from 'react-router';
+import { Link, Navigate, useParams } from 'react-router';
 import { useAnnouncement, useAudio } from '../services/audio';
 import { usePersistentState } from '../services/usePersistentState';
 import { activityChoices, findTopic, paths, type Topic } from '../topics/topics';
 import { cx } from '../ui/cx';
 import { Screen } from '../ui/Screen';
 import { TopBar } from '../ui/TopBar';
+import { DEEPER, useExit } from '../ui/useExit';
 import styles from './TopicScreen.module.css';
 
 export function TopicScreen() {
@@ -16,7 +17,7 @@ export function TopicScreen() {
 
 /** Start options for a topic: pick a level, then pick what to play. */
 function TopicMenu({ topic }: { topic: Topic }) {
-  const navigate = useNavigate();
+  const exit = useExit(paths.home);
   const { play } = useAudio();
   useAnnouncement(topic.greeting);
 
@@ -29,7 +30,7 @@ function TopicMenu({ topic }: { topic: Topic }) {
 
   return (
     <Screen tint={topic.tint}>
-      <TopBar onBack={() => void navigate(paths.home)} backLabel="Home" backIcon="🏠">
+      <TopBar onBack={exit} backLabel="Home" backIcon="🏠">
         <h1 className={styles.title}>
           <span aria-hidden="true">{topic.emoji}</span> {topic.title}
         </h1>
@@ -68,6 +69,7 @@ function TopicMenu({ topic }: { topic: Topic }) {
               <li key={activity.id}>
                 <Link
                   to={paths.play(topic.id, levelId, activity.id)}
+                  state={DEEPER}
                   className={styles.activity}
                   onClick={() => play('tap')}
                 >

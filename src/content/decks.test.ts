@@ -61,7 +61,7 @@ describe('letters', () => {
         text: 'Find the letter a!',
         speech: 'Find the letter A!',
       });
-      expect(deck.describe(a).map(spokenText)).toEqual(['A! A is for Apple.']);
+      expect(deck.describe(a).map(spokenText)).toEqual(['A is for Apple!']);
     }
     expect(createLetterDeck('upper').cards[0]?.name).toEqual({ text: 'A' });
   });
@@ -69,7 +69,8 @@ describe('letters', () => {
   it('describes letters with their word', () => {
     const deck = createLetterDeck('upper');
     const b = deck.cards.find((card) => card.id === 'B');
-    expect(b && caption(deck.describe(b))).toBe('B! B is for Ball.');
+    // Just once: "B! B is for Ball." sounded like a stutter.
+    expect(b && caption(deck.describe(b))).toBe('B is for Ball!');
   });
 });
 

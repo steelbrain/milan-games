@@ -9,7 +9,7 @@ export interface Line {
 }
 
 /**
- * Lines said one after another, like "Great job!" then "B! B is for Ball.". Each line is one
+ * Lines said one after another, like "Great job!" then "B is for Ball!". Each line is one
  * pre-recorded clip, so splitting sentences into reusable lines keeps the number of clips small.
  */
 export type Utterance = readonly Line[];

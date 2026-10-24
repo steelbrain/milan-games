@@ -102,6 +102,16 @@ describe('createOfflineSaver', () => {
     expect(await saver.savedVoices()).toEqual([]);
   });
 
+  it('keeps what is saved when the speech manifest is missing', async () => {
+    const { saver, speech, reaches } = setup({ manifest: { voices: [], clips: {} } });
+    speech.fill(ALL);
+    expect(await reaches('idle')).toEqual({ phase: 'idle', saved: 0, total: 0 });
+
+    saver.start();
+    expect((await reaches('failed')).problem).toBe('network');
+    expect([...speech.entries.keys()]).toEqual(ALL);
+  });
+
   it('starts by counting what is already saved', async () => {
     const { speech, reaches } = setup();
     speech.fill(ALL.slice(0, 2));

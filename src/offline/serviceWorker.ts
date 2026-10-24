@@ -52,6 +52,8 @@ export function installServiceWorker(
   const shellUrls = new Set(shell.files.map(resolve));
   const page = resolve('index.html');
   const speech = resolve('speech/');
+  // Vite puts a content hash in these names, so a saved copy can never be out of date.
+  const hashed = resolve('assets/');
 
   // By URL alone: the page asks for scripts and styles in CORS mode, and a server that sends
   // "Vary: Origin" would otherwise make them miss the copies saved without one.
@@ -62,13 +64,14 @@ export function installServiceWorker(
     return (await saved(request.url, cacheName)) ?? scope.fetch(request);
   }
 
-  async function networkFirst(request: Request): Promise<Response> {
+  /** Tries the network, and falls back to the saved `fallbackUrl` if it fails or is slow. */
+  async function networkFirst(request: Request, fallbackUrl: string): Promise<Response> {
+    const response = scope.fetch(request);
     try {
-      return await withTimeout(scope.fetch(request), networkTimeoutMs);
-    } catch (error) {
-      const copy = await saved(page, shellCache);
-      if (copy) return copy;
-      throw error;
+      return await withTimeout(response, networkTimeoutMs);
+    } catch {
+      // Without a saved copy, a slow network is still better than none.
+      return (await saved(fallbackUrl, shellCache)) ?? response;
     }
   }
 
@@ -98,8 +101,15 @@ export function installServiceWorker(
   scope.addEventListener('fetch', (event) => {
     const { request } = event;
     if (request.method !== 'GET') return;
-    if (request.mode === 'navigate') event.respondWith(networkFirst(request));
-    else if (shellUrls.has(request.url)) event.respondWith(cacheFirst(shellCache, request));
+    if (request.mode === 'navigate') event.respondWith(networkFirst(request, page));
+    else if (shellUrls.has(request.url))
+      // Files that keep their name across builds, such as speech/manifest.json, must match the
+      // page the network just sent, so they too try the network first.
+      event.respondWith(
+        request.url.startsWith(hashed)
+          ? cacheFirst(shellCache, request)
+          : networkFirst(request, request.url),
+      );
     else if (request.url.startsWith(speech)) event.respondWith(cacheFirst(SPEECH_CACHE, request));
   });
 }

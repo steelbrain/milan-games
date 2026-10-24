@@ -114,6 +114,24 @@ describe('installServiceWorker', () => {
     await expect(request('', { mode: 'navigate' })).rejects.toThrow('Failed to fetch');
   });
 
+  it('waits for a slow network when nothing is saved yet', async () => {
+    const { request } = setup(
+      (r) => new Promise((resolve) => setTimeout(() => resolve(new Response(`late ${r.url}`)), 50)),
+    );
+    expect(await request('', { mode: 'navigate' })).toBe(`late ${ORIGIN}/`);
+  });
+
+  it('loads files that keep their name across builds from the network first', async () => {
+    let network = online;
+    const { lifecycle, request } = setup((r) => network(r));
+    await lifecycle('install');
+
+    network = (r) => Promise.resolve(new Response(`new ${r.url}`));
+    expect(await request('speech/manifest.json')).toBe(`new ${ORIGIN}/speech/manifest.json`);
+    network = offline;
+    expect(await request('speech/manifest.json')).toBe(`network ${ORIGIN}/speech/manifest.json`);
+  });
+
   it("serves this build's files from the saved copy", async () => {
     const { fetch, lifecycle, request } = setup();
     await lifecycle('install');

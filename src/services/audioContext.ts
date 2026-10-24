@@ -7,7 +7,8 @@ interface AudioSessionNavigator {
 
 /**
  * One shared, lazily created AudioContext for speech clips and sound effects. Each call also
- * resumes it if the browser suspended it, which is how audio gets unlocked by a first tap.
+ * resumes it if the browser paused it, which is how audio gets unlocked by a first tap. iOS
+ * also pauses it as "interrupted" for a phone call or Siri, and leaves it that way.
  */
 export function createAudioContextGetter<T extends ResumableAudioContext = AudioContext>(
   create: () => T | undefined = createBrowserAudioContext as () => T | undefined,
@@ -25,7 +26,9 @@ export function createAudioContextGetter<T extends ResumableAudioContext = Audio
         failed = true;
       }
     }
-    if (context?.state === 'suspended') void context.resume().catch(() => undefined);
+    if (context && context.state !== 'running' && context.state !== 'closed') {
+      void context.resume().catch(() => undefined);
+    }
     return context;
   };
 }

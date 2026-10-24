@@ -62,6 +62,10 @@ interface PlannedFile {
   readonly url: string;
 }
 
+export function percentSaved({ saved, total }: OfflineStatus): number {
+  return total > 0 ? Math.floor((saved * 100) / total) : 0;
+}
+
 /** Waits 1 s, 2 s, 4 s… between tries of one file, up to 15 s. */
 export const retryDelay = (failures: number): number =>
   Math.min(1000 * 2 ** (failures - 1), 15_000);
@@ -87,16 +91,21 @@ export function createOfflineSaver({
 
   // Every take of every line in every voice, one voice after another, so an interrupted
   // download still leaves whole voices to play offline.
-  const planned: Promise<readonly PlannedFile[]> = manifest.then((available) =>
-    (available?.voices ?? []).flatMap((voice) =>
+  // Rejects without a manifest: an empty plan would look "saved" and delete every saved clip.
+  const planned: Promise<readonly PlannedFile[]> = manifest.then((available) => {
+    const files = (available?.voices ?? []).flatMap((voice) =>
       Object.entries(available?.clips ?? {}).flatMap(([id, clip]) =>
         Array.from({ length: clip.takes }, (_, take) => ({
           voice: voice.id,
           url: resolveUrl(clipUrl(voice.id, id, take)),
         })),
       ),
-    ),
-  );
+    );
+    if (files.length === 0) throw new Error('No speech manifest');
+    return files;
+  });
+  // Each use handles the rejection itself.
+  planned.catch(() => undefined);
 
   function set(next: OfflineStatus): void {
     current = next;
@@ -142,7 +151,7 @@ export function createOfflineSaver({
     const report = () => {
       const phase = waiting > 0 ? 'waiting' : 'downloading';
       // Once per percent is plenty for a progress bar, and spares thousands of re-renders.
-      const progress = `${phase} ${Math.floor((saved * 100) / Math.max(total, 1))}`;
+      const progress = `${phase} ${percentSaved({ phase, saved, total })}`;
       if (progress !== shown || saved === total) set({ phase, saved, total });
       shown = progress;
     };
@@ -284,14 +293,15 @@ function waitForOnline(
 
 function abortableSleep(ms: number, signal: AbortSignal): Promise<void> {
   return new Promise((resolve, reject) => {
-    const timer = setTimeout(resolve, ms);
-    signal.addEventListener(
-      'abort',
-      () => {
-        clearTimeout(timer);
-        reject(signal.reason as Error);
-      },
-      { once: true },
-    );
+    const abort = () => {
+      clearTimeout(timer);
+      reject(signal.reason as Error);
+    };
+    // Removed once the time is up, so retries don't pile up listeners on a long download.
+    const timer = setTimeout(() => {
+      signal.removeEventListener('abort', abort);
+      resolve();
+    }, ms);
+    signal.addEventListener('abort', abort, { once: true });
   });
 }

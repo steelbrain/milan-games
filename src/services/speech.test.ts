@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { line } from '../content/line';
 import { chooseVoice, createWebSpeechSpeaker, silentSpeaker } from './speech';
 
@@ -12,6 +12,8 @@ class FakeUtterance {
   pitch = 1;
   volume = 1;
   voice: SpeechSynthesisVoice | null = null;
+  onend: (() => void) | null = null;
+  onerror: (() => void) | null = null;
   readonly text: string;
   constructor(text: string) {
     this.text = text;
@@ -61,7 +63,48 @@ describe('chooseVoice', () => {
   });
 });
 
+/** Whether `finished` has settled by now, without waiting for it. */
+async function hasFinished(finished: Promise<void>): Promise<boolean> {
+  let done = false;
+  void finished.then(() => (done = true));
+  await Promise.resolve();
+  await Promise.resolve();
+  return done;
+}
+
 describe('createWebSpeechSpeaker', () => {
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  it('finishes when the engine says the line is over', async () => {
+    const { synth, spoken } = fakeSynth();
+    const { finished } = speakerFor(synth).say(line('Hello'));
+    expect(await hasFinished(finished)).toBe(false);
+    spoken[0]?.onend?.();
+    expect(await hasFinished(finished)).toBe(true);
+  });
+
+  it('finishes when cut off by the next line or by stop', async () => {
+    const { synth } = fakeSynth();
+    const speaker = speakerFor(synth);
+    const first = speaker.say(line('One'));
+    const second = speaker.say(line('Two'));
+    expect(await hasFinished(first.finished)).toBe(true);
+    speaker.stop();
+    expect(await hasFinished(second.finished)).toBe(true);
+  });
+
+  it("stops waiting for an engine that never says it's done", async () => {
+    vi.useFakeTimers();
+    const { synth } = fakeSynth();
+    const { finished } = speakerFor(synth).say(line('Hello'));
+    vi.advanceTimersByTime(2000);
+    expect(await hasFinished(finished)).toBe(false);
+    vi.advanceTimersByTime(5000);
+    expect(await hasFinished(finished)).toBe(true);
+  });
+
   it('cuts off the previous line and speaks the spoken form', () => {
     const { synth, calls, spoken } = fakeSynth([voice('Samantha', 'en-US')]);
     const speaker = speakerFor(synth);

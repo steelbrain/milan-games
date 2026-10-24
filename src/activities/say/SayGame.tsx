@@ -11,7 +11,7 @@ import { CardExample } from '../../ui/CardExample';
 import { CardFace } from '../../ui/CardFace';
 import { GameFrame } from '../../ui/GameFrame';
 import { PromptBubble } from '../../ui/PromptBubble';
-import { CARD_GAME_FINALE, CARD_GAME_HERO } from '../praise';
+import { CARD_GAME_FINALES, CARD_GAME_HEROES } from '../praise';
 import styles from './SayGame.module.css';
 
 interface SayGameProps {
@@ -27,7 +27,12 @@ export function SayGame({ deck, exitTo }: SayGameProps) {
   const { random } = useServices();
   const session = useGameSession(() => drawSequence(random, deck.cards, ROUNDS_PER_CARD_GAME));
   return (
-    <GameFrame session={session} exitTo={exitTo} hero={CARD_GAME_HERO} finale={CARD_GAME_FINALE}>
+    <GameFrame
+      session={session}
+      exitTo={exitTo}
+      heroes={CARD_GAME_HEROES}
+      finales={CARD_GAME_FINALES}
+    >
       {(card) => (
         <SayRoundView
           card={card}

@@ -56,7 +56,7 @@ export function createLetterDeck(letterCase: LetterCase): Deck {
     askPrompt: line('What letter is this?'),
     describe: (card) => [
       card.example.kind === 'picture'
-        ? phrase`${card.name}! ${card.name} is for ${card.example.word}.`
+        ? phrase`${card.name} is for ${card.example.word}!`
         : phrase`${card.name}!`,
     ],
   };

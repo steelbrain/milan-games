@@ -17,6 +17,8 @@ import {
   layoutItems,
   resetCount,
   storyEnding,
+  tappingTooFast,
+  TOO_FAST,
 } from './countingLogic';
 
 const story = STORIES[0]!;
@@ -134,6 +136,23 @@ describe('counting state', () => {
     expect(reset.counted).toEqual([]);
     expect(reset.answer).toBe(wrong);
     expect(resetCount(reset)).toBe(reset);
+  });
+});
+
+describe('tappingTooFast', () => {
+  const taps = (gapMs: number, count: number = TOO_FAST.taps) =>
+    Array.from({ length: count }, (_, i) => 10_000 + i * gapMs);
+
+  it('spots taps faster than the voice can count', () => {
+    expect(tappingTooFast(taps(300))).toBe(true);
+    expect(tappingTooFast([...taps(2000, 3), ...taps(200).map((t) => t + 9000)])).toBe(true);
+  });
+
+  it('leaves a child counting along alone, however many items there are', () => {
+    expect(tappingTooFast(taps(600))).toBe(false);
+    expect(tappingTooFast(taps(700, 20))).toBe(false);
+    expect(tappingTooFast(taps(100, TOO_FAST.taps - 1))).toBe(false);
+    expect(tappingTooFast([])).toBe(false);
   });
 });
 

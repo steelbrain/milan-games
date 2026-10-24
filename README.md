@@ -88,7 +88,7 @@ ElevenLabs, in four voices (Katie, Lulu, Clara and Zara), and played back with W
 
 1. `src/speech/catalog.ts` lists every line the games can say, built from the same helper
    functions the games use. Long sentences are split into reusable clips, such as "Great job!"
-   followed by "B! B is for Ball.", so ~720 lines cover every combination.
+   followed by "B is for Ball!", so ~720 lines cover every combination.
 2. `npm run speech` records each line in each voice (`scripts/speech/`), trims the silence,
    evens out the loudness across clips and voices, and encodes small AAC files into
    `public/speech/<voice>/`. It only records what is missing, so it is safe to stop and re-run,

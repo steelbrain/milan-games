@@ -3,7 +3,8 @@ import { cx } from '../ui/cx';
 import topBar from '../ui/TopBar.module.css';
 import styles from './Offline.module.css';
 import { OfflineSheet } from './OfflineSheet';
-import { percentSaved, useOfflineStatus } from './useOfflineStatus';
+import { percentSaved } from './offlineSaver';
+import { useOfflineStatus } from './useOfflineStatus';
 
 /** The ✈️ button on the home screen. It shows download progress and opens the offline sheet. */
 export function OfflineButton() {

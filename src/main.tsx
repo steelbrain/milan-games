@@ -7,9 +7,11 @@ import { HashRouter } from 'react-router';
 import { AppProviders } from './app/AppProviders';
 import { AppRoutes } from './app/AppRoutes';
 import { createBrowserServices, unlockAudioOnFirstGesture } from './app/browserServices';
+import { guardDoubleTaps } from './ui/doubleTaps';
 
 const services = createBrowserServices();
 unlockAudioOnFirstGesture(window, services);
+guardDoubleTaps(document);
 
 const root = document.getElementById('root');
 if (!root) throw new Error('Missing #root element');

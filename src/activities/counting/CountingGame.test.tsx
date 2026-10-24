@@ -1,10 +1,12 @@
-import { act, screen, within } from '@testing-library/react';
+import { act, fireEvent, screen, within } from '@testing-library/react';
 import type { UserEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { clickNext, promptText } from '../../test/play';
 import { PRAISE } from '../praise';
 import { renderApp } from '../../test/render';
-import { HELP_STEP_MS } from './CountingGame';
+import { createTestServices } from '../../test/fakes';
+import { HELP_PAUSE_MS, HELP_STEP_MS, SLOW_DOWN_MS } from './CountingGame';
+import { SLOW_DOWN, TOO_FAST } from './countingLogic';
 
 function items(groupName: string): HTMLElement[] {
   return within(screen.getByRole('group', { name: groupName })).getAllByRole('button');
@@ -18,6 +20,11 @@ async function countAll(user: UserEvent, groupName: string): Promise<number> {
   const all = items(groupName);
   for (const item of all) await user.click(item);
   return all.length;
+}
+
+/** Lets fake time pass, including the promise hops between "Count with me" steps. */
+async function wait(ms: number): Promise<void> {
+  await act(() => vi.advanceTimersByTimeAsync(ms));
 }
 
 function answerButton(count: number): HTMLElement {
@@ -133,18 +140,12 @@ describe('CountingGame', () => {
     await user.click(first);
     expect(tally()).toBe('0');
 
-    act(() => {
-      vi.advanceTimersByTime(HELP_STEP_MS);
-    });
+    await wait(HELP_STEP_MS);
     expect(tally()).toBe('1');
     expect(first).toHaveAccessibleName('star 1');
 
     // One more step per remaining item, plus one to notice it is done.
-    for (let step = 2; step <= count + 1; step++) {
-      act(() => {
-        vi.advanceTimersByTime(HELP_STEP_MS);
-      });
-    }
+    for (let step = 2; step <= count + 1; step++) await wait(HELP_STEP_MS);
     expect(tally()).toBe(String(count));
     expect(services.speaker.texts.slice(-2)).toEqual([`${count}!`, "That's all of them!"]);
     expect(screen.getByRole('button', { name: 'Count with me' })).toBeEnabled();
@@ -157,15 +158,72 @@ describe('CountingGame', () => {
     });
     const count = items('stars to count').length;
     await user.click(screen.getByRole('button', { name: 'Count with me' }));
-    act(() => {
-      vi.advanceTimersByTime(HELP_STEP_MS);
-    });
+    await wait(HELP_STEP_MS);
     await user.click(answerButton(count));
-    for (let step = 0; step < 5; step++) {
-      act(() => {
-        vi.advanceTimersByTime(HELP_STEP_MS);
-      });
-    }
+    for (let step = 0; step < 5; step++) await wait(HELP_STEP_MS);
+    expect(tally()).toBe('1');
+  });
+
+  it('lets each line finish before counting on, so nothing gets cut off', async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+    const { user, services } = renderApp('/play/counting/20/space', {
+      userOptions: { advanceTimers: vi.advanceTimersByTime },
+    });
+    services.speaker.holdSpeech = true;
+    await user.click(screen.getByRole('button', { name: 'Count with me' }));
+    expect(services.speaker.lastText).toBe("Let's count the stars together!");
+
+    // However long "Let's count the stars together!" takes, counting waits for it…
+    await wait(5000);
+    expect(tally()).toBe('0');
+    act(() => services.speaker.finishSpeaking());
+    await wait(HELP_PAUSE_MS);
+    expect(tally()).toBe('1');
+
+    // …and for every number after it.
+    await wait(5000);
+    expect(tally()).toBe('1');
+    act(() => services.speaker.finishSpeaking());
+    await wait(HELP_PAUSE_MS);
+    expect(tally()).toBe('2');
+  });
+
+  it('counts the moment a finger lands, even one that slides before lifting', () => {
+    renderApp('/play/counting/20/space');
+    const [first] = items('stars to count');
+    if (!first) throw new Error('Expected a star');
+    fireEvent.pointerDown(first, { button: 0 });
+    expect(tally()).toBe('1');
+  });
+
+  it('counts with the keyboard too', async () => {
+    const { user } = renderApp('/play/counting/20/space');
+    items('stars to count')[0]?.focus();
+    await user.keyboard('{Enter}');
+    expect(tally()).toBe('1');
+  });
+
+  it('rests the board when a child taps too fast to be counting along', async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+    const { user, services } = renderApp('/play/counting/20/space', {
+      // Every tap at the same moment.
+      services: createTestServices({ now: () => 0 }),
+      userOptions: { advanceTimers: vi.advanceTimersByTime },
+    });
+    const stars = items('stars to count');
+    expect(stars.length).toBeGreaterThanOrEqual(TOO_FAST.taps);
+    for (const star of stars.slice(0, TOO_FAST.taps)) await user.click(star);
+
+    expect(services.speaker.lastText).toBe(SLOW_DOWN.text);
+    expect(promptText()).toBe(SLOW_DOWN.text);
+    expect(tally()).toBe('0');
+    expect(stars[0]).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Count with me' })).toBeDisabled();
+
+    await wait(SLOW_DOWN_MS);
+    expect(stars[0]).toBeEnabled();
+    expect(promptText()).toMatch(/How many stars\?$/);
+    await user.click(stars[0] as HTMLElement);
     expect(tally()).toBe('1');
   });
 

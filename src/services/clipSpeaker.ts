@@ -44,6 +44,8 @@ export function createClipSpeaker({
   // Bumped by every say/stop, so slow loads for an older utterance never play late.
   let generation = 0;
   let playing: AudioBufferSourceNode[] = [];
+  // Settles the current utterance's `finished` when something cuts it off.
+  let cutOff = () => {};
   const cache = new Map<string, Promise<AudioBuffer>>();
   // A random take, but never the one played last time, so repeats always sound different.
   const pickTake = createNoRepeatPicker<string>(random);
@@ -78,7 +80,12 @@ export function createClipSpeaker({
     playing = [];
   }
 
-  async function speak(lines: Line[], mine: number): Promise<void> {
+  /** Speaks with the fallback voice, and finishes when it does. */
+  function fallBack(lines: Line[], finish: () => void): void {
+    void fallback.say(...lines).finished.then(finish);
+  }
+
+  async function speak(lines: Line[], mine: number, finish: () => void): Promise<void> {
     const [available, speaking] = await Promise.all([manifest, voice]);
     const context = getContext();
     const urls: string[] = [];
@@ -90,7 +97,7 @@ export function createClipSpeaker({
     }
     // Anything unrecorded means the whole utterance falls back, rather than mixing two voices.
     if (!context || urls.length < lines.length) {
-      if (mine === generation) fallback.say(...lines);
+      if (mine === generation) fallBack(lines, finish);
       return;
     }
     try {
@@ -105,19 +112,28 @@ export function createClipSpeaker({
         startAt += buffer.duration + gapSeconds;
         return source;
       });
+      const endsAt = startAt - gapSeconds;
+      setTimeout(finish, Math.max(0, endsAt - context.currentTime) * 1000);
     } catch {
-      if (mine === generation) fallback.say(...lines);
+      if (mine === generation) fallBack(lines, finish);
     }
   }
 
   return {
     say(...lines) {
+      cutOff();
       generation++;
       silence();
       fallback.stop();
-      if (lines.length > 0) void speak(lines, generation);
+      const finished = new Promise<void>((resolve) => {
+        cutOff = resolve;
+      });
+      if (lines.length > 0) void speak(lines, generation, cutOff);
+      else cutOff();
+      return { finished };
     },
     stop() {
+      cutOff();
       generation++;
       silence();
       fallback.stop();

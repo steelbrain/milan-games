@@ -7,9 +7,10 @@ import {
   countWord,
   notThisMany,
   storyEnding,
+  SLOW_DOWN,
   TRY_AGAIN,
 } from '../activities/counting/countingLogic';
-import { CARD_GAME_FINALE, PRAISE } from '../activities/praise';
+import { CARD_GAME_FINALES, PRAISE } from '../activities/praise';
 import { line, type Line } from '../content/line';
 import { range } from '../core/random';
 import { TOPICS, type Topic } from '../topics/topics';
@@ -54,7 +55,7 @@ export function speechCatalog(topics: readonly Topic[] = TOPICS): CatalogEntry[]
   };
 
   add(TAKES.often, ...PRAISE);
-  add(TAKES.sometimes, CARD_GAME_FINALE);
+  add(TAKES.sometimes, ...CARD_GAME_FINALES);
 
   for (const topic of topics) {
     add(TAKES.sometimes, topic.greeting);
@@ -69,6 +70,7 @@ export function speechCatalog(topics: readonly Topic[] = TOPICS): CatalogEntry[]
     } else {
       const highest = Math.max(...topic.levels.map((level) => level.max));
       add(TAKES.often, ALL_COUNTED, TRY_AGAIN);
+      add(TAKES.sometimes, SLOW_DOWN);
       for (const n of range(1, highest)) {
         add(TAKES.constantly, countWord(n));
         add(TAKES.sometimes, notThisMany(n));

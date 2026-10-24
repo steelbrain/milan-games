@@ -7,6 +7,7 @@ import { paths, TOPICS } from '../topics/topics';
 import { Screen } from '../ui/Screen';
 import { tintStyle } from '../ui/theme';
 import { TopBar } from '../ui/TopBar';
+import { DEEPER } from '../ui/useExit';
 import styles from './HomeScreen.module.css';
 
 export function HomeScreen() {
@@ -26,6 +27,7 @@ export function HomeScreen() {
             <li key={topic.id}>
               <Link
                 to={paths.topic(topic.id)}
+                state={DEEPER}
                 className={styles.tile}
                 style={{ ...tintStyle(topic.tint), '--order': order } as CSSProperties}
                 onClick={() => play('tap')}

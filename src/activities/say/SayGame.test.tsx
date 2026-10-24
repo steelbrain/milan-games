@@ -17,7 +17,7 @@ describe('SayGame', () => {
     await user.click(screen.getByRole('button', { name: 'Show me' }));
 
     expect(services.sounds.cues).toEqual(['reveal']);
-    expect(services.speaker.lastText).toMatch(/^(\w)! \1 is for .+\.$/);
+    expect(services.speaker.lastText).toMatch(/^\w is for .+!$/);
     expect(promptText()).toBe(services.speaker.lastText);
     expect(screen.getByRole('figure')).toBeInTheDocument();
     expect(screen.getByRole('img', { name: '1 of 5 stars' })).toBeInTheDocument();

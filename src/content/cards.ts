@@ -31,6 +31,6 @@ export interface Deck {
   readonly findPrompt: (card: Card) => Line;
   /** "What letter is this?" */
   readonly askPrompt: Line;
-  /** "B! B is for Ball." Said when a card is revealed or found. */
+  /** "B is for Ball!" Said when a card is revealed or found. */
   readonly describe: (card: Card) => Utterance;
 }

@@ -50,6 +50,10 @@
       "words": "9 fish!",
       "takes": 5
     },
+    "002a076ca3df33": {
+      "words": "Y is for Yo-yo!",
+      "takes": 5
+    },
     "002c7b0a7daa04": {
       "words": "That's M.",
       "takes": 5
@@ -104,10 +108,6 @@
     },
     "00ed652a8e908b": {
       "words": "6 apples!",
-      "takes": 5
-    },
-    "00fb29c9ffffbd": {
-      "words": "U! U is for Umbrella.",
       "takes": 5
     },
     "00fdf211e010fa": {
@@ -184,6 +184,10 @@
     },
     "01b7d9a65e0a96": {
       "words": "13 moons!",
+      "takes": 5
+    },
+    "01c1238957f8c2": {
+      "words": "N is for Nose!",
       "takes": 5
     },
     "01d484fccf52e3": {
@@ -270,10 +274,6 @@
       "words": "20 stars!",
       "takes": 5
     },
-    "02befe50a9ed47": {
-      "words": "M! M is for Moon.",
-      "takes": 5
-    },
     "02c19d5c4ae011": {
       "words": "What number is this?",
       "takes": 6
@@ -298,20 +298,16 @@
       "words": "10 flowers!",
       "takes": 5
     },
-    "0323272f5135fe": {
-      "words": "Y! Y is for Yo-yo.",
-      "takes": 5
-    },
-    "03271675c89571": {
-      "words": "G! G is for Grapes.",
-      "takes": 5
-    },
     "032772dfab8efc": {
       "words": "Here are 5 dots.",
       "takes": 5
     },
     "033dbc90e90a7c": {
       "words": "That's 20.",
+      "takes": 5
+    },
+    "0342cabb08366d": {
+      "words": "K is for Kite!",
       "takes": 5
     },
     "0343bf10378f94": {
@@ -380,10 +376,6 @@
     },
     "03cfd128a4c647": {
       "words": "1 shell!",
-      "takes": 5
-    },
-    "03d0c12a4bc412": {
-      "words": "A! A is for Apple.",
       "takes": 5
     },
     "03dc1cdb1fc01a": {
@@ -494,8 +486,16 @@
       "words": "Bunny is packing a picnic basket. How many carrots?",
       "takes": 5
     },
+    "05402b9d025499": {
+      "words": "O is for Octopus!",
+      "takes": 5
+    },
     "0542d0bb037f0a": {
       "words": "Find the letter V!",
+      "takes": 5
+    },
+    "0547e4370d9d53": {
+      "words": "Whoa, slow down! Let's count them one at a time.",
       "takes": 5
     },
     "0550f61095de10": {
@@ -524,6 +524,10 @@
     },
     "05616a772b2842": {
       "words": "Twinkle twinkle!",
+      "takes": 5
+    },
+    "05668d3e8e259e": {
+      "words": "X is for X-ray!",
       "takes": 5
     },
     "056ffd8618a84c": {
@@ -558,16 +562,20 @@
       "words": "19 trees!",
       "takes": 5
     },
-    "05e0f494e58183": {
-      "words": "J! J is for Juice.",
-      "takes": 5
-    },
     "05e8f93d824a8c": {
       "words": "Can you find pink?",
       "takes": 5
     },
+    "05e9b1df270ff5": {
+      "words": "L is for Lion!",
+      "takes": 5
+    },
     "05f65a8fb86399": {
       "words": "6 bones!",
+      "takes": 5
+    },
+    "05f765aafebec5": {
+      "words": "I is for Ice cream!",
       "takes": 5
     },
     "05f99a15745e3b": {
@@ -642,10 +650,6 @@
       "words": "Here are 19 dots.",
       "takes": 5
     },
-    "06f83d862e8f1c": {
-      "words": "B! B is for Ball.",
-      "takes": 5
-    },
     "070d342493715b": {
       "words": "That's B.",
       "takes": 5
@@ -714,10 +718,6 @@
       "words": "9 shells!",
       "takes": 5
     },
-    "07edeab338dc7c": {
-      "words": "S! S is for Sun.",
-      "takes": 5
-    },
     "07f613df70867d": {
       "words": "1 apple!",
       "takes": 5
@@ -732,6 +732,10 @@
     },
     "080dcf6922b4e8": {
       "words": "Here are 8 dots.",
+      "takes": 5
+    },
+    "0816c4c17899fe": {
+      "words": "E is for Elephant!",
       "takes": 5
     },
     "081e6a909c737e": {
@@ -982,12 +986,20 @@
       "words": "That's G.",
       "takes": 5
     },
+    "0a0084aba1101c": {
+      "words": "F is for Fish!",
+      "takes": 5
+    },
     "0a027e8019af6f": {
       "words": "6 whales!",
       "takes": 5
     },
     "0a0f52e7a1aac8": {
       "words": "Not 19.",
+      "takes": 5
+    },
+    "0a13d4223bfd2f": {
+      "words": "M is for Moon!",
       "takes": 5
     },
     "0a147af4770bfb": {
@@ -1046,8 +1058,16 @@
       "words": "10 whales!",
       "takes": 5
     },
+    "0ab9cb3cafe7e9": {
+      "words": "H is for House!",
+      "takes": 5
+    },
     "0ab9ce2f3ea015": {
       "words": "11 aliens!",
+      "takes": 5
+    },
+    "0abe1a2b1b565c": {
+      "words": "B is for Ball!",
       "takes": 5
     },
     "0abf180a74634a": {
@@ -1210,10 +1230,6 @@
       "words": "Here are 2 dots.",
       "takes": 5
     },
-    "0caca3952309aa": {
-      "words": "P! P is for Pig.",
-      "takes": 5
-    },
     "0cb4c3df43b088": {
       "words": "12 trees!",
       "takes": 5
@@ -1226,12 +1242,12 @@
       "words": "Let's count the squirrels together!",
       "takes": 5
     },
-    "0cdcd3c00ed5db": {
-      "words": "C! C is for Cat.",
-      "takes": 5
-    },
     "0cdf06d14d9983": {
       "words": "6 fish!",
+      "takes": 5
+    },
+    "0cff52ac3f92c6": {
+      "words": "D is for Dog!",
       "takes": 5
     },
     "0d1dc822e29adb": {
@@ -1282,16 +1298,16 @@
       "words": "11 planets!",
       "takes": 5
     },
+    "0e037c3df60eff": {
+      "words": "Wow, five stars! You are so clever!",
+      "takes": 5
+    },
     "0e0f6de77e8f28": {
       "words": "15 comets!",
       "takes": 5
     },
     "0e2ea775cef8b9": {
       "words": "That's 5.",
-      "takes": 5
-    },
-    "0e329072961dc2": {
-      "words": "I! I is for Ice cream.",
       "takes": 5
     },
     "0e381049053cdf": {
@@ -1382,10 +1398,6 @@
       "words": "16 comets!",
       "takes": 5
     },
-    "0ef7f4a0715c35": {
-      "words": "R! R is for Rainbow.",
-      "takes": 5
-    },
     "0ef9b4e5810cb0": {
       "words": "20 turtles!",
       "takes": 5
@@ -1422,16 +1434,16 @@
       "words": "11 birds!",
       "takes": 5
     },
-    "0f52be1ea02856": {
-      "words": "V! V is for Violin.",
-      "takes": 5
-    },
     "0f624a345a00ec": {
       "words": "Find the letter S!",
       "takes": 5
     },
     "0f832c1dc9ff54": {
       "words": "Woof woof!",
+      "takes": 5
+    },
+    "0f87c0d901b5b6": {
+      "words": "Q is for Queen!",
       "takes": 5
     },
     "0f8a751d85787e": {
@@ -1442,20 +1454,12 @@
       "words": "Triangle! Like a slice of pizza.",
       "takes": 5
     },
-    "0fa1a72d9f4ba8": {
-      "words": "N! N is for Nose.",
-      "takes": 5
-    },
     "0fd928f950c32e": {
       "words": "That's Z.",
       "takes": 5
     },
     "0fed40c0b50ea2": {
       "words": "Crunch crunch!",
-      "takes": 5
-    },
-    "0ff38767e05d5f": {
-      "words": "Q! Q is for Queen.",
       "takes": 5
     },
     "0fffe1d9bc3d9b": {
@@ -1706,6 +1710,10 @@
       "words": "Find the letter M!",
       "takes": 5
     },
+    "12a4baee4351d7": {
+      "words": "R is for Rainbow!",
+      "takes": 5
+    },
     "12a8348eca01d6": {
       "words": "16 balls!",
       "takes": 5
@@ -1720,10 +1728,6 @@
     },
     "12bd4616013d2c": {
       "words": "15 flowers!",
-      "takes": 5
-    },
-    "12df82522bec73": {
-      "words": "T! T is for Tree.",
       "takes": 5
     },
     "12f55c980c042c": {
@@ -1750,10 +1754,6 @@
       "words": "Woohoo!",
       "takes": 6
     },
-    "130df420ce4a1c": {
-      "words": "H! H is for House.",
-      "takes": 5
-    },
     "13150a31f30fa1": {
       "words": "7 fish!",
       "takes": 5
@@ -1762,16 +1762,20 @@
       "words": "18 planets!",
       "takes": 5
     },
+    "131677f508e196": {
+      "words": "A is for Apple!",
+      "takes": 5
+    },
     "1323f833510eee": {
       "words": "That's 19.",
       "takes": 5
     },
-    "133be565795325": {
-      "words": "8 butterflies!",
+    "132e3bdf2e5b23": {
+      "words": "Amazing! You finished the whole game!",
       "takes": 5
     },
-    "1345986e612dc0": {
-      "words": "L! L is for Lion.",
+    "133be565795325": {
+      "words": "8 butterflies!",
       "takes": 5
     },
     "13459dd202dd04": {
@@ -1782,16 +1786,16 @@
       "words": "6 butterflies!",
       "takes": 5
     },
+    "13596ea14df4f7": {
+      "words": "P is for Pig!",
+      "takes": 5
+    },
     "136de1f189fc20": {
       "words": "So shiny!",
       "takes": 5
     },
     "13739f6a36438b": {
       "words": "15 crabs!",
-      "takes": 5
-    },
-    "137f12b2aed670": {
-      "words": "X! X is for X-ray.",
       "takes": 5
     },
     "13800b7eb2e149": {
@@ -1824,6 +1828,10 @@
     },
     "1403dc8bb6a9f9": {
       "words": "Can you find white?",
+      "takes": 5
+    },
+    "140c0a81f38934": {
+      "words": "T is for Tree!",
       "takes": 5
     },
     "1410b3c65d89da": {
@@ -1860,6 +1868,10 @@
     },
     "144ee53bc5287a": {
       "words": "19 fish!",
+      "takes": 5
+    },
+    "1457b8bb0b5cbb": {
+      "words": "Z is for Zebra!",
       "takes": 5
     },
     "14581f00cf5bdb": {
@@ -1954,6 +1966,10 @@
       "words": "9 birds!",
       "takes": 5
     },
+    "151dff5d53a4ae": {
+      "words": "G is for Grapes!",
+      "takes": 5
+    },
     "1520b6735f3d9b": {
       "words": "Let's count! Pick a story.",
       "takes": 5
@@ -2022,6 +2038,10 @@
       "words": "So sweet!",
       "takes": 5
     },
+    "15b5b15dbb7339": {
+      "words": "S is for Sun!",
+      "takes": 5
+    },
     "15bc56fa6b3d8a": {
       "words": "1 squirrel!",
       "takes": 5
@@ -2040,10 +2060,6 @@
     },
     "15fc43de0e4b93": {
       "words": "15 moons!",
-      "takes": 5
-    },
-    "160a182cada159": {
-      "words": "K! K is for Kite.",
       "takes": 5
     },
     "160c919367a977": {
@@ -2166,6 +2182,10 @@
       "words": "A family of whales sings a song. How many whales?",
       "takes": 5
     },
+    "173fe79c3e57fc": {
+      "words": "J is for Juice!",
+      "takes": 5
+    },
     "174afe5586b0e6": {
       "words": "17 butterflies!",
       "takes": 5
@@ -2254,6 +2274,10 @@
       "words": "11 whales!",
       "takes": 5
     },
+    "18381b02462317": {
+      "words": "Woohoo! You got all five stars!",
+      "takes": 5
+    },
     "184da1c6ccb20b": {
       "words": "Here are 3 dots.",
       "takes": 5
@@ -2312,10 +2336,6 @@
     },
     "190bf3ebf0b505": {
       "words": "Pink! Like a pig.",
-      "takes": 5
-    },
-    "191c6238fa26fb": {
-      "words": "D! D is for Dog.",
       "takes": 5
     },
     "191d603e05e54d": {
@@ -2390,6 +2410,10 @@
       "words": "5!",
       "takes": 8
     },
+    "19bc665a23a38b": {
+      "words": "C is for Cat!",
+      "takes": 5
+    },
     "19c972adae7257": {
       "words": "11 carrots!",
       "takes": 5
@@ -2442,6 +2466,10 @@
       "words": "7!",
       "takes": 8
     },
+    "1a5423ad6205d8": {
+      "words": "V is for Violin!",
+      "takes": 5
+    },
     "1a5fac53b2430d": {
       "words": "1 crab!",
       "takes": 5
@@ -2452,6 +2480,10 @@
     },
     "1a6767515ad55d": {
       "words": "13 trees!",
+      "takes": 5
+    },
+    "1a6e8d57e4b368": {
+      "words": "U is for Umbrella!",
       "takes": 5
     },
     "1a780cac621b8b": {
@@ -2538,10 +2570,6 @@
       "words": "10 trees!",
       "takes": 5
     },
-    "1b3bd9c1fd0bd3": {
-      "words": "E! E is for Elephant.",
-      "takes": 5
-    },
     "1b4151a13ff03c": {
       "words": "13 apples!",
       "takes": 5
@@ -2594,8 +2622,8 @@
       "words": "3 whales!",
       "takes": 5
     },
-    "1bd3492b58c2bd": {
-      "words": "Z! Z is for Zebra.",
+    "1be65696c4091a": {
+      "words": "Great playing! I'm so proud of you!",
       "takes": 5
     },
     "1be73b292bc486": {
@@ -2650,6 +2678,10 @@
       "words": "Not 5.",
       "takes": 5
     },
+    "1c9b0200e2ea64": {
+      "words": "Yay! You did it! Let's do a happy dance!",
+      "takes": 5
+    },
     "1cbc57b7340755": {
       "words": "2 trees!",
       "takes": 5
@@ -2700,10 +2732,6 @@
     },
     "1d60f0bf81e229": {
       "words": "Hello, aliens!",
-      "takes": 5
-    },
-    "1d84f597c4bef6": {
-      "words": "F! F is for Fish.",
       "takes": 5
     },
     "1d92b9d50bbd7d": {
@@ -2764,10 +2792,6 @@
     },
     "1e3c419b47d5ea": {
       "words": "That's red.",
-      "takes": 5
-    },
-    "1e418f81c7a87f": {
-      "words": "W! W is for Whale.",
       "takes": 5
     },
     "1e6cf81a59eff0": {
@@ -2846,10 +2870,6 @@
       "words": "Find the letter B!",
       "takes": 5
     },
-    "1f25891bf06f06": {
-      "words": "O! O is for Octopus.",
-      "takes": 5
-    },
     "1f33b0fde7c900": {
       "words": "Strawberries for dessert! How many strawberries?",
       "takes": 5
@@ -2873,6 +2893,10 @@
     "1f5575d68c4538": {
       "words": "9!",
       "takes": 8
+    },
+    "1f5edd936a1474": {
+      "words": "W is for Whale!",
+      "takes": 5
     },
     "1f6e755330b3bc": {
       "words": "18 apples!",
@@ -2904,6 +2928,10 @@
     },
     "1fb301e81ad044": {
       "words": "6 flowers!",
+      "takes": 5
+    },
+    "1fbc9611e14868": {
+      "words": "You did it! You're a superstar!",
       "takes": 5
     },
     "1fcb40afb4c5c3": {

@@ -13,6 +13,8 @@ export interface Services {
   readonly speaker: Speaker;
   readonly sounds: SoundPlayer;
   readonly random: Random;
+  /** The time in milliseconds, for game rules about speed (like tapping too fast). */
+  readonly now: () => number;
   readonly store: Store;
   readonly offline: OfflineSaver;
 }

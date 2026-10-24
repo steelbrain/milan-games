@@ -11,7 +11,7 @@ import { CardFace } from '../../ui/CardFace';
 import { ChoiceTile } from '../../ui/ChoiceTile';
 import { GameFrame } from '../../ui/GameFrame';
 import { PromptBubble } from '../../ui/PromptBubble';
-import { CARD_GAME_FINALE, CARD_GAME_HERO, praise } from '../praise';
+import { CARD_GAME_FINALES, CARD_GAME_HEROES, praise } from '../praise';
 import styles from './FindGame.module.css';
 import { createFindRounds, type FindRound, namedCard } from './findLogic';
 
@@ -30,7 +30,12 @@ export function FindGame({ deck, exitTo }: FindGameProps) {
     }),
   );
   return (
-    <GameFrame session={session} exitTo={exitTo} hero={CARD_GAME_HERO} finale={CARD_GAME_FINALE}>
+    <GameFrame
+      session={session}
+      exitTo={exitTo}
+      heroes={CARD_GAME_HEROES}
+      finales={CARD_GAME_FINALES}
+    >
       {(round) => (
         <FindRoundView
           round={round}

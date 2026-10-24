@@ -1,4 +1,5 @@
 import { expect, test } from './fixtures';
+import { countEach } from './play';
 
 test('can be installed as an app', async ({ page }) => {
   await page.goto('/');
@@ -30,6 +31,7 @@ test('downloads everything, then plays without internet', async ({ page, context
   await downloader.close();
 
   await context.setOffline(true);
+  await page.clock.install();
   await page.goto('/');
   // Really offline, service worker included: anything not saved fails to load.
   const unsaved = await page.evaluate(() =>
@@ -44,9 +46,7 @@ test('downloads everything, then plays without internet', async ({ page, context
   await expect.poll(spoken).toContain("Let's count! Pick a story.");
   await page.getByRole('link', { name: "Bunny's Picnic" }).click();
   const items = page.getByRole('group', { name: /to count$/ }).getByRole('button');
-  await expect(items.first()).toBeVisible();
-  const count = await items.count();
-  for (let i = 0; i < count; i++) await items.nth(i).click();
+  const count = await countEach(page, items);
   const counted = Array.from({ length: count }, (_, i) => `${i + 1}!`);
   await expect.poll(spoken).toEqual(expect.arrayContaining(counted));
   // The fixture also checks that the robotic fallback voice was never needed.

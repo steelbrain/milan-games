@@ -31,10 +31,17 @@ export function registerServiceWorker(
       const current = await registration;
       // An install that failed, say on a first visit that lost its connection, gets another go.
       if (!current.active && !current.installing && !current.waiting) await current.update();
-      return await Promise.race([
-        container.ready.then(() => true),
-        new Promise<boolean>((resolve) => setTimeout(() => resolve(false), timeoutMs)),
-      ]);
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      try {
+        return await Promise.race([
+          container.ready.then(() => true),
+          new Promise<boolean>((resolve) => {
+            timer = setTimeout(() => resolve(false), timeoutMs);
+          }),
+        ]);
+      } finally {
+        clearTimeout(timer);
+      }
     } catch {
       return false;
     }

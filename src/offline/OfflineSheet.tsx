@@ -2,8 +2,8 @@ import { useEffect, useId, useRef } from 'react';
 import { useServices } from '../services/services';
 import { BigButton } from '../ui/BigButton';
 import styles from './Offline.module.css';
-import type { OfflineStatus } from './offlineSaver';
-import { percentSaved, useOfflineStatus } from './useOfflineStatus';
+import { type OfflineStatus, percentSaved } from './offlineSaver';
+import { useOfflineStatus } from './useOfflineStatus';
 
 /** The speech plus the app itself (about half a megabyte), rounded up; never split over lines. */
 const DOWNLOAD_SIZE = `${Math.ceil(__SPEECH_BYTES__ / 1_000_000) + 1}\u00a0MB`;

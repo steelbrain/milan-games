@@ -39,6 +39,7 @@ export function createBrowserServices(
     }),
     sounds: createSynthSoundPlayer(getAudioContext),
     random: Math.random,
+    now: () => Date.now(),
     store: createWebStore(browserLocalStorage()),
     offline,
   };

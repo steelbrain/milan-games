@@ -1,5 +1,7 @@
 import type { Page } from '@playwright/test';
+import { CARD_GAME_FINALES } from '../src/activities/praise';
 import { expect, test } from './fixtures';
+import { countEach } from './play';
 
 async function promptText(page: Page): Promise<string> {
   return (await page.getByRole('paragraph').first().textContent()) ?? '';
@@ -10,6 +12,7 @@ async function clickNext(page: Page): Promise<void> {
 }
 
 test('plays a whole counting story, counting to 20', async ({ page, spoken }) => {
+  await page.clock.install();
   await page.goto('/');
   await page.getByRole('link', { name: 'Counting' }).click();
   await expect.poll(spoken).toContain("Let's count! Pick a story.");
@@ -20,12 +23,9 @@ test('plays a whole counting story, counting to 20', async ({ page, spoken }) =>
   for (let page_ = 1; page_ <= 5; page_++) {
     await expect(page.getByText(/How many \w+\?$/)).toBeVisible();
     const items = page.getByRole('group', { name: /to count$/ }).getByRole('button');
-    await expect(items.first()).toBeVisible();
-    const count = await items.count();
+    const count = await countEach(page, items);
     expect(count).toBeGreaterThanOrEqual(6);
     expect(count).toBeLessThanOrEqual(20);
-
-    for (let i = 0; i < count; i++) await items.nth(i).click();
     await expect(page.getByRole('status', { name: 'Counted so far' })).toHaveText(String(count));
 
     await page
@@ -52,7 +52,8 @@ test('finds five letters, then plays again', async ({ page, spoken }) => {
     await clickNext(page);
   }
   await expect(page.getByRole('heading', { name: 'You did it!' })).toBeVisible();
-  await expect.poll(spoken).toContain('Hooray! You did it! Give me a high five!');
+  const finales = CARD_GAME_FINALES.map((line) => line.text);
+  await expect.poll(() => spoken().some((text) => finales.includes(text))).toBe(true);
 
   await page.getByRole('button', { name: 'Play again' }).click();
   await expect(page.getByRole('img', { name: '0 of 5 stars' })).toBeVisible();

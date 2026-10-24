@@ -3,7 +3,7 @@ import type { UserEvent } from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import { choiceButtons, clickNext, findTarget, promptText } from '../../test/play';
 import { renderApp } from '../../test/render';
-import { PRAISE } from '../praise';
+import { CARD_GAME_FINALES, CARD_GAME_HEROES, PRAISE } from '../praise';
 
 const LETTER = /Find the letter (\w)!/;
 
@@ -48,7 +48,7 @@ describe('FindGame', () => {
     expect(services.sounds.cues).toEqual(['correct']);
     const [cheer, description] = services.speaker.texts.slice(-2);
     expect(PRAISE.map((line) => line.text)).toContain(cheer);
-    expect(description).toMatch(new RegExp(`^${target}! ${target} is for \\w`));
+    expect(description).toMatch(new RegExp(`^${target} is for \\w+!$`));
     expect(screen.getByRole('button', { name: target })).toHaveAttribute('data-status', 'correct');
     expect(screen.getByRole('figure')).toBeInTheDocument();
     expect(screen.getByRole('img', { name: '1 of 5 stars' })).toBeInTheDocument();
@@ -88,7 +88,22 @@ describe('FindGame', () => {
 
     expect(screen.getByRole('heading', { name: 'You did it!' })).toBeInTheDocument();
     expect(services.sounds.cues.at(-1)).toBe('celebrate');
-    expect(services.speaker.lastText).toBe('Hooray! You did it! Give me a high five!');
+    expect(CARD_GAME_FINALES.map((line) => line.text)).toContain(services.speaker.lastText);
+  });
+
+  it('celebrates every finished game with its own mascot and words', async () => {
+    const { user, services } = renderApp('/play/letters/upper/find');
+    const said = new Set<string>();
+    for (let game = 0; game < 4; game++) {
+      for (let round = 1; round <= 5; round++) await solveRound(user);
+      const party = screen.getByRole('region', { name: 'You did it!' });
+      expect(CARD_GAME_HEROES.some((hero) => party.textContent.includes(hero))).toBe(true);
+      const finale = services.speaker.lastText ?? '';
+      expect(party).toHaveTextContent(finale);
+      said.add(finale);
+      await user.click(screen.getByRole('button', { name: 'Play again' }));
+    }
+    expect(said.size).toBeGreaterThan(1);
   });
 
   it('can play again or finish from the party screen', async () => {

@@ -4,7 +4,7 @@ import type { OfflineSaver, OfflineStatus } from '../offline/offlineSaver';
 import type { Services } from '../services/services';
 import type { CueOptions, SoundCue } from '../services/soundCues';
 import type { SoundPlayer } from '../services/sounds';
-import type { Speaker } from '../services/speech';
+import { NO_SPEECH, type Speaker, type Speech } from '../services/speech';
 import { createMemoryStore, type Store } from '../services/storage';
 import { speechCatalog } from '../speech/catalog';
 import { clipId } from '../speech/clipId';
@@ -25,24 +25,42 @@ export class RecordingSpeaker implements Speaker {
   readonly lines: Line[] = [];
   stops = 0;
   unlocks = 0;
+  /**
+   * Normally speech finishes at once. While this is set, it keeps "playing" until
+   * `finishSpeaking`, `stop` or the next `say`, the way real speech takes time.
+   */
+  holdSpeech = false;
 
   /** Strict speakers report lines missing from the speech catalog. */
   private readonly strict: boolean;
+  private cutOff = () => {};
 
   constructor(strict = true) {
     this.strict = strict;
   }
 
-  readonly say = (...lines: Line[]) => {
+  readonly say = (...lines: Line[]): Speech => {
+    this.cutOff();
     for (const line of lines) {
       this.lines.push(line);
       if (!this.strict) continue;
       catalogIds ??= new Set(speechCatalog().map((entry) => clipId(entry.line)));
       if (!catalogIds.has(clipId(line))) uncataloged.push(spokenText(line));
     }
+    if (!this.holdSpeech) return NO_SPEECH;
+    return {
+      finished: new Promise((resolve) => {
+        this.cutOff = resolve;
+      }),
+    };
   };
   readonly stop = () => {
     this.stops++;
+    this.cutOff();
+  };
+  /** Ends the speech `holdSpeech` kept playing. */
+  readonly finishSpeaking = () => {
+    this.cutOff();
   };
   readonly unlock = () => {
     this.unlocks++;
@@ -114,6 +132,12 @@ export class FakeOfflineSaver implements OfflineSaver {
   }
 }
 
+/** A clock that moves on a second at every reading, like a child tapping at a calm pace. */
+export function steadyClock(stepMs = 1000): () => number {
+  let time = 0;
+  return () => (time += stepMs);
+}
+
 export interface TestServices extends Services {
   readonly speaker: RecordingSpeaker;
   readonly sounds: RecordingSoundPlayer;
@@ -125,16 +149,19 @@ export function createTestServices({
   store = createMemoryStore(),
   strictSpeech = true,
   offline = new FakeOfflineSaver(),
+  now = steadyClock(),
 }: {
   seed?: number;
   store?: Store;
   strictSpeech?: boolean;
   offline?: FakeOfflineSaver;
+  now?: () => number;
 } = {}): TestServices {
   return {
     speaker: new RecordingSpeaker(strictSpeech),
     sounds: new RecordingSoundPlayer(),
     random: createSeededRandom(seed),
+    now,
     store,
     offline,
   };

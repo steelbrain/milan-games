@@ -19,19 +19,26 @@ describe('audio', () => {
   it('speaks and plays when not muted', () => {
     const services = createTestServices({ strictSpeech: false });
     const { result } = renderHook(() => useAudio(), { wrapper: wrapperFor(services) });
-    act(() => result.current.say(line('Hello'), line('there')));
+    act(() => {
+      result.current.say(line('Hello'), line('there'));
+    });
     act(() => result.current.play('tap'));
     expect(services.speaker.texts).toEqual(['Hello', 'there']);
     expect(services.sounds.cues).toEqual(['tap']);
   });
 
-  it('goes quiet when muted, stops current speech, and remembers', () => {
+  it('goes quiet when muted, stops current speech, and remembers', async () => {
     const services = createTestServices({ strictSpeech: false });
     const { result } = renderHook(() => useAudio(), { wrapper: wrapperFor(services) });
     act(() => result.current.setMuted(true));
-    act(() => result.current.say(line('Hello')));
+    act(() => {
+      result.current.say(line('Hello'));
+    });
     act(() => result.current.play('tap'));
     expect(result.current.muted).toBe(true);
+    // Nothing to wait for while muted.
+    services.speaker.holdSpeech = true;
+    await result.current.say(line('Hello')).finished;
     expect(services.speaker.stops).toBe(1);
     expect(services.speaker.texts).toEqual([]);
     expect(services.sounds.cues).toEqual([]);
@@ -88,10 +95,11 @@ describe('outside the providers', () => {
 });
 
 describe('mute toggle wiring', () => {
-  it('re-announces nothing when unmuting a static line', async () => {
+  it('re-announces nothing when muting and unmuting', async () => {
     const services = createTestServices({ strictSpeech: false });
     function Panel() {
       const { muted, setMuted } = useAudio();
+      useAnnouncement(line('Find the letter F!'));
       return (
         <button type="button" onClick={() => setMuted(!muted)}>
           {muted ? 'unmute' : 'mute'}
@@ -101,7 +109,8 @@ describe('mute toggle wiring', () => {
     render(<Panel />, { wrapper: wrapperFor(services) });
     const user = userEvent.setup();
     await user.click(screen.getByRole('button', { name: 'mute' }));
-    expect(screen.getByRole('button', { name: 'unmute' })).toBeInTheDocument();
     expect(services.speaker.stops).toBe(1);
+    await user.click(screen.getByRole('button', { name: 'unmute' }));
+    expect(services.speaker.texts).toEqual(['Find the letter F!']);
   });
 });

@@ -1,26 +1,35 @@
-import { useEffect, useEffectEvent } from 'react';
+import { useEffect, useEffectEvent, useState } from 'react';
 import type { Line } from '../content/line';
+import { pickOne } from '../core/random';
 import { useAnnouncement, useAudio } from '../services/audio';
+import { useServices } from '../services/services';
 import { BigButton } from './BigButton';
 import { Burst } from './Burst';
 import styles from './SessionComplete.module.css';
 import { StarProgress } from './StarProgress';
 
 interface SessionCompleteProps {
-  readonly hero: string;
-  readonly finale: Line;
+  /** One of these cheers the child on, picked afresh for every finished game. */
+  readonly heroes: readonly string[];
+  /** Likewise, one of these is said. */
+  readonly finales: readonly Line[];
   readonly stars: number;
   readonly onPlayAgain: () => void;
   readonly onDone: () => void;
 }
 
 export function SessionComplete({
-  hero,
-  finale,
+  heroes,
+  finales,
   stars,
   onPlayAgain,
   onDone,
 }: SessionCompleteProps) {
+  const { random } = useServices();
+  const [{ hero, finale }] = useState(() => ({
+    hero: pickOne(random, heroes),
+    finale: pickOne(random, finales),
+  }));
   const { play } = useAudio();
   const celebrate = useEffectEvent(() => play('celebrate'));
   useEffect(() => celebrate(), []);

@@ -111,6 +111,23 @@ export function countingQuestion(scene: StoryScene): Line {
 
 export const ALL_COUNTED = line("That's all of them!");
 export const TRY_AGAIN = line("Let's try again!");
+/** Said when the child races through the items to make the voice do the counting. */
+export const SLOW_DOWN = line("Whoa, slow down! Let's count them one at a time.");
+
+/**
+ * This many taps this close together is faster than the voice can say the numbers, so the
+ * child is racing it rather than counting along.
+ */
+export const TOO_FAST = { taps: 5, withinMs: 2000 } as const;
+
+/** Whether the latest taps (times in ms, oldest first) came too fast to be counting along. */
+export function tappingTooFast(times: readonly number[]): boolean {
+  const recent = times.slice(-TOO_FAST.taps);
+  const first = recent[0];
+  const last = recent.at(-1);
+  if (recent.length < TOO_FAST.taps || first === undefined || last === undefined) return false;
+  return last - first < TOO_FAST.withinMs;
+}
 
 /** "7!", said as each item is counted. */
 export function countWord(count: number): Line {

@@ -24,6 +24,19 @@ describe('createAudioContextGetter', () => {
     expect(context.resume).toHaveBeenCalledTimes(2);
   });
 
+  it('resumes after an iOS interruption, but leaves running or closed contexts alone', () => {
+    // What iOS reports after a phone call or Siri.
+    const interrupted = fakeContext('interrupted');
+    createAudioContextGetter(() => interrupted, {})();
+    expect(interrupted.resume).toHaveBeenCalledTimes(1);
+
+    for (const state of ['running', 'closed'] as const) {
+      const context = fakeContext(state);
+      createAudioContextGetter(() => context, {})();
+      expect(context.resume).not.toHaveBeenCalled();
+    }
+  });
+
   it('ignores a failed resume', async () => {
     const context = fakeContext('suspended');
     context.resume.mockImplementation(() => Promise.reject(new Error('not allowed')));

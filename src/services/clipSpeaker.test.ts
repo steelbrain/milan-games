@@ -105,6 +105,43 @@ describe('createClipSpeaker', () => {
     expect(fallback.lines).toEqual([]);
   });
 
+  it('finishes when the last clip ends', async () => {
+    vi.useFakeTimers();
+    const { speaker, audio } = setup();
+    let done = false;
+    void speaker.say(hello, there).finished.then(() => (done = true));
+    await vi.advanceTimersByTimeAsync(0);
+    expect(audio?.started()).toHaveLength(2);
+
+    // Two one-second clips with a pause between them, starting 0.01 s from now.
+    await vi.advanceTimersByTimeAsync(2100);
+    expect(done).toBe(false);
+    await vi.advanceTimersByTimeAsync(200);
+    expect(done).toBe(true);
+  });
+
+  it('finishes at once when cut off, or with nothing to say', async () => {
+    const { speaker } = setup();
+    const first = speaker.say(hello);
+    speaker.say(there);
+    await first.finished;
+    const second = speaker.say(cheer);
+    speaker.stop();
+    await second.finished;
+    await speaker.say().finished;
+  });
+
+  it('finishes when the fallback voice does', async () => {
+    const { speaker, fallback } = setup();
+    fallback.holdSpeech = true;
+    let done = false;
+    void speaker.say(unrecorded).finished.then(() => (done = true));
+    await vi.waitFor(() => expect(fallback.texts).toEqual(['Not recorded']));
+    expect(done).toBe(false);
+    fallback.finishSpeaking();
+    await vi.waitFor(() => expect(done).toBe(true));
+  });
+
   it('falls back to live speech for anything unrecorded, rather than mixing voices', async () => {
     const { speaker, fallback, fetchClip } = setup();
     speaker.say(hello, unrecorded);
