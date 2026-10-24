@@ -20,7 +20,15 @@ export interface Job {
 export interface Manifest {
   readonly voices: readonly { id: string; name: string }[];
   readonly recipe: unknown;
+  /** The total size of the recordings it offers, which the build shows as the download's size. */
+  readonly bytes: number;
   readonly clips: Record<string, { words: string; takes: number; version: string }>;
+}
+
+/** The recordings on disk, by their path under public/speech/. */
+export interface Recordings {
+  readonly exists: (file: string) => boolean;
+  readonly read: (file: string) => Uint8Array;
 }
 
 /** Take 0 is "<id>.m4a"; matches clipFileName in src/speech/clipId.ts. */
@@ -92,34 +100,36 @@ export function fingerprint(contents: Iterable<Uint8Array>): string {
 /**
  * Describes what is actually on disk. A voice is offered only if it has every clip; each clip
  * offers the takes that every offered voice has, so the app never asks for a missing file.
- * `version` fingerprints the files a clip offers, so the app can tell when one is re-recorded.
+ * A clip's version fingerprints the files it offers, so the app can tell when one is re-recorded.
  */
 export function buildManifest(
   clips: readonly ClipSpec[],
   voices: readonly VoiceSpec[],
   fileName: FileNamer,
-  exists: (file: string) => boolean,
+  { exists, read }: Recordings,
   recipe: unknown,
-  version: (files: readonly string[]) => string,
 ): Manifest {
   const takesOnDisk = (voice: VoiceSpec, clip: ClipSpec) => {
     let take = 0;
     while (take < clip.takes && exists(filePath(voice, fileName(clip.id, take)))) take++;
     return take;
   };
+  let bytes = 0;
   const complete = voices.filter((voice) => clips.every((clip) => takesOnDisk(voice, clip) > 0));
   const entries = [...clips]
     .sort((a, b) => a.id.localeCompare(b.id))
     .map((clip) => {
       const takes = Math.min(...complete.map((voice) => takesOnDisk(voice, clip)));
-      const files = complete.flatMap((voice) =>
-        Array.from({ length: takes }, (_, take) => filePath(voice, fileName(clip.id, take))),
+      const contents = complete.flatMap((voice) =>
+        Array.from({ length: takes }, (_, take) => read(filePath(voice, fileName(clip.id, take)))),
       );
-      return [clip.id, { words: clip.words, takes, version: version(files) }] as const;
+      bytes += contents.reduce((sum, content) => sum + content.byteLength, 0);
+      return [clip.id, { words: clip.words, takes, version: fingerprint(contents) }] as const;
     });
   return {
     voices: complete.map(({ id, name }) => ({ id, name })),
     recipe,
+    bytes,
     clips: complete.length > 0 ? Object.fromEntries(entries) : {},
   };
 }

@@ -117,8 +117,10 @@ export function createClipSpeaker({
         startAt += buffer.duration + gapSeconds;
         return source;
       });
-      const endsAt = startAt - gapSeconds;
-      setTimeout(finish, Math.max(0, endsAt - context.currentTime) * 1000);
+      // Done when the last clip has really played, by the audio clock rather than a timer: a
+      // suspended context (iOS after a phone call, say) plays nothing, so nothing has been said.
+      const last = playing.at(-1);
+      if (last) last.onended = () => finish();
     } catch {
       if (mine === generation) fallBack(lines, finish);
     }

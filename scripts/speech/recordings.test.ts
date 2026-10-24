@@ -29,17 +29,20 @@ describe('the committed recordings (run `npm run speech` after changing what the
     expect(described).toEqual(expected);
   });
 
-  it('are versioned by what is on disk, so a re-recording reaches saved copies', () => {
+  it('are versioned and sized by what is on disk, so changes reach saved copies', () => {
     if (!isSpeechManifest(manifest)) throw new Error('Invalid manifest');
+    let bytes = 0;
     const stale = Object.entries(manifest.clips).filter(([id, { takes, version }]) => {
       const files = manifest.voices.flatMap((voice) =>
         Array.from({ length: takes }, (_, take) =>
           readFileSync(path.join(speechDir, voice.id, clipFileName(id, take))),
         ),
       );
+      bytes += files.reduce((sum, file) => sum + file.byteLength, 0);
       return version !== fingerprint(files);
     });
     expect(stale.map(([id]) => id)).toEqual([]);
+    expect((manifest as { bytes?: unknown }).bytes).toBe(bytes);
   });
 
   it.each(VOICES)('have every file for $name', (voice) => {

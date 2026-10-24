@@ -2,7 +2,7 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
-import { listFiles, shellOf, totalBytes } from './serviceWorker.ts';
+import { listFiles, shellOf } from './serviceWorker.ts';
 
 const dir = mkdtempSync(path.join(os.tmpdir(), 'shell-'));
 mkdirSync(path.join(dir, 'speech/katie'), { recursive: true });
@@ -22,12 +22,6 @@ describe('listFiles', () => {
       'speech/katie/b.m4a',
       'speech/manifest.json',
     ]);
-  });
-});
-
-describe('totalBytes', () => {
-  it('adds up the sizes of the chosen files', () => {
-    expect(totalBytes(dir, (file) => file.endsWith('.m4a'))).toBe(10);
   });
 });
 

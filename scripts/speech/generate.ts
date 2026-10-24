@@ -35,7 +35,6 @@ import {
   type ClipSpec,
   expectedFiles,
   type FileNamer,
-  fingerprint,
   type Job,
   type Manifest,
   planJobs,
@@ -312,8 +311,12 @@ async function main(): Promise<void> {
 
   const removed = await removeStale(expectedFiles(clips, VOICES, fileName));
   if (removed > 0) console.log(`Removed ${removed} unused recordings.`);
-  const manifest = buildManifest(clips, VOICES, fileName, onDisk, recipe, (files) =>
-    fingerprint(files.map((file) => readFileSync(path.join(outDir, file)))),
+  const manifest = buildManifest(
+    clips,
+    VOICES,
+    fileName,
+    { exists: onDisk, read: (file) => readFileSync(path.join(outDir, file)) },
+    recipe,
   );
   await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
   const fewest = Math.min(...Object.values(manifest.clips).map((clip) => clip.takes));

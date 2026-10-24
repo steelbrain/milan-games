@@ -29,6 +29,7 @@
     "sampleRate": 24000,
     "bitrate": 32000
   },
+  "bytes": 85283152,
   "clips": {
     "0000633bb18d04": {
       "words": "Find the number 6!",

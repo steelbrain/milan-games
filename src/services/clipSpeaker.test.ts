@@ -26,6 +26,7 @@ const manifest: SpeechManifest = {
 
 interface FakeSource {
   buffer: { url: string } | null;
+  onended: (() => void) | null;
   connect: ReturnType<typeof vi.fn>;
   start: ReturnType<typeof vi.fn>;
   stop: ReturnType<typeof vi.fn>;
@@ -41,7 +42,13 @@ function fakeAudio() {
       Promise.resolve({ duration: 1, url: new TextDecoder().decode(data) }),
     ),
     createBufferSource: vi.fn(() => {
-      const source: FakeSource = { buffer: null, connect: vi.fn(), start: vi.fn(), stop: vi.fn() };
+      const source: FakeSource = {
+        buffer: null,
+        onended: null,
+        connect: vi.fn(),
+        start: vi.fn(),
+        stop: vi.fn(),
+      };
       sources.push(source);
       return source;
     }),
@@ -118,7 +125,7 @@ describe('createClipSpeaker', () => {
     expect(audio?.started()[0]?.url).toBe(`${urlOf(hello, voice)}?v=v2`);
   });
 
-  it('finishes when the last clip ends', async () => {
+  it('finishes when the last clip has played, however long the audio was paused', async () => {
     vi.useFakeTimers();
     const { speaker, audio } = setup();
     let done = false;
@@ -126,10 +133,14 @@ describe('createClipSpeaker', () => {
     await vi.advanceTimersByTimeAsync(0);
     expect(audio?.started()).toHaveLength(2);
 
-    // Two one-second clips with a pause between them, starting 0.01 s from now.
-    await vi.advanceTimersByTimeAsync(2100);
+    // A suspended context plays nothing, so time passing alone doesn't finish anything.
+    await vi.advanceTimersByTimeAsync(60_000);
+    audio?.sources[0]?.onended?.();
+    await vi.advanceTimersByTimeAsync(0);
     expect(done).toBe(false);
-    await vi.advanceTimersByTimeAsync(200);
+
+    audio?.sources[1]?.onended?.();
+    await vi.advanceTimersByTimeAsync(0);
     expect(done).toBe(true);
   });
 

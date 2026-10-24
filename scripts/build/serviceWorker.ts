@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { build, type Plugin, type ResolvedConfig } from 'vite';
 
@@ -10,13 +10,6 @@ export function listFiles(dir: string): string[] {
     .map((entry) => path.relative(dir, path.join(entry.parentPath, entry.name)))
     .map((file) => file.split(path.sep).join('/'))
     .sort();
-}
-
-/** The total size in bytes of the files under `dir` that `include` picks. */
-export function totalBytes(dir: string, include: (file: string) => boolean): number {
-  return listFiles(dir)
-    .filter(include)
-    .reduce((sum, file) => sum + statSync(path.join(dir, file)).size, 0);
 }
 
 /** The app's files, sorted, and a version that changes whenever any name or content does. */

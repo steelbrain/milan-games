@@ -42,6 +42,24 @@ test('plays a whole counting story, counting to 20', async ({ page, spoken }) =>
     .toContain('The rocket lands safely back home. What a trip! Great counting!');
 });
 
+test('"Count with me" counts the whole board aloud', async ({ page, spoken }) => {
+  await page.goto('/');
+  await page.getByRole('link', { name: 'Counting' }).click();
+  await page.getByText('Count to 5').click();
+  await page.getByRole('link', { name: "Bunny's Picnic" }).click();
+  const items = page.getByRole('group', { name: /to count$/ }).getByRole('button');
+  await expect(items.first()).toBeVisible();
+  const count = await items.count();
+
+  await page.getByRole('button', { name: 'Count with me' }).click();
+  // Each number waits for the last clip to finish playing, so this needs real audio to end.
+  await expect(page.getByRole('status', { name: 'Counted so far' })).toHaveText(String(count), {
+    timeout: 20_000,
+  });
+  const counted = Array.from({ length: count }, (_, i) => `${i + 1}!`);
+  await expect.poll(spoken).toEqual(expect.arrayContaining(counted));
+});
+
 test('finds five letters, then plays again', async ({ page, spoken }) => {
   await page.goto('/#/play/letters/upper/find');
   for (let round = 1; round <= 5; round++) {

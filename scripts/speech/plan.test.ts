@@ -63,25 +63,33 @@ describe('expectedFiles', () => {
 
 describe('buildManifest', () => {
   const recipe = { model: 'm' };
-  /** Lists the files a version covers, standing in for a fingerprint of their contents. */
-  const version = (files: readonly string[]) => files.join(' ');
+  // Each "recording" holds its own path, so versions and sizes show which files went into them.
+  const read = (file: string) => new TextEncoder().encode(file);
+  const versionOf = (...files: string[]) => fingerprint(files.map(read));
+  const sizeOf = (...files: string[]) => files.join('').length;
   const build = (exists: (file: string) => boolean) =>
-    buildManifest(clips, voices, fileName, exists, recipe, version);
+    buildManifest(clips, voices, fileName, { exists, read }, recipe);
 
-  it('describes complete recordings, with a version from every file of each clip', () => {
+  it('describes complete recordings, versioning each clip by all its files', () => {
+    const a = ['katie/a.m4a', 'katie/a-1.m4a', 'lulu/a.m4a', 'lulu/a-1.m4a'];
+    const b = [
+      'katie/b.m4a',
+      'katie/b-1.m4a',
+      'katie/b-2.m4a',
+      'lulu/b.m4a',
+      'lulu/b-1.m4a',
+      'lulu/b-2.m4a',
+    ];
     expect(build(() => true)).toEqual({
       voices: [
         { id: 'katie', name: 'Katie' },
         { id: 'lulu', name: 'Lulu' },
       ],
       recipe,
+      bytes: sizeOf(...a, ...b),
       clips: {
-        a: { words: '7!', takes: 2, version: 'katie/a.m4a katie/a-1.m4a lulu/a.m4a lulu/a-1.m4a' },
-        b: {
-          words: 'Yay!',
-          takes: 3,
-          version: 'katie/b.m4a katie/b-1.m4a katie/b-2.m4a lulu/b.m4a lulu/b-1.m4a lulu/b-2.m4a',
-        },
+        a: { words: '7!', takes: 2, version: versionOf(...a) },
+        b: { words: 'Yay!', takes: 3, version: versionOf(...b) },
       },
     });
   });
@@ -97,16 +105,31 @@ describe('buildManifest', () => {
     const manifest = build((file) => done.has(file));
     expect(manifest.voices.map((voice) => voice.id)).toEqual(['katie', 'lulu']);
     expect(manifest.clips).toEqual({
-      a: { words: '7!', takes: 1, version: 'katie/a.m4a lulu/a.m4a' },
-      b: { words: 'Yay!', takes: 2, version: 'katie/b.m4a katie/b-1.m4a lulu/b.m4a lulu/b-1.m4a' },
+      a: { words: '7!', takes: 1, version: versionOf('katie/a.m4a', 'lulu/a.m4a') },
+      b: {
+        words: 'Yay!',
+        takes: 2,
+        version: versionOf('katie/b.m4a', 'katie/b-1.m4a', 'lulu/b.m4a', 'lulu/b-1.m4a'),
+      },
     });
+    // Only what is offered counts towards the size, not Katie's extra take of "7!".
+    expect(manifest.bytes).toBe(
+      sizeOf(
+        'katie/a.m4a',
+        'lulu/a.m4a',
+        'katie/b.m4a',
+        'katie/b-1.m4a',
+        'lulu/b.m4a',
+        'lulu/b-1.m4a',
+      ),
+    );
   });
 
   it('leaves out voices with missing lines, and is empty with no complete voice', () => {
     const katieOnly = expectedFiles(clips, [voices[0] as VoiceSpec], fileName);
     const manifest = build((file) => katieOnly.has(file));
     expect(manifest.voices).toEqual([{ id: 'katie', name: 'Katie' }]);
-    expect(build(() => false).clips).toEqual({});
+    expect(build(() => false)).toMatchObject({ bytes: 0, clips: {} });
   });
 });
 

@@ -1,16 +1,31 @@
+import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vitest/config';
-import { serviceWorker, totalBytes } from './scripts/build/serviceWorker.ts';
+import { serviceWorker } from './scripts/build/serviceWorker.ts';
 
 /** The recorded speech has its own "Play offline" download, so the app's offline copy skips it. */
 const isSpeechClip = (file: string) => file.startsWith('speech/') && file.endsWith('.m4a');
+
+/**
+ * The recordings' total size, shown as the size of the "Play offline" download. `npm run speech`
+ * writes it into the manifest, so Vite and Vitest don't add up thousands of files on every start.
+ */
+function speechBytes(): number {
+  try {
+    const manifestPath = path.join(import.meta.dirname, 'public/speech/manifest.json');
+    const { bytes } = JSON.parse(readFileSync(manifestPath, 'utf8')) as { bytes?: unknown };
+    return typeof bytes === 'number' ? bytes : 0;
+  } catch {
+    return 0;
+  }
+}
 
 export default defineConfig({
   // Relative asset paths + hash routing let the build run from any static host or folder.
   base: './',
   define: {
-    __SPEECH_BYTES__: String(totalBytes(path.join(import.meta.dirname, 'public'), isSpeechClip)),
+    __SPEECH_BYTES__: String(speechBytes()),
   },
   plugins: [react(), serviceWorker({ entry: 'src/offline/sw.ts', skip: isSpeechClip })],
   test: {
