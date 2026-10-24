@@ -18,8 +18,16 @@
   font-variant-numeric: tabular-nums;
 }
 
+.busy {
+  background: #118ab2;
+}
+
 .done {
   background: #2fb344;
+}
+
+.attention {
+  background: #f77f00;
 }
 
 .backdrop {
@@ -106,6 +114,30 @@
   color: #6b6f80;
   font-size: 0.95rem;
   font-variant-numeric: tabular-nums;
+}
+
+.remove {
+  min-height: 44px;
+  margin-top: 14px;
+  padding: 0 12px;
+  border: none;
+  background: none;
+  color: #6b6f80;
+  font-size: 1rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.choices {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Nested to outrank BigButton's own text color. */
+.choices .danger {
+  color: #c1121f;
 }
 
 .hint {

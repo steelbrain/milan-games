@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { createMemoryStore, type Store } from '../services/storage';
 import type { SpeechManifest } from '../speech/manifest';
 import { FakeCacheStorage } from '../test/fakeCaches';
 import {
@@ -22,8 +23,10 @@ const MANIFEST: SpeechManifest = {
   },
 };
 
-const fileUrl = (voice: string, id: string, take: number) =>
-  `${BASE}speech/${voice}/${id}-${take}.m4a`;
+const clipUrl = (voice: string, id: string, take: number, version?: string) =>
+  `speech/${voice}/${id}-${take}.m4a${version ? `?v=${version}` : ''}`;
+const fileUrl = (voice: string, id: string, take: number, version?: string) =>
+  new URL(clipUrl(voice, id, take, version), BASE).href;
 const KATIE = [fileUrl('katie', 'aaa', 0), fileUrl('katie', 'aaa', 1), fileUrl('katie', 'bbb', 0)];
 const LULU = [fileUrl('lulu', 'aaa', 0), fileUrl('lulu', 'aaa', 1), fileUrl('lulu', 'bbb', 0)];
 const ALL = [...KATIE, ...LULU];
@@ -31,23 +34,34 @@ const ALL = [...KATIE, ...LULU];
 type Network = (url: string, signal: AbortSignal) => Promise<Response>;
 const working: Network = (url) => Promise.resolve(new Response(`clip ${url}`));
 
+/** A store that remembers an earlier download saved everything. */
+const savedBefore = () => createMemoryStore({ 'offline-saved': true });
+
 function setup({
   network = working,
   online = true,
   manifest = MANIFEST,
+  caches = new FakeCacheStorage(),
+  store = createMemoryStore(),
   ...options
-}: { network?: Network; online?: boolean; manifest?: SpeechManifest } & Partial<
-  Pick<OfflineSaverOptions, 'appSaved' | 'concurrency' | 'attempts' | 'persist'>
+}: {
+  network?: Network;
+  online?: boolean;
+  manifest?: SpeechManifest;
+  caches?: FakeCacheStorage;
+  store?: Store;
+} & Partial<
+  Pick<OfflineSaverOptions, 'appSaved' | 'concurrency' | 'attempts' | 'persist' | 'autoUpdateFiles'>
 > = {}) {
-  const caches = new FakeCacheStorage();
   const connection = { online, listeners: new Set<() => void>() };
   const sleeps: number[] = [];
   const fetch = vi.fn((url: string, { signal }: { signal: AbortSignal }) => network(url, signal));
   const saver = createOfflineSaver({
     manifest: Promise.resolve(manifest),
-    clipUrl: (voice, id, take) => `speech/${voice}/${id}-${take}.m4a`,
+    clipUrl,
     caches: caches.asCacheStorage,
     appSaved: () => Promise.resolve(true),
+    store,
     fetch,
     resolveUrl: (url) => new URL(url, BASE).href,
     isOnline: () => connection.online,
@@ -69,6 +83,7 @@ function setup({
   return {
     saver,
     caches,
+    store,
     speech: caches.cache('speech'),
     fetch,
     sleeps,
@@ -95,9 +110,11 @@ describe('createOfflineSaver', () => {
       clipUrl: () => '',
       caches: undefined,
       appSaved: () => Promise.resolve(false),
+      store: createMemoryStore(),
     });
     saver.subscribe(() => undefined);
     saver.start();
+    await saver.remove();
     expect(saver.status().phase).toBe('unsupported');
     expect(await saver.savedVoices()).toEqual([]);
   });
@@ -190,6 +207,23 @@ describe('createOfflineSaver', () => {
     saver.start();
     expect((await reaches('saved')).saved).toBe(6);
     expect(fetchedUrls(fetch)).toEqual([ALL[4]]);
+  });
+
+  it('stops early when every file fails, as on a dead connection the browser calls online', async () => {
+    const { saver, fetch, reaches } = setup({
+      concurrency: 1,
+      attempts: 1,
+      network: () => Promise.reject(new TypeError('Load failed')),
+    });
+    saver.start();
+
+    expect(await reaches('failed')).toEqual({
+      phase: 'failed',
+      problem: 'network',
+      saved: 0,
+      total: 6,
+    });
+    expect(fetch).toHaveBeenCalledTimes(3);
   });
 
   it('stops when the device runs out of space', async () => {
@@ -299,9 +333,10 @@ describe('createOfflineSaver', () => {
     function browserSaver(network: Network) {
       return createOfflineSaver({
         manifest: Promise.resolve(MANIFEST),
-        clipUrl: (voice, id, take) => `speech/${voice}/${id}-${take}.m4a`,
+        clipUrl,
         caches: new FakeCacheStorage().asCacheStorage,
         appSaved: () => Promise.resolve(true),
+        store: createMemoryStore(),
         fetch: (url, { signal }) => network(url, signal),
         resolveUrl: (url) => new URL(url, BASE).href,
         concurrency: 1,
@@ -337,6 +372,126 @@ describe('createOfflineSaver', () => {
       saver.stop();
       await vi.waitFor(() => expect(saver.status().phase).toBe('idle'));
     });
+  });
+
+  describe('once everything has been saved', () => {
+    const NEW_CLIP: SpeechManifest = {
+      ...MANIFEST,
+      clips: { ...MANIFEST.clips, ccc: { words: 'Wow!', takes: 1 } },
+    };
+    const NEW_FILES = [fileUrl('katie', 'ccc', 0), fileUrl('lulu', 'ccc', 0)];
+
+    it('remembers it, so what goes missing later is an update', async () => {
+      const first = setup({ concurrency: 1 });
+      first.saver.start();
+      await first.reaches('saved');
+
+      const later = setup({
+        manifest: NEW_CLIP,
+        caches: first.caches,
+        store: first.store,
+        autoUpdateFiles: 0,
+      });
+      expect(await later.reaches('outdated')).toEqual({ phase: 'outdated', saved: 6, total: 8 });
+
+      later.saver.start();
+      expect(await later.reaches('saved')).toEqual({ phase: 'saved', saved: 8, total: 8 });
+      expect(fetchedUrls(later.fetch)).toEqual(NEW_FILES);
+    });
+
+    it('downloads a small update by itself when the app opens', async () => {
+      const caches = new FakeCacheStorage();
+      caches.cache('speech').fill(ALL);
+      const { fetch, reaches } = setup({ manifest: NEW_CLIP, caches, store: savedBefore() });
+      expect((await reaches('saved')).saved).toBe(8);
+      expect(fetchedUrls(fetch).sort()).toEqual([...NEW_FILES].sort());
+    });
+
+    it('leaves a big update, or one without internet, for later', async () => {
+      const caches = new FakeCacheStorage();
+      caches.cache('speech').fill(ALL);
+      const big = setup({ manifest: NEW_CLIP, caches, store: savedBefore(), autoUpdateFiles: 1 });
+      expect((await big.reaches('outdated')).saved).toBe(6);
+
+      const offline = setup({ manifest: NEW_CLIP, caches, store: savedBefore(), online: false });
+      expect((await offline.reaches('outdated')).saved).toBe(6);
+      expect(big.fetch).not.toHaveBeenCalled();
+      expect(offline.fetch).not.toHaveBeenCalled();
+    });
+
+    it('replaces re-recorded clips, which come with a new version', async () => {
+      const caches = new FakeCacheStorage();
+      caches.cache('speech').fill(ALL);
+      const rerecorded: SpeechManifest = {
+        ...MANIFEST,
+        clips: { ...MANIFEST.clips, bbb: { words: 'Hooray!', takes: 1, version: 'v2' } },
+      };
+      const { speech, fetch, reaches } = setup({
+        manifest: rerecorded,
+        caches,
+        store: savedBefore(),
+      });
+
+      await reaches('saved');
+      const replaced = [fileUrl('katie', 'bbb', 0, 'v2'), fileUrl('lulu', 'bbb', 0, 'v2')];
+      expect(fetchedUrls(fetch).sort()).toEqual(replaced.sort());
+      expect(speech.entries.has(fileUrl('katie', 'bbb', 0))).toBe(false);
+      expect(speech.entries.size).toBe(6);
+    });
+
+    it('is still an update when paused', async () => {
+      const caches = new FakeCacheStorage();
+      caches.cache('speech').fill(ALL);
+      const { saver, fetch, reaches } = setup({
+        manifest: NEW_CLIP,
+        caches,
+        store: savedBefore(),
+        network: (_, signal) =>
+          new Promise((_, reject) =>
+            signal.addEventListener('abort', () => reject(new DOMException('', 'AbortError'))),
+          ),
+      });
+      await vi.waitFor(() => expect(fetch).toHaveBeenCalled());
+      saver.stop();
+      expect(await reaches('outdated')).toEqual({ phase: 'outdated', saved: 6, total: 8 });
+    });
+  });
+
+  it('clears out recordings the app no longer uses as soon as it opens', async () => {
+    const { speech, reaches } = setup();
+    speech.fill([...ALL, `${BASE}speech/old/zzz.m4a`]);
+    await reaches('saved');
+    expect([...speech.entries.keys()]).toEqual(ALL);
+  });
+
+  it('removes everything saved, and forgets that it was', async () => {
+    const { saver, caches, store, speech, updates, reaches } = setup();
+    speech.fill(ALL);
+    await reaches('saved');
+
+    await saver.remove();
+    expect(saver.status()).toEqual({ phase: 'idle', saved: 0, total: 6 });
+    expect(updates.slice(-2)).toEqual(['removing', 'idle']);
+    expect(caches.caches.has('speech')).toBe(false);
+    expect(store.read('offline-saved')).toBe(false);
+  });
+
+  it('stops a download before removing what it saved', async () => {
+    const { saver, caches, fetch, reaches } = setup({
+      concurrency: 1,
+      network: (url, signal) =>
+        url === ALL[2]
+          ? new Promise((_, reject) =>
+              signal.addEventListener('abort', () => reject(new DOMException('', 'AbortError'))),
+            )
+          : working(url, signal),
+    });
+    saver.start();
+    await vi.waitFor(() => expect(fetch).toHaveBeenCalledTimes(3));
+
+    await saver.remove();
+    expect(await reaches('idle')).toEqual({ phase: 'idle', saved: 0, total: 6 });
+    expect(caches.caches.has('speech')).toBe(false);
   });
 
   it('lists the voices whose every recording is saved', async () => {

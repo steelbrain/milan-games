@@ -33,3 +33,12 @@ export function clipId(line: Line): string {
 export function clipFileName(id: string, take = 0): string {
   return take === 0 ? `${id}.m4a` : `${id}-${take}.m4a`;
 }
+
+/**
+ * Where one take of a clip lives, relative to the speech folder. The clip's version rides
+ * along in the query, so a re-recording gets a new URL and every cache treats it as new.
+ */
+export function clipPath(voice: string, id: string, take: number, version?: string): string {
+  const file = `${voice}/${clipFileName(id, take)}`;
+  return version === undefined ? file : `${file}?v=${version}`;
+}

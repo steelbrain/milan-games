@@ -6,7 +6,7 @@ import type { Services } from '../services/services';
 import { createSynthSoundPlayer } from '../services/sounds';
 import { createWebSpeechSpeaker } from '../services/speech';
 import { browserLocalStorage, createWebStore } from '../services/storage';
-import { clipFileName } from '../speech/clipId';
+import { clipPath } from '../speech/clipId';
 import { loadSpeechManifest } from '../speech/manifest';
 
 export function createBrowserServices(
@@ -14,17 +14,19 @@ export function createBrowserServices(
 ): Services {
   const getAudioContext = createAudioContextGetter();
   const manifest = loadSpeechManifest(`${speechBaseUrl}manifest.json`);
-  const clipUrl = (voice: string, id: string, take: number) =>
-    `${speechBaseUrl}${voice}/${clipFileName(id, take)}`;
+  const clipUrl = (voice: string, id: string, take: number, version?: string) =>
+    `${speechBaseUrl}${clipPath(voice, id, take, version)}`;
   // Only production builds have a service worker (see scripts/build/serviceWorker.ts).
   const appSaved = import.meta.env.PROD
     ? registerServiceWorker(`${import.meta.env.BASE_URL}sw.js`)
     : undefined;
+  const store = createWebStore(browserLocalStorage());
   const offline = createOfflineSaver({
     manifest,
     clipUrl,
     caches: appSaved && 'caches' in window ? window.caches : undefined,
     appSaved: appSaved ?? (() => Promise.resolve(false)),
+    store,
     persist: async () => navigator.storage?.persist?.(),
   });
   return {
@@ -40,7 +42,7 @@ export function createBrowserServices(
     sounds: createSynthSoundPlayer(getAudioContext),
     random: Math.random,
     now: () => Date.now(),
-    store: createWebStore(browserLocalStorage()),
+    store,
     offline,
   };
 }

@@ -1,4 +1,4 @@
-import type { Line, Utterance } from './line';
+import { capitalize, type Line, line, type Utterance, withArticle } from './line';
 
 export type ShapeName =
   'circle' | 'square' | 'triangle' | 'star' | 'heart' | 'rectangle' | 'oval' | 'diamond';
@@ -33,4 +33,14 @@ export interface Deck {
   readonly askPrompt: Line;
   /** "B is for Ball!" Said when a card is revealed or found. */
   readonly describe: (card: Card) => Utterance;
+}
+
+/** "Red! Like an apple.": names a card, then the familiar thing in its picture. */
+export function describeWithExample(card: Card): Utterance {
+  const name = `${capitalize(card.name.text)}!`;
+  return [
+    line(
+      card.example.kind === 'picture' ? `${name} Like ${withArticle(card.example.word)}.` : name,
+    ),
+  ];
 }

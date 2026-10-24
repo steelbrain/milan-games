@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { speechCatalog } from '../../src/speech/catalog';
 import { clipFileName, clipId, clipWords } from '../../src/speech/clipId';
 import { isSpeechManifest } from '../../src/speech/manifest';
+import { fingerprint } from './plan.ts';
 import { VOICES } from './voices.ts';
 
 const speechDir = path.resolve(import.meta.dirname, '../../public/speech');
@@ -22,7 +23,23 @@ describe('the committed recordings (run `npm run speech` after changing what the
     const expected = Object.fromEntries(
       speechCatalog().map(({ line, takes }) => [clipId(line), { words: clipWords(line), takes }]),
     );
-    expect(manifest.clips).toEqual(expected);
+    const described = Object.fromEntries(
+      Object.entries(manifest.clips).map(([id, { words, takes }]) => [id, { words, takes }]),
+    );
+    expect(described).toEqual(expected);
+  });
+
+  it('are versioned by what is on disk, so a re-recording reaches saved copies', () => {
+    if (!isSpeechManifest(manifest)) throw new Error('Invalid manifest');
+    const stale = Object.entries(manifest.clips).filter(([id, { takes, version }]) => {
+      const files = manifest.voices.flatMap((voice) =>
+        Array.from({ length: takes }, (_, take) =>
+          readFileSync(path.join(speechDir, voice.id, clipFileName(id, take))),
+        ),
+      );
+      return version !== fingerprint(files);
+    });
+    expect(stale.map(([id]) => id)).toEqual([]);
   });
 
   it.each(VOICES)('have every file for $name', (voice) => {

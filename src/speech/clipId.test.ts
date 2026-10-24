@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { line } from '../content/line';
-import { clipFileName, clipId, clipWords } from './clipId';
+import { clipFileName, clipId, clipPath, clipWords } from './clipId';
 
 describe('clipId', () => {
   it('is a stable 14-digit hex name', () => {
@@ -26,5 +26,15 @@ describe('clipFileName', () => {
     expect(clipFileName('abc')).toBe('abc.m4a');
     expect(clipFileName('abc', 0)).toBe('abc.m4a');
     expect(clipFileName('abc', 3)).toBe('abc-3.m4a');
+  });
+});
+
+describe('clipPath', () => {
+  it("puts a take in its voice's folder", () => {
+    expect(clipPath('katie', 'abc', 2)).toBe('katie/abc-2.m4a');
+  });
+
+  it("adds the clip's version, so a re-recording has a new URL", () => {
+    expect(clipPath('katie', 'abc', 0, '3f9a2c1d00')).toBe('katie/abc.m4a?v=3f9a2c1d00');
   });
 });

@@ -1,5 +1,5 @@
-import type { Card, Deck, ShapeName } from './cards';
-import { capitalize, line, withArticle } from './line';
+import { type Card, type Deck, describeWithExample, type ShapeName } from './cards';
+import { line } from './line';
 
 const SHAPES: readonly { id: ShapeName; emoji: string; word: string }[] = [
   { id: 'circle', emoji: '🍪', word: 'cookie' },
@@ -29,10 +29,6 @@ export function createShapeDeck(count?: number): Deck {
     cards: shapeCards(count),
     findPrompt: (card) => line(`Find the ${card.name.text}!`),
     askPrompt: line('What shape is this?'),
-    describe: (card) => [
-      card.example.kind === 'picture'
-        ? line(`${capitalize(card.name.text)}! Like ${withArticle(card.example.word)}.`)
-        : line(`${capitalize(card.name.text)}!`),
-    ],
+    describe: describeWithExample,
   };
 }

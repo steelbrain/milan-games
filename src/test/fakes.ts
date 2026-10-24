@@ -104,6 +104,7 @@ export class RecordingSoundPlayer implements SoundPlayer {
 export class FakeOfflineSaver implements OfflineSaver {
   starts = 0;
   stops = 0;
+  removes = 0;
 
   private current: OfflineStatus;
   private readonly listeners = new Set<() => void>();
@@ -122,6 +123,10 @@ export class FakeOfflineSaver implements OfflineSaver {
   };
   readonly stop = () => {
     this.stops++;
+  };
+  readonly remove = () => {
+    this.removes++;
+    return Promise.resolve();
   };
   readonly savedVoices = () => Promise.resolve([]);
 

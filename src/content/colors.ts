@@ -1,5 +1,5 @@
-import type { Card, Deck } from './cards';
-import { capitalize, line, phrase, withArticle } from './line';
+import { type Card, type Deck, describeWithExample } from './cards';
+import { line, phrase } from './line';
 
 interface ColorInfo {
   readonly id: string;
@@ -39,10 +39,6 @@ export function createColorDeck(count?: number): Deck {
     cards: colorCards(count),
     findPrompt: (card) => phrase`Can you find ${card.name}?`,
     askPrompt: line('What color is this?'),
-    describe: (card) => [
-      card.example.kind === 'picture'
-        ? line(`${capitalize(card.name.text)}! Like ${withArticle(card.example.word)}.`)
-        : line(`${capitalize(card.name.text)}!`),
-    ],
+    describe: describeWithExample,
   };
 }

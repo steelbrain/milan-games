@@ -95,9 +95,55 @@ describe('Play offline', () => {
     const { open, user } = openSheet({ phase: 'saved', saved: 1000, total: 1000 });
     expect(screen.getByRole('button', { name: 'Play offline' })).toHaveTextContent('✓');
     const sheet = await open();
-    expect(sheet).toHaveTextContent('All saved!');
+    expect(sheet).toHaveTextContent('All saved and up to date!');
     await user.click(within(sheet).getByRole('button', { name: 'Done' }));
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+
+  it('offers to update a saved copy once the games change', async () => {
+    const { open, user, offline } = openSheet({ phase: 'outdated', saved: 990, total: 1000 });
+    expect(screen.getByRole('button', { name: 'Play offline' })).toHaveTextContent('↻');
+    const sheet = await open();
+    expect(sheet).toHaveTextContent(
+      /changed since you downloaded them.*\(10 files, about \d+\sMB\)/,
+    );
+    await user.click(within(sheet).getByRole('button', { name: 'Update' }));
+    expect(offline.starts).toBe(1);
+  });
+
+  it('flags a failed download on the button', () => {
+    openSheet({ phase: 'failed', problem: 'network', saved: 10, total: 1000 });
+    expect(screen.getByRole('button', { name: 'Play offline' })).toHaveTextContent('!');
+  });
+
+  it('removes the download, but only once asked twice', async () => {
+    const { open, user, offline, move } = openSheet({ phase: 'saved', saved: 1000, total: 1000 });
+    const sheet = await open();
+
+    await user.click(within(sheet).getByRole('button', { name: 'Remove download' }));
+    expect(sheet).toHaveTextContent(/Remove the saved voices \(\d+\sMB\) from this device\?/);
+    expect(sheet).toHaveFocus();
+    await user.click(within(sheet).getByRole('button', { name: 'Keep them' }));
+    expect(offline.removes).toBe(0);
+    expect(sheet).toHaveTextContent('All saved');
+
+    await user.click(within(sheet).getByRole('button', { name: 'Remove download' }));
+    await user.click(within(sheet).getByRole('button', { name: 'Remove' }));
+    expect(offline.removes).toBe(1);
+
+    move({ phase: 'removing', saved: 1000, total: 1000 });
+    expect(sheet).toHaveTextContent('Removing the download…');
+    expect(within(sheet).queryAllByRole('button')).toHaveLength(1); // Just "Close".
+    move({ phase: 'idle', saved: 0, total: 1000 });
+    expect(within(sheet).getByRole('button', { name: 'Download' })).toBeInTheDocument();
+  });
+
+  it('offers no removal with nothing saved, or while downloading', async () => {
+    const { open, move } = openSheet({ phase: 'idle', saved: 0, total: 1000 });
+    const sheet = await open();
+    expect(within(sheet).queryByRole('button', { name: 'Remove download' })).toBeNull();
+    move({ phase: 'downloading', saved: 500, total: 1000 });
+    expect(within(sheet).queryByRole('button', { name: 'Remove download' })).toBeNull();
   });
 
   it('closes with the close button, Escape, or a tap outside', async () => {

@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { buildManifest, type ClipSpec, expectedFiles, planJobs, seedFor } from './plan.ts';
+import {
+  buildManifest,
+  type ClipSpec,
+  expectedFiles,
+  fingerprint,
+  planJobs,
+  seedFor,
+} from './plan.ts';
 import type { VoiceSpec } from './voices.ts';
 
 const voices: VoiceSpec[] = [
@@ -56,15 +63,26 @@ describe('expectedFiles', () => {
 
 describe('buildManifest', () => {
   const recipe = { model: 'm' };
+  /** Lists the files a version covers, standing in for a fingerprint of their contents. */
+  const version = (files: readonly string[]) => files.join(' ');
+  const build = (exists: (file: string) => boolean) =>
+    buildManifest(clips, voices, fileName, exists, recipe, version);
 
-  it('describes complete recordings', () => {
-    expect(buildManifest(clips, voices, fileName, () => true, recipe)).toEqual({
+  it('describes complete recordings, with a version from every file of each clip', () => {
+    expect(build(() => true)).toEqual({
       voices: [
         { id: 'katie', name: 'Katie' },
         { id: 'lulu', name: 'Lulu' },
       ],
       recipe,
-      clips: { a: { words: '7!', takes: 2 }, b: { words: 'Yay!', takes: 3 } },
+      clips: {
+        a: { words: '7!', takes: 2, version: 'katie/a.m4a katie/a-1.m4a lulu/a.m4a lulu/a-1.m4a' },
+        b: {
+          words: 'Yay!',
+          takes: 3,
+          version: 'katie/b.m4a katie/b-1.m4a katie/b-2.m4a lulu/b.m4a lulu/b-1.m4a lulu/b-2.m4a',
+        },
+      },
     });
   });
 
@@ -76,18 +94,35 @@ describe('buildManifest', () => {
       'lulu/b-1.m4a',
     ]);
     done.delete('katie/b-2.m4a');
-    const manifest = buildManifest(clips, voices, fileName, (file) => done.has(file), recipe);
+    const manifest = build((file) => done.has(file));
     expect(manifest.voices.map((voice) => voice.id)).toEqual(['katie', 'lulu']);
     expect(manifest.clips).toEqual({
-      a: { words: '7!', takes: 1 },
-      b: { words: 'Yay!', takes: 2 },
+      a: { words: '7!', takes: 1, version: 'katie/a.m4a lulu/a.m4a' },
+      b: { words: 'Yay!', takes: 2, version: 'katie/b.m4a katie/b-1.m4a lulu/b.m4a lulu/b-1.m4a' },
     });
   });
 
   it('leaves out voices with missing lines, and is empty with no complete voice', () => {
     const katieOnly = expectedFiles(clips, [voices[0] as VoiceSpec], fileName);
-    const manifest = buildManifest(clips, voices, fileName, (file) => katieOnly.has(file), recipe);
+    const manifest = build((file) => katieOnly.has(file));
     expect(manifest.voices).toEqual([{ id: 'katie', name: 'Katie' }]);
-    expect(buildManifest(clips, voices, fileName, () => false, recipe).clips).toEqual({});
+    expect(build(() => false).clips).toEqual({});
+  });
+});
+
+describe('fingerprint', () => {
+  const bytes = (text: string) => new TextEncoder().encode(text);
+
+  it('is short and the same for the same recordings', () => {
+    expect(fingerprint([bytes('take 0'), bytes('take 1')])).toMatch(/^[0-9a-f]{10}$/);
+    expect(fingerprint([bytes('take 0'), bytes('take 1')])).toBe(
+      fingerprint([bytes('take 0'), bytes('take 1')]),
+    );
+  });
+
+  it('changes when any recording does', () => {
+    expect(fingerprint([bytes('take 0'), bytes('take 1')])).not.toBe(
+      fingerprint([bytes('take 0'), bytes('new take 1')]),
+    );
   });
 });

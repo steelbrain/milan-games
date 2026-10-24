@@ -29,11 +29,16 @@ site in `dist/` that works from any web host or folder, because routing uses the
 
 ### Offline, like on a plane
 
-The ✈️ button on the home screen opens **Play offline**, which downloads every voice clip (about
+The ⬇️ button on the home screen opens **Play offline**, which downloads every voice clip (about
 85 MB) so the whole app works without internet. It shows its progress, retries files that fail,
 waits out a lost connection by itself, and can be paused and picked up again later, even after
 closing the app. On an iPhone or iPad, download from the Home Screen app, not from Safari: iOS
 keeps their storage separate.
+
+Once downloaded, the copy stays in step with the app. Each time the app opens, recordings it no
+longer uses are deleted, and small updates (up to 500 files, about 3 MB) download by themselves.
+Bigger ones put a ↻ on the button and an **Update** in the sheet. **Remove download** frees the
+space again, after asking first.
 
 ## Commands
 
@@ -109,7 +114,8 @@ It needs `ELEVENLABS_API_KEY` in `.local.env` (git-ignored) and costs roughly 0.
 character. `npm run speech -- --dry-run` shows what would be recorded and the estimated cost
 first. Only the words to say are sent to ElevenLabs. Voices live in `scripts/speech/voices.ts`,
 and the model and voice settings live at the top of `scripts/speech/generate.ts`. To re-record a
-clip, delete its file and run the command again.
+clip, delete its file and run the command again. The manifest gives each clip a version from its
+files' contents, which goes in the clip's URLs, so saved copies pick up re-recordings.
 
 ## Offline
 
@@ -122,6 +128,10 @@ clip, delete its file and run the command again.
 - **The speech** is only saved by the Play offline download (`offlineSaver.ts`), since most
   visits never need all four voices. It saves one voice at a time, so a stopped download still
   leaves whole voices. Without internet, a visit only picks voices that are fully saved.
+- **Keeping it current:** clip URLs carry each clip's version (`?v=…`), so a new or re-recorded
+  clip is simply a URL the saved copy doesn't have yet. On every visit the saver deletes saved
+  URLs the manifest no longer lists and, if the copy was complete before, fetches small updates
+  itself or offers an **Update** for big ones.
 
 ## Tests
 

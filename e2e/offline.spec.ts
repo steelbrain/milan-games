@@ -27,7 +27,7 @@ test('downloads everything, then plays without internet', async ({ page, context
   const sheet = downloader.getByRole('dialog', { name: 'Play offline' });
   await sheet.getByRole('button', { name: 'Download' }).click();
   await expect(sheet.getByRole('progressbar')).toBeVisible();
-  await expect(sheet.getByText('All saved!')).toBeVisible({ timeout: 280_000 });
+  await expect(sheet.getByText('All saved and up to date!')).toBeVisible({ timeout: 280_000 });
   await downloader.close();
 
   await context.setOffline(true);
@@ -50,4 +50,15 @@ test('downloads everything, then plays without internet', async ({ page, context
   const counted = Array.from({ length: count }, (_, i) => `${i + 1}!`);
   await expect.poll(spoken).toEqual(expect.arrayContaining(counted));
   // The fixture also checks that the robotic fallback voice was never needed.
+
+  // Back online, the download can be removed again.
+  await context.setOffline(false);
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Play offline' }).click();
+  const saved = page.getByRole('dialog', { name: 'Play offline' });
+  await saved.getByRole('button', { name: 'Remove download' }).click();
+  await saved.getByRole('button', { name: 'Remove', exact: true }).click();
+  await expect(saved.getByRole('button', { name: 'Download' })).toBeVisible();
+  const left = await page.evaluate(async () => (await (await caches.open('speech')).keys()).length);
+  expect(left).toBe(0);
 });

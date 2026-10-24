@@ -74,7 +74,8 @@ function setup({
   const getContext = vi.fn(() => audio?.context);
   const speaker = createClipSpeaker({
     manifest: available,
-    clipUrl: (voice, id, take) => `${voice}/${id}#${take}`,
+    clipUrl: (voice, id, take, version) =>
+      `${voice}/${id}#${take}${version ? `?v=${version}` : ''}`,
     getContext,
     fallback,
     fetchClip,
@@ -103,6 +104,18 @@ describe('createClipSpeaker', () => {
       { url: urlOf(there, voice), at: 5.01 + 1 + 0.18 },
     ]);
     expect(fallback.lines).toEqual([]);
+  });
+
+  it("asks for a clip's current version, so a re-recording never plays an old copy", async () => {
+    const versioned: SpeechManifest = {
+      ...manifest,
+      clips: { [clipId(hello)]: { words: 'Hello', takes: 1, version: 'v2' } },
+    };
+    const { speaker, audio } = setup({ available: Promise.resolve(versioned) });
+    speaker.say(hello);
+    await vi.waitFor(() => expect(audio?.started()).toHaveLength(1));
+    const voice = voiceOf(audio?.started()[0]?.url) ?? '';
+    expect(audio?.started()[0]?.url).toBe(`${urlOf(hello, voice)}?v=v2`);
   });
 
   it('finishes when the last clip ends', async () => {

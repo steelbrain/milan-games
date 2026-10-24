@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import type { VoiceSpec } from './voices.ts';
 
 export interface ClipSpec {
@@ -19,7 +20,7 @@ export interface Job {
 export interface Manifest {
   readonly voices: readonly { id: string; name: string }[];
   readonly recipe: unknown;
-  readonly clips: Record<string, { words: string; takes: number }>;
+  readonly clips: Record<string, { words: string; takes: number; version: string }>;
 }
 
 /** Take 0 is "<id>.m4a"; matches clipFileName in src/speech/clipId.ts. */
@@ -81,9 +82,17 @@ export function expectedFiles(
   return files;
 }
 
+/** A short fingerprint of a clip's recordings that changes whenever any of them does. */
+export function fingerprint(contents: Iterable<Uint8Array>): string {
+  const hash = createHash('sha256');
+  for (const content of contents) hash.update(content);
+  return hash.digest('hex').slice(0, 10);
+}
+
 /**
  * Describes what is actually on disk. A voice is offered only if it has every clip; each clip
  * offers the takes that every offered voice has, so the app never asks for a missing file.
+ * `version` fingerprints the files a clip offers, so the app can tell when one is re-recorded.
  */
 export function buildManifest(
   clips: readonly ClipSpec[],
@@ -91,6 +100,7 @@ export function buildManifest(
   fileName: FileNamer,
   exists: (file: string) => boolean,
   recipe: unknown,
+  version: (files: readonly string[]) => string,
 ): Manifest {
   const takesOnDisk = (voice: VoiceSpec, clip: ClipSpec) => {
     let take = 0;
@@ -102,7 +112,10 @@ export function buildManifest(
     .sort((a, b) => a.id.localeCompare(b.id))
     .map((clip) => {
       const takes = Math.min(...complete.map((voice) => takesOnDisk(voice, clip)));
-      return [clip.id, { words: clip.words, takes }] as const;
+      const files = complete.flatMap((voice) =>
+        Array.from({ length: takes }, (_, take) => filePath(voice, fileName(clip.id, take))),
+      );
+      return [clip.id, { words: clip.words, takes, version: version(files) }] as const;
     });
   return {
     voices: complete.map(({ id, name }) => ({ id, name })),

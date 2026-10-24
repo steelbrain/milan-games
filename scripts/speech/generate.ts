@@ -14,14 +14,14 @@
  * Only the words to say are sent to ElevenLabs. To re-record a clip, delete its file and re-run.
  */
 import { execFile } from 'node:child_process';
-import { existsSync } from 'node:fs';
-import { mkdir, mkdtemp, readdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
-import os from 'node:os';
+import { existsSync, readFileSync } from 'node:fs';
+import { mkdir, mkdtemp, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { parseArgs, promisify } from 'node:util';
 import { runnerImport } from 'vite';
 import type * as Catalog from '../../src/speech/catalog.ts';
 import type * as ClipIds from '../../src/speech/clipId.ts';
+import { listFiles } from '../build/serviceWorker.ts';
 import { encodeWav, pcm16ToFloat, tidy } from './audio.ts';
 import {
   createElevenLabsClient,
@@ -35,6 +35,7 @@ import {
   type ClipSpec,
   expectedFiles,
   type FileNamer,
+  fingerprint,
   type Job,
   type Manifest,
   planJobs,
@@ -44,6 +45,8 @@ import { VOICES } from './voices.ts';
 const run = promisify(execFile);
 const root = path.resolve(import.meta.dirname, '../..');
 const outDir = path.join(root, 'public/speech');
+/** Inside the project, so finished clips can be renamed into outDir (no cross-device rename). */
+const scratchRoot = path.join(root, 'node_modules/.cache');
 const manifestPath = path.join(outDir, 'manifest.json');
 
 /**
@@ -71,6 +74,15 @@ const { values: options } = parseArgs({
     'manifest-only': { type: 'boolean', default: false },
   },
 });
+
+/** A whole number option of at least `min`, or a clear error instead of a silent no-op. */
+function wholeNumber(name: string, value: string, min: number): number {
+  const parsed = Number(value);
+  if (!Number.isInteger(parsed) || parsed < min) {
+    throw new Error(`--${name} needs a whole number of at least ${min}, not "${value}".`);
+  }
+  return parsed;
+}
 
 async function loadCatalog(): Promise<{ clips: ClipSpec[]; fileName: FileNamer }> {
   const config = { configFile: false as const, logLevel: 'error' as const };
@@ -163,10 +175,11 @@ interface Outcome {
   stopped?: Error;
 }
 
-async function record(jobs: readonly Job[], apiKey: string): Promise<Outcome> {
+async function record(jobs: readonly Job[], apiKey: string, workers: number): Promise<Outcome> {
   const synthesize = createElevenLabsClient({ apiKey });
   const encode = await encoder();
-  const scratch = await mkdtemp(path.join(os.tmpdir(), 'speech-'));
+  await mkdir(scratchRoot, { recursive: true });
+  const scratch = await mkdtemp(path.join(scratchRoot, 'speech-'));
   const outcome: Outcome = { recorded: 0, credits: 0, failures: [] };
   const started = Date.now();
   let next = 0;
@@ -231,7 +244,6 @@ async function record(jobs: readonly Job[], apiKey: string): Promise<Outcome> {
   }
 
   try {
-    const workers = Math.max(1, Number(options.concurrency));
     await Promise.all(Array.from({ length: workers }, worker));
   } finally {
     process.off('SIGINT', interrupt);
@@ -242,13 +254,7 @@ async function record(jobs: readonly Job[], apiKey: string): Promise<Outcome> {
 
 /** Deletes recordings the catalog no longer asks for. */
 async function removeStale(expected: Set<string>): Promise<number> {
-  const entries = await readdir(outDir, { recursive: true, withFileTypes: true });
-  const stale = entries
-    .filter((entry) => entry.isFile() && entry.name.endsWith('.m4a'))
-    .map((entry) =>
-      path.relative(outDir, path.join(entry.parentPath, entry.name)).split(path.sep).join('/'),
-    )
-    .filter((file) => !expected.has(file));
+  const stale = listFiles(outDir).filter((file) => file.endsWith('.m4a') && !expected.has(file));
   await Promise.all(stale.map((file) => rm(path.join(outDir, file))));
   return stale.length;
 }
@@ -263,6 +269,7 @@ async function previousRecipe(): Promise<string | undefined> {
 }
 
 async function main(): Promise<void> {
+  const workers = wholeNumber('concurrency', options.concurrency, 1);
   const { clips, fileName } = await loadCatalog();
   const recipe = {
     model: options.model,
@@ -273,7 +280,8 @@ async function main(): Promise<void> {
   await mkdir(outDir, { recursive: true });
 
   const all = planJobs(clips, VOICES, fileName, onDisk);
-  const jobs = options.limit === undefined ? all : all.slice(0, Number(options.limit));
+  const jobs =
+    options.limit === undefined ? all : all.slice(0, wholeNumber('limit', options.limit, 0));
   const characters = jobs.reduce((sum, job) => sum + job.clip.words.length, 0);
   const totalFiles = expectedFiles(clips, VOICES, fileName).size;
   console.log(
@@ -291,7 +299,7 @@ async function main(): Promise<void> {
     const apiKey = readSecret('ELEVENLABS_API_KEY', root);
     if (!apiKey) throw new Error('Set ELEVENLABS_API_KEY in the environment or in .local.env.');
 
-    const outcome = await record(jobs, apiKey);
+    const outcome = await record(jobs, apiKey, workers);
     console.log(`Recorded ${outcome.recorded} clips for ${outcome.credits} credits.`);
     for (const failure of outcome.failures) console.log(`  could not record ${failure}`);
     if (outcome.stopped) {
@@ -304,7 +312,9 @@ async function main(): Promise<void> {
 
   const removed = await removeStale(expectedFiles(clips, VOICES, fileName));
   if (removed > 0) console.log(`Removed ${removed} unused recordings.`);
-  const manifest = buildManifest(clips, VOICES, fileName, onDisk, recipe);
+  const manifest = buildManifest(clips, VOICES, fileName, onDisk, recipe, (files) =>
+    fingerprint(files.map((file) => readFileSync(path.join(outDir, file)))),
+  );
   await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
   const fewest = Math.min(...Object.values(manifest.clips).map((clip) => clip.takes));
   console.log(

@@ -13,7 +13,7 @@ export type ClipAudioContext = Pick<
 export interface ClipSpeakerOptions {
   /** Which clips exist. Undefined means there are no recordings. */
   readonly manifest: Promise<SpeechManifest | undefined>;
-  readonly clipUrl: (voice: string, id: string, take: number) => string;
+  readonly clipUrl: (voice: string, id: string, take: number, version?: string) => string;
   readonly getContext: () => ClipAudioContext | undefined;
   /** Used for anything without a recording, so the game is never silent. */
   readonly fallback: Speaker;
@@ -63,7 +63,10 @@ export function createClipSpeaker({
     }
     const buffer = fetchClip(url).then((data) => context.decodeAudioData(data));
     cache.set(url, buffer);
-    buffer.catch(() => cache.delete(url));
+    buffer.catch(() => {
+      // Only if still ours: an evicted and re-requested clip may have a newer load by now.
+      if (cache.get(url) === buffer) cache.delete(url);
+    });
     const oldest = cache.keys().next().value;
     if (cache.size > cacheSize && oldest !== undefined) cache.delete(oldest);
     return buffer;
@@ -93,7 +96,9 @@ export function createClipSpeaker({
       const id = clipId(line);
       const clip =
         available && Object.hasOwn(available.clips, id) ? available.clips[id] : undefined;
-      if (clip && speaking) urls.push(clipUrl(speaking.id, id, pickTake(id, clip.takes)));
+      if (clip && speaking) {
+        urls.push(clipUrl(speaking.id, id, pickTake(id, clip.takes), clip.version));
+      }
     }
     // Anything unrecorded means the whole utterance falls back, rather than mixing two voices.
     if (!context || urls.length < lines.length) {

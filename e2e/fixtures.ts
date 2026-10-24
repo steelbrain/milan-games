@@ -57,8 +57,11 @@ export const test = base.extend<{
       const heard: Heard[] = [];
       let visit = 0;
       page.on('domcontentloaded', () => visit++);
+      // Clips always carry their version, so a re-recording never plays from an old copy.
       page.on('request', (request) => {
-        const match = /\/speech\/([a-z]+)\/([0-9a-f]{14})(?:-\d+)?\.m4a$/.exec(request.url());
+        const match = /\/speech\/([a-z]+)\/([0-9a-f]{14})(?:-\d+)?\.m4a\?v=[0-9a-f]+$/.exec(
+          request.url(),
+        );
         const [, voice = '', id = ''] = match ?? [];
         if (match)
           heard.push({ words: manifest.clips[id]?.words ?? `unknown clip ${id}`, voice, visit });

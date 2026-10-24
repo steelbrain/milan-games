@@ -3,6 +3,11 @@ export interface ClipInfo {
   readonly words: string;
   /** How many takes of it every voice has; see TAKES in catalog.ts. */
   readonly takes: number;
+  /**
+   * Changes whenever any of the clip's recordings does. It goes in the clip's URLs, so a
+   * re-recorded take never plays from an old saved copy.
+   */
+  readonly version?: string;
 }
 
 export interface VoiceInfo {
@@ -26,7 +31,8 @@ function isClipInfo(value: unknown): value is ClipInfo {
     typeof value.words === 'string' &&
     typeof value.takes === 'number' &&
     Number.isInteger(value.takes) &&
-    value.takes >= 1
+    value.takes >= 1 &&
+    (value.version === undefined || typeof value.version === 'string')
   );
 }
 
