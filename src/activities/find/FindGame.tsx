@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Deck } from '../../content/cards';
-import { choiceStatus, choose, initialChoiceState } from '../../core/choice';
+import { choiceStatus, choose, initialChoiceState, WRONG_PICKS_TO_MISS } from '../../core/choice';
 import { useGameSession } from '../../core/useGameSession';
 import { useAnnouncement, useAudio } from '../../services/audio';
 import { useServices } from '../../services/services';
@@ -11,7 +11,7 @@ import { CardFace } from '../../ui/CardFace';
 import { ChoiceTile } from '../../ui/ChoiceTile';
 import { GameFrame } from '../../ui/GameFrame';
 import { PromptBubble } from '../../ui/PromptBubble';
-import { CARD_GAME_FINALES, CARD_GAME_HEROES, praise } from '../praise';
+import { ALL_STARS_FINALES, CARD_GAME_FINALES, CARD_GAME_HEROES, praise } from '../praise';
 import styles from './FindGame.module.css';
 import { createFindRounds, type FindRound, namedCard } from './findLogic';
 
@@ -35,6 +35,7 @@ export function FindGame({ deck, exitTo }: FindGameProps) {
       exitTo={exitTo}
       heroes={CARD_GAME_HEROES}
       finales={CARD_GAME_FINALES}
+      allStarsFinales={ALL_STARS_FINALES}
     >
       {(round) => (
         <FindRoundView
@@ -42,6 +43,7 @@ export function FindGame({ deck, exitTo }: FindGameProps) {
           deck={deck}
           isLastRound={session.isLastRound}
           onSolved={session.solve}
+          onMissed={session.miss}
           onNext={session.next}
         />
       )}
@@ -54,10 +56,18 @@ interface FindRoundViewProps {
   readonly deck: Deck;
   readonly isLastRound: boolean;
   readonly onSolved: () => void;
+  readonly onMissed: () => void;
   readonly onNext: () => void;
 }
 
-function FindRoundView({ round, deck, isLastRound, onSolved, onNext }: FindRoundViewProps) {
+function FindRoundView({
+  round,
+  deck,
+  isLastRound,
+  onSolved,
+  onMissed,
+  onNext,
+}: FindRoundViewProps) {
   const { random } = useServices();
   const { say, play } = useAudio();
   const [state, setState] = useState(initialChoiceState<string>);
@@ -66,17 +76,24 @@ function FindRoundView({ round, deck, isLastRound, onSolved, onNext }: FindRound
   useAnnouncement(prompt);
 
   const pick = (cardId: string) => {
-    const result = choose(state, target.id, cardId);
+    const result = choose(state, target.id, cardId, { missAfter: WRONG_PICKS_TO_MISS });
     if (result.outcome === 'ignored') return;
     setState(result.state);
     if (result.outcome === 'correct') {
       play('correct');
       say(praise(random), ...deck.describe(target));
       onSolved();
+      return;
+    }
+    const chosen = round.choices.find((card) => card.id === cardId);
+    const named = chosen ? [namedCard(chosen)] : [];
+    play('tryAgain');
+    if (result.outcome === 'wrong') {
+      say(...named, prompt);
     } else {
-      const chosen = round.choices.find((card) => card.id === cardId);
-      play('tryAgain');
-      if (chosen) say(namedCard(chosen), prompt);
+      // No star this round. The right card is marked, and said: "That's C. B is for Ball!"
+      say(...named, ...deck.describe(target));
+      onMissed();
     }
   };
 
@@ -96,7 +113,7 @@ function FindRoundView({ round, deck, isLastRound, onSolved, onNext }: FindRound
         ))}
       </div>
       <div className={styles.after}>
-        {state.solved && (
+        {(state.solved || state.missed) && (
           <>
             <CardExample example={target.example} />
             <BigButton icon={isLastRound ? '🎉' : '➡️'} onClick={onNext} pulse autoFocus>

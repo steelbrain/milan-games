@@ -14,24 +14,35 @@ interface GameFrameProps<R> {
   readonly heroes: readonly string[];
   /** What it might say; each finished game says one of them. */
   readonly finales: readonly Line[];
+  /** More it might say, but only after a game that earned every star. */
+  readonly allStarsFinales?: readonly Line[];
   /** Renders one round. Each round is remounted fresh, so its local state starts clean. */
   readonly children: (round: R) => ReactNode;
 }
 
 /** The chrome every game shares: back button, star progress, and the end-of-game party. */
-export function GameFrame<R>({ session, exitTo, heroes, finales, children }: GameFrameProps<R>) {
+export function GameFrame<R>({
+  session,
+  exitTo,
+  heroes,
+  finales,
+  allStarsFinales,
+  children,
+}: GameFrameProps<R>) {
   const exit = useExit(exitTo);
   return (
     <div className={styles.frame}>
       <TopBar onBack={exit}>
-        <StarProgress earned={session.stars} total={session.total} />
+        <StarProgress results={session.results} total={session.total} />
       </TopBar>
       <main className={styles.main}>
         {session.complete ? (
           <SessionComplete
             heroes={heroes}
             finales={finales}
-            stars={session.total}
+            allStarsFinales={allStarsFinales}
+            results={session.results}
+            total={session.total}
             onPlayAgain={session.restart}
             onDone={exit}
           />

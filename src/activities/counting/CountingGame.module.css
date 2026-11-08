@@ -118,19 +118,6 @@
   gap: 12px clamp(12px, 3vw, 24px);
 }
 
-.tally {
-  display: grid;
-  place-items: center;
-  width: clamp(60px, 14vmin, 84px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: var(--tint);
-  color: #fff;
-  font-size: clamp(1.8rem, 6vmin, 2.6rem);
-  font-weight: 700;
-  box-shadow: 0 6px 0 color-mix(in srgb, var(--tint) 65%, black);
-}
-
 .choices {
   --tile-size: clamp(76px, 15vmin, 128px);
   display: flex;

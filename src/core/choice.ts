@@ -1,32 +1,54 @@
 /**
  * Multiple-choice answering, shared by every "pick the right one" game. Wrong picks are
- * remembered so they can be greyed out; the round is solved by the first right pick.
+ * remembered so they can be greyed out; the round is solved by the first right pick. A game can
+ * also end the round after a number of wrong picks: it is then missed, and the answer is shown.
  */
 export interface ChoiceState<T> {
   readonly wrong: readonly T[];
   readonly solved: boolean;
+  /** Too many wrong picks: the round is over without being won. */
+  readonly missed: boolean;
 }
 
-export type ChoiceOutcome = 'correct' | 'wrong' | 'ignored';
+export type ChoiceOutcome = 'correct' | 'wrong' | 'missed' | 'ignored';
 
-export type ChoiceStatus = 'idle' | 'correct' | 'wrong' | 'faded';
+/** `answer` is the right choice shown after a missed round, without the cheering of `correct`. */
+export type ChoiceStatus = 'idle' | 'correct' | 'answer' | 'wrong' | 'faded';
+
+/**
+ * The games offer three choices, so after one wrong pick a second would leave only the answer,
+ * found by elimination. The second wrong pick misses the round instead.
+ */
+export const WRONG_PICKS_TO_MISS = 2;
+
+export interface ChooseOptions {
+  /** The wrong pick that makes this many misses the round. Unlimited by default. */
+  readonly missAfter?: number;
+}
 
 export function initialChoiceState<T>(): ChoiceState<T> {
-  return { wrong: [], solved: false };
+  return { wrong: [], solved: false, missed: false };
 }
 
 export function choose<T>(
   state: ChoiceState<T>,
   answer: T,
   choice: T,
+  { missAfter = Infinity }: ChooseOptions = {},
 ): { state: ChoiceState<T>; outcome: ChoiceOutcome } {
-  if (state.solved || state.wrong.includes(choice)) return { state, outcome: 'ignored' };
+  if (state.solved || state.missed || state.wrong.includes(choice)) {
+    return { state, outcome: 'ignored' };
+  }
   if (choice === answer) return { state: { ...state, solved: true }, outcome: 'correct' };
-  return { state: { ...state, wrong: [...state.wrong, choice] }, outcome: 'wrong' };
+  const wrong = [...state.wrong, choice];
+  if (wrong.length >= missAfter)
+    return { state: { ...state, wrong, missed: true }, outcome: 'missed' };
+  return { state: { ...state, wrong }, outcome: 'wrong' };
 }
 
 export function choiceStatus<T>(state: ChoiceState<T>, answer: T, choice: T): ChoiceStatus {
-  if (state.solved && choice === answer) return 'correct';
+  if (choice === answer && state.solved) return 'correct';
+  if (choice === answer && state.missed) return 'answer';
   if (state.wrong.includes(choice)) return 'wrong';
-  return state.solved ? 'faded' : 'idle';
+  return state.solved || state.missed ? 'faded' : 'idle';
 }

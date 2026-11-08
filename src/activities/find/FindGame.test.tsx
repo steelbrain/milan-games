@@ -3,7 +3,7 @@ import type { UserEvent } from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import { choiceButtons, clickNext, findTarget, promptText } from '../../test/play';
 import { renderApp } from '../../test/render';
-import { CARD_GAME_FINALES, CARD_GAME_HEROES, PRAISE } from '../praise';
+import { ALL_STARS_FINALES, CARD_GAME_FINALES, CARD_GAME_HEROES, PRAISE } from '../praise';
 
 const LETTER = /Find the letter (\w)!/;
 
@@ -11,6 +11,17 @@ async function solveRound(user: UserEvent) {
   await user.click(screen.getByRole('button', { name: findTarget(LETTER) }));
   await clickNext(user);
 }
+
+/** Picks both wrong letters, which misses the round's star. Returns them in order. */
+async function missRound(user: UserEvent): Promise<string[]> {
+  const target = findTarget(LETTER);
+  const wrong = choiceButtons().filter((button) => button.getAttribute('aria-label') !== target);
+  expect(wrong).toHaveLength(2);
+  for (const button of wrong) await user.click(button);
+  return wrong.map((button) => button.getAttribute('aria-label') ?? '');
+}
+
+const finaleTexts = (finales: readonly { text: string }[]) => finales.map((line) => line.text);
 
 describe('FindGame', () => {
   it('asks for a letter out loud and shows three choices', () => {
@@ -37,6 +48,28 @@ describe('FindGame', () => {
     expect(wrong).toBeDisabled();
     expect(wrong).toHaveAttribute('data-status', 'wrong');
     expect(screen.queryByRole('button', { name: 'Next' })).not.toBeInTheDocument();
+    expect(screen.getByRole('img', { name: '0 of 5 stars' })).toBeInTheDocument();
+  });
+
+  it('misses the star after a second wrong pick, and shows the right one', async () => {
+    const { user, services } = renderApp('/play/letters/upper/find');
+    const target = findTarget(LETTER);
+    const [, second] = await missRound(user);
+
+    expect(services.sounds.cues).toEqual(['tryAgain', 'tryAgain']);
+    const [named, description] = services.speaker.texts.slice(-2);
+    expect(named).toBe(`That's ${second ?? ''}.`);
+    expect(description).toMatch(new RegExp(`^${target} is for \\w+!$`));
+    expect(screen.getByRole('button', { name: target })).toHaveAttribute('data-status', 'answer');
+    expect(screen.getByRole('figure')).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: '0 of 5 stars' })).toBeInTheDocument();
+
+    // The right one wins nothing now.
+    await user.click(screen.getByRole('button', { name: target }));
+    expect(services.sounds.cues).not.toContain('correct');
+
+    await clickNext(user);
+    expect(promptText()).toMatch(LETTER);
     expect(screen.getByRole('img', { name: '0 of 5 stars' })).toBeInTheDocument();
   });
 
@@ -88,7 +121,24 @@ describe('FindGame', () => {
 
     expect(screen.getByRole('heading', { name: 'You did it!' })).toBeInTheDocument();
     expect(services.sounds.cues.at(-1)).toBe('celebrate');
-    expect(CARD_GAME_FINALES.map((line) => line.text)).toContain(services.speaker.lastText);
+    expect(finaleTexts([...CARD_GAME_FINALES, ...ALL_STARS_FINALES])).toContain(
+      services.speaker.lastText,
+    );
+  });
+
+  it('ends a game with a missed round with fewer stars, and never claims all five', async () => {
+    const { user, services } = renderApp('/play/letters/upper/find');
+    for (let game = 0; game < 6; game++) {
+      await missRound(user);
+      await clickNext(user);
+      for (let round = 2; round <= 5; round++) await solveRound(user);
+      expect(screen.getByRole('heading', { name: 'You did it!' })).toBeInTheDocument();
+      for (const bar of screen.getAllByRole('img', { name: /stars$/ })) {
+        expect(bar).toHaveAccessibleName('4 of 5 stars');
+      }
+      expect(finaleTexts(CARD_GAME_FINALES)).toContain(services.speaker.lastText);
+      await user.click(screen.getByRole('button', { name: 'Play again' }));
+    }
   });
 
   it('celebrates every finished game with its own mascot and words', async () => {

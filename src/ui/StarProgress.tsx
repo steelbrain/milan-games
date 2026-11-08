@@ -1,15 +1,35 @@
+import type { RoundResult } from '../core/session';
 import { range } from '../core/random';
 import { cx } from './cx';
 import styles from './StarProgress.module.css';
 
-export function StarProgress({ earned, total }: { earned: number; total: number }) {
+/** One star per round: gold once earned, grey if the round was missed, an outline until then. */
+export function StarProgress({
+  results,
+  total,
+}: {
+  results: readonly RoundResult[];
+  total: number;
+}) {
+  const earned = results.filter((result) => result === 'star').length;
   return (
     <div className={styles.stars} role="img" aria-label={`${earned} of ${total} stars`}>
-      {range(1, total).map((n) => (
-        <span key={n} className={cx(styles.star, n <= earned && styles.earned)}>
-          {n <= earned ? '⭐' : '☆'}
-        </span>
-      ))}
+      {range(0, total - 1).map((n) => {
+        const result = results[n];
+        return (
+          <span
+            key={n}
+            className={cx(
+              styles.star,
+              result === 'star' && styles.earned,
+              result === 'missed' && styles.missed,
+            )}
+            data-result={result ?? 'ahead'}
+          >
+            {result ? '⭐' : '☆'}
+          </span>
+        );
+      })}
     </div>
   );
 }

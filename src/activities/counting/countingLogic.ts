@@ -186,3 +186,8 @@ export function notThisMany(choice: number): Line {
 export function countingRetry(choice: number): Utterance {
   return [notThisMany(choice), TRY_AGAIN];
 }
+
+/** "Not 5. Let's count the carrots together!", then the game counts them to show the answer. */
+export function countingMissed(choice: number, scene: StoryScene): Utterance {
+  return [notThisMany(choice), countTogether(scene)];
+}

@@ -10,7 +10,7 @@ import {
   SLOW_DOWN,
   TRY_AGAIN,
 } from '../activities/counting/countingLogic';
-import { CARD_GAME_FINALES, PRAISE } from '../activities/praise';
+import { ALL_STARS_FINALES, CARD_GAME_FINALES, PRAISE } from '../activities/praise';
 import { line, type Line } from '../content/line';
 import { range } from '../core/random';
 import { TOPICS, type Topic } from '../topics/topics';
@@ -55,7 +55,7 @@ export function speechCatalog(topics: readonly Topic[] = TOPICS): CatalogEntry[]
   };
 
   add(TAKES.often, ...PRAISE);
-  add(TAKES.sometimes, ...CARD_GAME_FINALES);
+  add(TAKES.sometimes, ...CARD_GAME_FINALES, ...ALL_STARS_FINALES);
 
   for (const topic of topics) {
     add(TAKES.sometimes, topic.greeting);

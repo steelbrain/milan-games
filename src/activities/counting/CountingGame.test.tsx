@@ -27,8 +27,10 @@ function items(many: string): HTMLElement[] {
   return within(screen.getByRole('group', { name: `${many} to count` })).getAllByRole('button');
 }
 
-function tally(): string {
-  return screen.getByRole('status', { name: 'Counted so far' }).textContent ?? '';
+/** How many things on the board have been counted so far. */
+function counted(): number {
+  const board = screen.getByRole('group', { name: /to count$/ });
+  return within(board).queryAllByRole('button', { pressed: true }).length;
 }
 
 async function countAll(user: UserEvent, many: string): Promise<number> {
@@ -48,6 +50,26 @@ function answerButton(count: number): HTMLElement {
   });
 }
 
+function wrongAnswers(count: number): HTMLElement[] {
+  return within(screen.getByRole('group', { name: 'How many?' }))
+    .getAllByRole('button')
+    .filter((button) => button.getAttribute('aria-label') !== String(count));
+}
+
+/** Picks both wrong numbers, which misses the page's star. Returns the second one. */
+async function missPage(user: UserEvent, count: number): Promise<string> {
+  const wrong = wrongAnswers(count);
+  expect(wrong).toHaveLength(2);
+  for (const button of wrong) await user.click(button);
+  return wrong[1]?.getAttribute('aria-label') ?? '';
+}
+
+/** Each star in the bar at the top: 'star', 'missed' or 'ahead'. */
+function starBar(): (string | null)[] {
+  const [bar] = screen.getAllByRole('img', { name: /of 5 stars$/ });
+  return [...(bar?.children ?? [])].map((star) => star.getAttribute('data-result'));
+}
+
 describe('CountingGame', () => {
   afterEach(() => {
     vi.useRealTimers();
@@ -61,7 +83,7 @@ describe('CountingGame', () => {
     const things = items(item.many);
     expect(things.length).toBeGreaterThanOrEqual(1);
     expect(things.length).toBeLessThanOrEqual(5);
-    expect(tally()).toBe('0');
+    expect(counted()).toBe(0);
   });
 
   it('counts out loud, one note higher per item', async () => {
@@ -73,7 +95,7 @@ describe('CountingGame', () => {
     await user.click(first);
     await user.click(second);
 
-    expect(tally()).toBe('2');
+    expect(counted()).toBe(2);
     expect(services.speaker.texts.slice(1)).toEqual(['1!', '2!']);
     expect(services.sounds.played).toEqual([
       { cue: 'count', options: { step: 1 } },
@@ -90,14 +112,14 @@ describe('CountingGame', () => {
     if (!first) throw new Error('Expected something to count');
     await user.click(first);
     await user.click(first);
-    expect(tally()).toBe('1');
+    expect(counted()).toBe(1);
     expect(services.sounds.cues).toEqual(['count']);
   });
 
   it('says when every item has been counted', async () => {
     const { user, services } = renderApp('/play/counting/10/picnic');
     const count = await countAll(user, sceneOnScreen('picnic').item.many);
-    expect(tally()).toBe(String(count));
+    expect(counted()).toBe(count);
     const [number, ending] = services.speaker.texts.slice(-2);
     expect(number).toBe(`${count}!`);
     expect(ALL_COUNTED_TEXTS).toContain(ending);
@@ -122,6 +144,47 @@ describe('CountingGame', () => {
     expect(screen.getByRole('img', { name: '0 of 5 stars' })).toBeInTheDocument();
   });
 
+  it('misses the star after a second wrong number, then counts them together', async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+    const { user, services } = renderApp('/play/counting/5/picnic', {
+      userOptions: { advanceTimers: vi.advanceTimersByTime },
+    });
+    const scene = sceneOnScreen('picnic');
+    const count = items(scene.item.many).length;
+    const [first] = items(scene.item.many);
+    if (!first) throw new Error('Expected something to count');
+    await user.click(first);
+
+    const second = await missPage(user, count);
+
+    expect(services.sounds.cues).toEqual(['count', 'tryAgain', 'tryAgain']);
+    expect(services.speaker.texts.slice(-2)).toEqual([
+      `Not ${second}.`,
+      `Let's count the ${scene.item.many} together!`,
+    ]);
+    expect(screen.getByRole('img', { name: '0 of 5 stars' })).toBeInTheDocument();
+    expect(starBar()).toEqual(['missed', 'ahead', 'ahead', 'ahead', 'ahead']);
+    // The right number is shown, but picking it now wins nothing.
+    expect(answerButton(count)).toHaveAttribute('data-status', 'answer');
+    await user.click(answerButton(count));
+    expect(services.sounds.cues).not.toContain('correct');
+    expect(screen.queryByRole('button', { name: 'Count with me' })).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /^(Next|Finish)$/ })).toBeInTheDocument();
+
+    // The count starts again from one and ends by saying how many there were.
+    expect(counted()).toBe(0);
+    for (let step = 1; step <= count + 1; step++) await wait(HELP_STEP_MS);
+    expect(counted()).toBe(count);
+    expect(services.speaker.lastText).toBe(
+      `${count} ${count === 1 ? scene.item.one : scene.item.many}!`,
+    );
+    expect(screen.getByRole('img', { name: '0 of 5 stars' })).toBeInTheDocument();
+
+    await clickNext(user);
+    expect(counted()).toBe(0);
+    expect(starBar()).toEqual(['missed', 'ahead', 'ahead', 'ahead', 'ahead']);
+  });
+
   it('cheers for the right number and moves on to the next page of the story', async () => {
     const { user, services } = renderApp('/play/counting/5/picnic');
     const scene = sceneOnScreen('picnic');
@@ -129,9 +192,9 @@ describe('CountingGame', () => {
     await user.click(answerButton(count));
 
     expect(services.sounds.cues.at(-1)).toBe('correct');
-    const [cheer, counted, reaction] = services.speaker.texts.slice(-3);
+    const [cheer, howMany, reaction] = services.speaker.texts.slice(-3);
     expect(PRAISE.map((line) => line.text)).toContain(cheer);
-    expect(counted).toBe(`${count} ${count === 1 ? scene.item.one : scene.item.many}!`);
+    expect(howMany).toBe(`${count} ${count === 1 ? scene.item.one : scene.item.many}!`);
     expect(reaction).toBe(scene.cheer);
     expect(screen.getByRole('img', { name: '1 of 5 stars' })).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: 'Count with me' })).not.toBeInTheDocument();
@@ -139,7 +202,7 @@ describe('CountingGame', () => {
     await clickNext(user);
     const scenes = storyScenes('picnic');
     expect(scenes.indexOf(sceneOnScreen('picnic'))).toBeGreaterThan(scenes.indexOf(scene));
-    expect(tally()).toBe('0');
+    expect(counted()).toBe(0);
   });
 
   it('counts together, one item at a time, when asked for help', async () => {
@@ -154,21 +217,21 @@ describe('CountingGame', () => {
     await user.click(first);
 
     await user.click(screen.getByRole('button', { name: 'Count with me' }));
-    expect(tally()).toBe('0');
+    expect(counted()).toBe(0);
     expect(services.speaker.lastText).toBe(`Let's count the ${item.many} together!`);
     expect(screen.getByRole('button', { name: 'Count with me' })).toBeDisabled();
 
     // Taps are ignored while the game is counting.
     await user.click(first);
-    expect(tally()).toBe('0');
+    expect(counted()).toBe(0);
 
     await wait(HELP_STEP_MS);
-    expect(tally()).toBe('1');
+    expect(counted()).toBe(1);
     expect(first).toHaveAccessibleName(`${item.one} 1`);
 
     // One more step per remaining item, plus one to notice it is done.
     for (let step = 2; step <= count + 1; step++) await wait(HELP_STEP_MS);
-    expect(tally()).toBe(String(count));
+    expect(counted()).toBe(count);
     const [number, ending] = services.speaker.texts.slice(-2);
     expect(number).toBe(`${count}!`);
     expect(ALL_COUNTED_TEXTS).toContain(ending);
@@ -185,7 +248,7 @@ describe('CountingGame', () => {
     await wait(HELP_STEP_MS);
     await user.click(answerButton(count));
     for (let step = 0; step < 5; step++) await wait(HELP_STEP_MS);
-    expect(tally()).toBe('1');
+    expect(counted()).toBe(1);
   });
 
   it('lets each line finish before counting on, so nothing gets cut off', async () => {
@@ -199,17 +262,17 @@ describe('CountingGame', () => {
 
     // However long "Let's count the stars together!" takes, counting waits for it…
     await wait(5000);
-    expect(tally()).toBe('0');
+    expect(counted()).toBe(0);
     act(() => services.speaker.finishSpeaking());
     await wait(HELP_PAUSE_MS);
-    expect(tally()).toBe('1');
+    expect(counted()).toBe(1);
 
     // …and for every number after it.
     await wait(5000);
-    expect(tally()).toBe('1');
+    expect(counted()).toBe(1);
     act(() => services.speaker.finishSpeaking());
     await wait(HELP_PAUSE_MS);
-    expect(tally()).toBe('2');
+    expect(counted()).toBe(2);
   });
 
   it('counts the moment a finger lands, even one that slides before lifting', () => {
@@ -217,14 +280,14 @@ describe('CountingGame', () => {
     const [first] = items(sceneOnScreen('space').item.many);
     if (!first) throw new Error('Expected something to count');
     fireEvent.pointerDown(first, { button: 0 });
-    expect(tally()).toBe('1');
+    expect(counted()).toBe(1);
   });
 
   it('counts with the keyboard too', async () => {
     const { user } = renderApp('/play/counting/20/space');
     items(sceneOnScreen('space').item.many)[0]?.focus();
     await user.keyboard('{Enter}');
-    expect(tally()).toBe('1');
+    expect(counted()).toBe(1);
   });
 
   it('rests the board when a child taps too fast to be counting along', async () => {
@@ -241,7 +304,7 @@ describe('CountingGame', () => {
 
     expect(services.speaker.lastText).toBe(SLOW_DOWN.text);
     expect(promptText()).toBe(SLOW_DOWN.text);
-    expect(tally()).toBe('0');
+    expect(counted()).toBe(0);
     expect(things[0]).toBeDisabled();
     expect(screen.getByRole('button', { name: 'Count with me' })).toBeDisabled();
 
@@ -249,7 +312,7 @@ describe('CountingGame', () => {
     expect(things[0]).toBeEnabled();
     expect(promptText()).toBe(countingQuestion(sceneOnScreen('space')).text);
     await user.click(things[0] as HTMLElement);
-    expect(tally()).toBe('1');
+    expect(counted()).toBe(1);
   });
 
   it('tells the whole story and ends it', async () => {
@@ -266,6 +329,24 @@ describe('CountingGame', () => {
     // Five different pages, in story order.
     expect(told).toEqual([...new Set(told)].sort((a, b) => a - b));
     expect(screen.getByRole('heading', { name: 'You did it!' })).toBeInTheDocument();
+    expect(services.speaker.lastText).toBe('Octopus had a splashy day. Thank you for counting!');
+  });
+
+  it('ends a story with a missed page with one star fewer', async () => {
+    const { user, services } = renderApp('/play/counting/5/sea');
+    await missPage(user, items(sceneOnScreen('sea').item.many).length);
+    await clickNext(user);
+    for (let page = 2; page <= 5; page++) {
+      const count = await countAll(user, sceneOnScreen('sea').item.many);
+      await user.click(answerButton(count));
+      expect(screen.getByRole('img', { name: `${page - 1} of 5 stars` })).toBeInTheDocument();
+      await clickNext(user);
+    }
+    expect(screen.getByRole('heading', { name: 'You did it!' })).toBeInTheDocument();
+    expect(starBar()).toEqual(['missed', 'star', 'star', 'star', 'star']);
+    for (const bar of screen.getAllByRole('img', { name: /stars$/ })) {
+      expect(bar).toHaveAccessibleName('4 of 5 stars');
+    }
     expect(services.speaker.lastText).toBe('Octopus had a splashy day. Thank you for counting!');
   });
 

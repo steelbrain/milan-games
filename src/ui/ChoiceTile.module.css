@@ -31,6 +31,12 @@
   z-index: 1;
 }
 
+/* The right number, shown after a missed round: marked, but not celebrated. */
+.answer {
+  border-color: #2fb344;
+  box-shadow: 0 8px 0 #1f7a2e;
+}
+
 .wrong {
   opacity: 0.35;
   animation: wiggle 500ms ease-in-out;

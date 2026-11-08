@@ -43,9 +43,13 @@ export const CARD_GAME_HEROES: readonly string[] = [
 export const CARD_GAME_FINALES: readonly Line[] = [
   'Hooray! You did it! Give me a high five!',
   "You did it! You're a superstar!",
-  'Woohoo! You got all five stars!',
   'Amazing! You finished the whole game!',
   "Yay! You did it! Let's do a happy dance!",
   "Great playing! I'm so proud of you!",
+].map((text) => line(text));
+
+/** More endings, only true (so only said) when the game earned every one of its five stars. */
+export const ALL_STARS_FINALES: readonly Line[] = [
+  'Woohoo! You got all five stars!',
   'Wow, five stars! You are so clever!',
 ].map((text) => line(text));

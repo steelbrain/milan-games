@@ -1,5 +1,6 @@
 import { useEffect, useEffectEvent, useState } from 'react';
 import type { Line } from '../content/line';
+import { earnedEveryStar, type RoundResult } from '../core/session';
 import { pickOne } from '../core/random';
 import { useAnnouncement, useAudio } from '../services/audio';
 import { useServices } from '../services/services';
@@ -13,7 +14,11 @@ interface SessionCompleteProps {
   readonly heroes: readonly string[];
   /** Likewise, one of these is said. */
   readonly finales: readonly Line[];
-  readonly stars: number;
+  /** Also in the running when every star was earned. */
+  readonly allStarsFinales?: readonly Line[];
+  /** How each round went, for the stars. */
+  readonly results: readonly RoundResult[];
+  readonly total: number;
   readonly onPlayAgain: () => void;
   readonly onDone: () => void;
 }
@@ -21,14 +26,19 @@ interface SessionCompleteProps {
 export function SessionComplete({
   heroes,
   finales,
-  stars,
+  allStarsFinales = [],
+  results,
+  total,
   onPlayAgain,
   onDone,
 }: SessionCompleteProps) {
   const { random } = useServices();
   const [{ hero, finale }] = useState(() => ({
     hero: pickOne(random, heroes),
-    finale: pickOne(random, finales),
+    finale: pickOne(
+      random,
+      earnedEveryStar(results, total) ? [...finales, ...allStarsFinales] : finales,
+    ),
   }));
   const { play } = useAudio();
   const celebrate = useEffectEvent(() => play('celebrate'));
@@ -45,7 +55,7 @@ export function SessionComplete({
         You did it!
       </h2>
       <p className={styles.finale}>{finale.text}</p>
-      <StarProgress earned={stars} total={stars} />
+      <StarProgress results={results} total={total} />
       <div className={styles.actions}>
         <BigButton icon="🔁" onClick={onPlayAgain} pulse>
           Play again

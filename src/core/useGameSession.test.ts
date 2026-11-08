@@ -11,7 +11,7 @@ describe('useGameSession', () => {
 
     act(() => result.current.solve());
     expect(result.current.stars).toBe(1);
-    expect(result.current.roundSolved).toBe(true);
+    expect(result.current.roundOver).toBe(true);
 
     act(() => result.current.next());
     expect(result.current.round).toBe('b');
@@ -21,6 +21,23 @@ describe('useGameSession', () => {
     act(() => result.current.next());
     expect(result.current.complete).toBe(true);
     expect(result.current.stars).toBe(2);
+    expect(result.current.results).toEqual(['star', 'star']);
+  });
+
+  it('moves on from a missed round without its star', () => {
+    const { result } = renderHook(() => useGameSession(() => ['a', 'b']));
+    act(() => result.current.miss());
+    expect(result.current.roundOver).toBe(true);
+    expect(result.current.stars).toBe(0);
+    expect(result.current.results).toEqual(['missed']);
+
+    act(() => result.current.next());
+    expect(result.current.round).toBe('b');
+    act(() => result.current.solve());
+    act(() => result.current.next());
+    expect(result.current.complete).toBe(true);
+    expect(result.current.stars).toBe(1);
+    expect(result.current.results).toEqual(['missed', 'star']);
   });
 
   it('does not skip unsolved rounds', () => {

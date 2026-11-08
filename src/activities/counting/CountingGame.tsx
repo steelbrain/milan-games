@@ -1,6 +1,6 @@
 import { type CSSProperties, useEffect, useEffectEvent, useRef, useState } from 'react';
 import type { Story } from '../../content/stories';
-import { choiceStatus, choose } from '../../core/choice';
+import { choiceStatus, choose, WRONG_PICKS_TO_MISS } from '../../core/choice';
 import { useGameSession } from '../../core/useGameSession';
 import { useAnnouncement, useAudio } from '../../services/audio';
 import { useServices } from '../../services/services';
@@ -14,6 +14,8 @@ import { praise } from '../praise';
 import styles from './CountingGame.module.css';
 import {
   countAloud,
+  countedItems,
+  countingMissed,
   type CountingRange,
   type CountingRound,
   countingQuestion,
@@ -61,6 +63,7 @@ export function CountingGame({ story, range, exitTo }: CountingGameProps) {
           story={story}
           isLastRound={session.isLastRound}
           onSolved={session.solve}
+          onMissed={session.miss}
           onNext={session.next}
         />
       )}
@@ -73,6 +76,7 @@ interface CountingRoundViewProps {
   readonly story: Story;
   readonly isLastRound: boolean;
   readonly onSolved: () => void;
+  readonly onMissed: () => void;
   readonly onNext: () => void;
 }
 
@@ -81,12 +85,15 @@ function CountingRoundView({
   story,
   isLastRound,
   onSolved,
+  onMissed,
   onNext,
 }: CountingRoundViewProps) {
   const { random, now } = useServices();
   const { say, play } = useAudio();
   const [state, setState] = useState(initialCountingState);
   const [helping, setHelping] = useState(false);
+  // Counts each start of counting together, so starting over always restarts the wait.
+  const [helpStarts, setHelpStarts] = useState(0);
   // After tapping too fast, the board takes a short rest and the count starts over.
   const [resting, setResting] = useState(false);
   const tapTimes = useRef<number[]>([]);
@@ -94,7 +101,7 @@ function CountingRoundView({
   const speaking = useRef(Promise.resolve());
   const { scene } = round;
   const { item } = scene;
-  const solved = state.answer.solved;
+  const { solved, missed } = state.answer;
   const question = countingQuestion(scene);
   useAnnouncement(question);
 
@@ -129,8 +136,13 @@ function CountingRoundView({
 
   const helpTick = useEffectEvent(() => {
     const nextId = itemIds(round).find((id) => !state.counted.includes(id));
-    if (nextId === undefined) setHelping(false);
-    else countNext(nextId);
+    if (nextId !== undefined) {
+      countNext(nextId);
+      return;
+    }
+    setHelping(false);
+    // After a missed page, the count ends by saying the answer: "4 carrots!"
+    if (missed) speaking.current = say(countedItems(scene, round.count)).finished;
   });
 
   // One wait per item, re-armed after each count renders, so a tick never sees stale state.
@@ -152,20 +164,34 @@ function CountingRoundView({
       cancelled = true;
       for (const timer of timers) clearTimeout(timer);
     };
-  }, [helping, helpedSoFar]);
+  }, [helping, helpStarts, helpedSoFar]);
+
+  const countTogetherFromOne = () => {
+    setHelping(true);
+    setHelpStarts((starts) => starts + 1);
+  };
 
   const startHelp = () => {
     if (resting) return;
     setState(resetCount(state));
-    setHelping(true);
+    countTogetherFromOne();
     play('tap');
     speaking.current = say(countTogether(scene)).finished;
   };
 
   const pick = (choice: number) => {
     if (resting) return;
-    const result = choose(state.answer, round.count, choice);
+    const result = choose(state.answer, round.count, choice, { missAfter: WRONG_PICKS_TO_MISS });
     if (result.outcome === 'ignored') return;
+    if (result.outcome === 'missed') {
+      // No star for this page. The game counts them all from one to show how many there were.
+      setState({ counted: [], answer: result.state });
+      countTogetherFromOne();
+      play('tryAgain');
+      speaking.current = say(...countingMissed(choice, scene)).finished;
+      onMissed();
+      return;
+    }
     setState({ ...state, answer: result.state });
     setHelping(false);
     if (result.outcome === 'correct') {
@@ -252,9 +278,6 @@ function CountingRoundView({
         </div>
       </div>
       <div className={cx(styles.footer, resting && styles.resting)} inert={resting}>
-        <div className={styles.tally} role="status" aria-label="Counted so far">
-          {state.counted.length}
-        </div>
         <div className={styles.choices} role="group" aria-label="How many?">
           {round.choices.map((choice) => (
             <ChoiceTile
@@ -267,7 +290,7 @@ function CountingRoundView({
             </ChoiceTile>
           ))}
         </div>
-        {solved ? (
+        {solved || missed ? (
           <BigButton icon={isLastRound ? '🎉' : '➡️'} onClick={onNext} pulse autoFocus>
             {isLastRound ? 'Finish' : 'Next'}
           </BigButton>

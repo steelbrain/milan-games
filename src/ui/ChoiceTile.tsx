@@ -11,7 +11,10 @@ interface ChoiceTileProps {
   readonly children: ReactNode;
 }
 
-/** A big square answer button. Wrong picks wiggle and grey out; the right one bursts. */
+/**
+ * A big square answer button. Wrong picks wiggle and grey out; the right one bursts, or is just
+ * marked when it is shown after a missed round.
+ */
 export function ChoiceTile({ label, status, onChoose, children }: ChoiceTileProps) {
   return (
     <button

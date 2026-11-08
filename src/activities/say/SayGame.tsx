@@ -11,7 +11,7 @@ import { CardExample } from '../../ui/CardExample';
 import { CardFace } from '../../ui/CardFace';
 import { GameFrame } from '../../ui/GameFrame';
 import { PromptBubble } from '../../ui/PromptBubble';
-import { CARD_GAME_FINALES, CARD_GAME_HEROES } from '../praise';
+import { ALL_STARS_FINALES, CARD_GAME_FINALES, CARD_GAME_HEROES } from '../praise';
 import styles from './SayGame.module.css';
 
 interface SayGameProps {
@@ -32,6 +32,7 @@ export function SayGame({ deck, exitTo }: SayGameProps) {
       exitTo={exitTo}
       heroes={CARD_GAME_HEROES}
       finales={CARD_GAME_FINALES}
+      allStarsFinales={ALL_STARS_FINALES}
     >
       {(card) => (
         <SayRoundView

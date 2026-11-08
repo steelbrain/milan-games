@@ -11,9 +11,13 @@ Little learning games for a three-year-old, made to play together on a tablet or
 | **Shapes**   | Find or name circles, squares, triangles, stars, hearts and more.                                                                                                   |
 
 Everything is spoken with pre-recorded, natural-sounding speech, so the child doesn't need to
-read. Wrong answers only get a gentle "try again"; nobody ever fails. Every round earns a star,
-and five stars end in a party. Each counting story has 8 pages and a game tells a random 5 of
-them, so playing the same story again tells it differently.
+read. A wrong answer gets a gentle "try again". The "Find the B" games and counting offer three
+answers per round, and picking both wrong ones loses that round's star: the game marks the right
+answer and says it, and in counting it first counts the things together from one. Flash cards
+always earn their star, since the child answers out loud. Every game ends in a party after five
+rounds, showing the stars earned; "You got all five stars!" is only said when that's true. Each
+counting story has 8 pages and a game tells a random 5 of them, so playing the same story again
+tells it differently.
 
 ## Playing
 
