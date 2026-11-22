@@ -56,12 +56,12 @@ function wrongAnswers(count: number): HTMLElement[] {
     .filter((button) => button.getAttribute('aria-label') !== String(count));
 }
 
-/** Picks both wrong numbers, which misses the page's star. Returns the second one. */
+/** Picks a wrong number, which misses the page's star. Returns the number picked. */
 async function missPage(user: UserEvent, count: number): Promise<string> {
-  const wrong = wrongAnswers(count);
-  expect(wrong).toHaveLength(2);
-  for (const button of wrong) await user.click(button);
-  return wrong[1]?.getAttribute('aria-label') ?? '';
+  const [wrong] = wrongAnswers(count);
+  if (!wrong) throw new Error('No wrong choice');
+  await user.click(wrong);
+  return wrong.getAttribute('aria-label') ?? '';
 }
 
 /** Each star in the bar at the top: 'star', 'missed' or 'ahead'. */
@@ -125,26 +125,7 @@ describe('CountingGame', () => {
     expect(ALL_COUNTED_TEXTS).toContain(ending);
   });
 
-  it('gently corrects a wrong number', async () => {
-    const { user, services } = renderApp('/play/counting/10/picnic');
-    const count = items(sceneOnScreen('picnic').item.many).length;
-    const wrong = within(screen.getByRole('group', { name: 'How many?' }))
-      .getAllByRole('button')
-      .find((button) => button.getAttribute('aria-label') !== String(count));
-    if (!wrong) throw new Error('No wrong choice');
-
-    await user.click(wrong);
-
-    expect(services.sounds.cues).toEqual(['tryAgain']);
-    expect(services.speaker.texts.slice(-2)).toEqual([
-      `Not ${wrong.getAttribute('aria-label') ?? ''}.`,
-      "Let's try again!",
-    ]);
-    expect(wrong).toBeDisabled();
-    expect(screen.getByRole('img', { name: '0 of 5 stars' })).toBeInTheDocument();
-  });
-
-  it('misses the star after a second wrong number, then counts them together', async () => {
+  it('misses the star after a wrong number, then counts them together', async () => {
     vi.useFakeTimers({ shouldAdvanceTime: true });
     const { user, services } = renderApp('/play/counting/5/picnic', {
       userOptions: { advanceTimers: vi.advanceTimersByTime },
@@ -155,15 +136,18 @@ describe('CountingGame', () => {
     if (!first) throw new Error('Expected something to count');
     await user.click(first);
 
-    const second = await missPage(user, count);
+    const wrong = await missPage(user, count);
 
-    expect(services.sounds.cues).toEqual(['count', 'tryAgain', 'tryAgain']);
+    expect(services.sounds.cues).toEqual(['count', 'tryAgain']);
     expect(services.speaker.texts.slice(-2)).toEqual([
-      `Not ${second}.`,
+      `Not ${wrong}.`,
       `Let's count the ${scene.item.many} together!`,
     ]);
     expect(screen.getByRole('img', { name: '0 of 5 stars' })).toBeInTheDocument();
     expect(starBar()).toEqual(['missed', 'ahead', 'ahead', 'ahead', 'ahead']);
+    expect(wrongAnswers(count).map((button) => button.getAttribute('data-status'))).toEqual(
+      expect.arrayContaining(['wrong', 'faded']),
+    );
     // The right number is shown, but picking it now wins nothing.
     expect(answerButton(count)).toHaveAttribute('data-status', 'answer');
     await user.click(answerButton(count));

@@ -12,13 +12,13 @@ async function solveRound(user: UserEvent) {
   await clickNext(user);
 }
 
-/** Picks both wrong letters, which misses the round's star. Returns them in order. */
-async function missRound(user: UserEvent): Promise<string[]> {
+/** Picks a wrong letter, which misses the round's star. Returns the letter picked. */
+async function missRound(user: UserEvent): Promise<string> {
   const target = findTarget(LETTER);
-  const wrong = choiceButtons().filter((button) => button.getAttribute('aria-label') !== target);
-  expect(wrong).toHaveLength(2);
-  for (const button of wrong) await user.click(button);
-  return wrong.map((button) => button.getAttribute('aria-label') ?? '');
+  const wrong = choiceButtons().find((button) => button.getAttribute('aria-label') !== target);
+  if (!wrong) throw new Error('No wrong choice');
+  await user.click(wrong);
+  return wrong.getAttribute('aria-label') ?? '';
 }
 
 const finaleTexts = (finales: readonly { text: string }[]) => finales.map((line) => line.text);
@@ -31,36 +31,22 @@ describe('FindGame', () => {
     expect(choiceButtons()).toHaveLength(3);
   });
 
-  it('gently corrects a wrong pick and lets the child try again', async () => {
+  it('misses the star after a wrong pick, and shows the right one', async () => {
     const { user, services } = renderApp('/play/letters/upper/find');
     const target = findTarget(LETTER);
-    const wrong = choiceButtons().find((button) => button.getAttribute('aria-label') !== target);
-    if (!wrong) throw new Error('No wrong choice');
-    const wrongLetter = wrong.getAttribute('aria-label') ?? '';
-
-    await user.click(wrong);
+    const wrong = await missRound(user);
 
     expect(services.sounds.cues).toEqual(['tryAgain']);
-    expect(services.speaker.texts.slice(-2)).toEqual([
-      `That's ${wrongLetter}.`,
-      `Find the letter ${target}!`,
-    ]);
-    expect(wrong).toBeDisabled();
-    expect(wrong).toHaveAttribute('data-status', 'wrong');
-    expect(screen.queryByRole('button', { name: 'Next' })).not.toBeInTheDocument();
-    expect(screen.getByRole('img', { name: '0 of 5 stars' })).toBeInTheDocument();
-  });
-
-  it('misses the star after a second wrong pick, and shows the right one', async () => {
-    const { user, services } = renderApp('/play/letters/upper/find');
-    const target = findTarget(LETTER);
-    const [, second] = await missRound(user);
-
-    expect(services.sounds.cues).toEqual(['tryAgain', 'tryAgain']);
     const [named, description] = services.speaker.texts.slice(-2);
-    expect(named).toBe(`That's ${second ?? ''}.`);
+    expect(named).toBe(`That's ${wrong}.`);
     expect(description).toMatch(new RegExp(`^${target} is for \\w+!$`));
     expect(screen.getByRole('button', { name: target })).toHaveAttribute('data-status', 'answer');
+    expect(screen.getByRole('button', { name: wrong })).toHaveAttribute('data-status', 'wrong');
+    const [other] = choiceButtons().filter(
+      (button) => ![target, wrong].includes(button.getAttribute('aria-label') ?? ''),
+    );
+    expect(other).toHaveAttribute('data-status', 'faded');
+    expect(other).toBeDisabled();
     expect(screen.getByRole('figure')).toBeInTheDocument();
     expect(screen.getByRole('img', { name: '0 of 5 stars' })).toBeInTheDocument();
 

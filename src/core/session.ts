@@ -1,7 +1,7 @@
 /**
  * A game session is a fixed list of rounds played in order. Every round must be over before
  * moving on. A round is usually over once it is solved, which earns its star; a game may also
- * end a round as missed (after two wrong picks), which leaves its star empty.
+ * end a round as missed (after a wrong pick), which leaves its star empty.
  */
 export type RoundResult = 'star' | 'missed';
 

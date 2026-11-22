@@ -16,10 +16,10 @@ export type ChoiceOutcome = 'correct' | 'wrong' | 'missed' | 'ignored';
 export type ChoiceStatus = 'idle' | 'correct' | 'answer' | 'wrong' | 'faded';
 
 /**
- * The games offer three choices, so after one wrong pick a second would leave only the answer,
- * found by elimination. The second wrong pick misses the round instead.
+ * A wrong pick misses the round: no star, and the game shows the right answer. The games still
+ * handle a higher limit, where each wrong pick before the last one gets a gentle "try again".
  */
-export const WRONG_PICKS_TO_MISS = 2;
+export const WRONG_PICKS_TO_MISS = 1;
 
 export interface ChooseOptions {
   /** The wrong pick that makes this many misses the round. Unlimited by default. */

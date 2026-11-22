@@ -31,10 +31,12 @@ test('plays a whole counting story, counting to 20, missing one page', async ({ 
     const choices = page.getByRole('group', { name: 'How many?' });
     const answer = choices.getByRole('button', { name: String(count), exact: true });
     if (page_ === 1) {
-      // Picking both wrong numbers misses the first page's star and shows the answer.
-      for (const choice of await choices.getByRole('button').all()) {
-        if ((await choice.getAttribute('aria-label')) !== String(count)) await choice.click();
-      }
+      // A wrong number misses the first page's star and shows the answer.
+      await choices
+        .getByRole('button')
+        .and(page.locator(`:not([aria-label="${count}"])`))
+        .first()
+        .click();
       await expect(answer).toHaveAttribute('data-status', 'answer');
       await expect
         .poll(() => spoken().some((text) => /^Let's count the [\w ]+ together!$/.test(text)))
@@ -78,13 +80,13 @@ test('finds letters, missing one, then plays again', async ({ page, spoken }) =>
     expect(target).toMatch(/^[A-Z]$/);
     const answer = page.getByRole('button', { name: target, exact: true });
     if (round === 1) {
-      // Picking both wrong letters misses the first star and shows the right one.
-      for (const choice of await page
+      // A wrong letter misses the first star and shows the right one.
+      await page
         .getByRole('group', { name: 'Choices' })
         .getByRole('button')
-        .all()) {
-        if ((await choice.getAttribute('aria-label')) !== target) await choice.click();
-      }
+        .and(page.locator(`:not([aria-label="${target}"])`))
+        .first()
+        .click();
       await expect(answer).toHaveAttribute('data-status', 'answer');
     } else {
       await answer.click();
