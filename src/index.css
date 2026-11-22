@@ -25,12 +25,12 @@ body {
   color: var(--ink);
   font-family: var(--ui-font);
   -webkit-font-smoothing: antialiased;
-  /* Small fingers: no text selection, callouts, double-tap zoom, or pull-to-refresh. */
+  /* Small fingers: no text selection, callouts, zooming, or pull-to-refresh. */
   user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
+  touch-action: pan-x pan-y;
   overscroll-behavior: none;
 }
 

@@ -29,8 +29,10 @@ npm run dev -- --host     # then open the "Network" URL on the iPad
 ```
 
 On an iPad, use **Share → Add to Home Screen** for a full-screen app (Chrome and Android offer
-**Install app**). The mute button is in the top right corner. `npm run build` produces a static
-site in `dist/` that works from any web host or folder, because routing uses the URL hash.
+**Install app**). The mute button is in the top right corner. Pinching or double-tapping the
+screen, a trackpad pinch, and Ctrl or ⌘ with + or − don't zoom the page, so a child can't zoom in
+by accident; Ctrl or ⌘ 0 still resets the browser's zoom. `npm run build` produces a static site in `dist/` that works from any
+web host or folder, because routing uses the URL hash.
 
 ### Offline, like on a plane
 

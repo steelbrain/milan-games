@@ -8,10 +8,12 @@ import { AppProviders } from './app/AppProviders';
 import { AppRoutes } from './app/AppRoutes';
 import { createBrowserServices, unlockAudioOnFirstGesture } from './app/browserServices';
 import { guardDoubleTaps } from './ui/doubleTaps';
+import { blockZoom } from './ui/zoom';
 
 const services = createBrowserServices();
 unlockAudioOnFirstGesture(window, services);
 guardDoubleTaps(document);
+blockZoom(document);
 
 const root = document.getElementById('root');
 if (!root) throw new Error('Missing #root element');
